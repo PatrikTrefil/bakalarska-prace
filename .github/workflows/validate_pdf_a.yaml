@@ -8,15 +8,15 @@ on:
 
   workflow_dispatch:
 
-defaults:
-  run:
-    working-directory: src
 
 jobs:
   build:
     name: Build thesis PDFs
     runs-on: ubuntu-latest
     container: { image: 'aergus/latex' }
+    defaults:
+        run:
+            working-directory: src
 
     steps:
       - uses: actions/checkout@v3
