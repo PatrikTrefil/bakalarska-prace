@@ -27,8 +27,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Thesis
-          path: |
-            *.pdf
+          path: src/*.pdf
 
   verify:
     name: Verify PDF/A
