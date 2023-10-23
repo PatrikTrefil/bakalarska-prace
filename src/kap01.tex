@@ -1,3 +1,428 @@
-\chapter{Analýza požadavků}
+\chapter{Analýza požadavků}\label{ch:analyza-pozadavku}
 
-TODO: napsat kapitolu
+Výsledkem prvních několika schůzek byla následující neformální specifikace.
+Již v tomto stádiu bylo jasné, že bude potřeba definovat společný jazyk pro komunikaci mezi všemi zúčastněnými stranami.
+Dalším krokem bylo tedy vytvoření doménového modelu, který dostal formu UML diagramu a textového souboru definic entit.
+Časem byla neformální specifikace převedena do formy user stories.
+Tato konverze byla provedena zejména pro lepší organizaci vývoje softwaru.
+Dále jsme identifikovali stakeholdery a sepsali jejich zájmy.
+Všechny tyto artefakty se nachází v následujících podkapitolách.
+
+\section{Specifikace}\label{sec:specifikace}
+
+\subsection{Skupiny uživatelů}\label{subsec:skupiny-uzivatelu}
+
+\begin{itemize}
+\item
+  Uživatel = pacient/klient
+
+\item
+  Zaměstnanci NUDZ
+
+  \begin{itemize}
+  \item
+    Správce dotazníků = terapeut/výzkumník
+  \item
+    Zadavatel dotazníků = terapeut/výzkumník
+  \end{itemize}
+\item
+  Technická podpora
+\end{itemize}
+
+
+\subsection{Funkční požadavky}\label{subsec:funkcni-pozadavky}
+\begin{itemize}
+\item
+  Zadavatel/správce dotazníků může zadávat dotazníky a úkoly konkrétnímu uživateli, nastavit frekvenci opakování a nastavit start/deadline.
+
+  \begin{itemize}
+  \item
+    Start je čas, kdy lze dotazník nejdříve vyplnit.
+  \item
+    Deadline je čas, kdy lze dotazník nejpozději vyplnit.
+  \item
+    Dotazník se skládá z otázek, které mohou přijímat odpovědi těchto typů:
+
+    \begin{itemize}
+    \item
+      text
+    \item
+      více možností (možno zvolit právě jeden)
+    \item
+      více možností (možno zvolit libovolný počet)
+    \end{itemize}
+  \item
+    u každé otázky je možno nastavit podmíněné zobrazení, tj.\ otázka se uživateli zobrazí pokud je splněna podmínka definovaná správcem dotazníku při vytvoření.
+  \item
+    V aplikaci by mělo být možné vytvořit \hyperref[sec:ukazkovyDotaznik]{ukázkový dotazník}.
+  \end{itemize}
+\item
+  Správce dotazníků je schopen vytvářet, mazat dotazníky a způsoby vyhodnocení (\emph{v dotazníku lze upravit pouze již existující otázky a lze v nich upravit obsah otázky a obsah již existujících odpovědí; \textbf{nelze} přidat/odebrat otázky, přidat/odebrat možné odpovědo, ani upravit způsob výpočtu skóre - slouží pouze pro opravy/objasnění otázek}).
+
+  \begin{itemize}
+  \item
+    Při tvorbě dotazníku je možno nastavit automaticky počítané metriky pomocí vzorce (např.\ \texttt{otázka1\ +\ otázka2\ -\ otázka4}, kde \texttt{otázka1}, \texttt{otázka2} a \texttt{otázka4} jsou proměnné reprezentující výsledky příslušných otázek).
+  \end{itemize}
+\item
+  Uživatel může v aplikaci vypracovat dotazníky a úkoly, které mu byly přiděleny správcem/zadavatelem dotazníků.
+
+  \begin{itemize}
+  \item
+    Uživatel je schopen vyplnit část dotazníku, uložit si dosud zodpovězené otázky a v budoucnu vyplňování dotazníku dokončit.
+  \end{itemize}
+\item
+  Uživatel může smazat svá data.
+\item
+  Správce/zadavatel dotazníků je schopen vidět výsledky dotazníků a úkolů všech uživatelů.
+  Správce/zadavatel může vybrat data, která budou vizualizována na grafech.
+\item
+  Správce dotazníků/člen technické podpory je schopen vytvářet/mazat uživatelské účty, účty pro ostatní správce a účty pro zadavatele dotazníků.
+\item
+  Správce dotazníků/člen technické podpory je schopen měnit přístupová práva všech ostatních účtů.
+\item
+  Uživatel je schopen měnit heslo svého účtu a je schopen svůj účet smazat.
+\item
+  Výsledky dotazníků uživatelů může správce/zadavatel dotazníků z aplikace exportovat do formátu CSV\@.
+\item
+  Aplikace bude pouze v Českém jazyce, ale bude připravena na internacionalizaci.
+\item
+  Uživatel v systému vystupuje pod ID, které je náhodně vygenerováno.
+\end{itemize}
+
+
+\subsubsection{Viditelnost vyhodnocení dotazníků}
+
+\begin{itemize}
+\item
+  Uživatel je schopen vidět vyhodnocení svých dotazníků, u kterých to správce/zadavatel dovolil.
+\item
+  Správce/zadavatel dotazníků může dovolit uživateli vidět výsledky konkrétního dotazníku - číselná hodnota/graf/text.
+\item
+  Rozhodnutí o viditelnosti výsledků pro uživatele dělá správce/zadavatel dotazníku při zadávání dotazníku.
+\item
+  Viditelnost výsledků lze nastavit následujícími způsoby:
+
+  \begin{itemize}
+  \item
+    uživatel vidí výsledky
+  \item
+    uživatel nevidí výsledky
+  \item
+    uživatel vidí výsledky pouze výsledek dotazníku splňuje podmínku (např.\ výsledné skóre je větší než 10)
+  \end{itemize}
+\end{itemize}
+
+
+\subsubsection{Volitelné}
+
+\begin{itemize}
+\item
+  Sledování jak dlouho trvalo odpovědět na konkrétní otázku, kdy uživatel dotazník vyplnil, počet změn odpovědí.
+\item
+  E-mail upozornění na nové úkoly, na nesplněné úkoly.
+\item
+  Push notifikace v prohlížeči na nové úkoly, na nesplněné úkoly.
+\item
+  Chat mezi terapeutem a uživatelem.
+\item
+  Rozšíření již vystavěné infrastruktury pro zadávání dotazníků pro zadávání cvičení (např.\ přečíst článek, zhlédnout video nebo vypracovat interaktivní cvičení).
+\end{itemize}
+
+
+\subsection{Nefunkční požadavky}\label{subsec:nefunkcni-pozadavky}
+
+\begin{itemize}
+\item
+  Uživatelské rozhraní by mělo být vhodné pro uživatelé s malými technickými znalostmi.
+\item
+  K programu by měla být dodána uživatelská a technická dokumentace.
+\end{itemize}
+
+
+\subsection{Deployment}\label{subsec:deployment}
+
+\begin{itemize}
+\item
+  Aplikace bude spouštěna v kontejneru.
+\item
+  Parametry serveru: (lze navýšit v případě potřeby)
+
+  \begin{itemize}
+  \item
+    CPU: 2 jádra
+  \item
+    RAM: 4 GB
+  \item
+    HDD: volných 29 GB
+  \end{itemize}
+\end{itemize}
+
+
+\subsection{Monitoring}\label{subsec:monitoring}
+
+\begin{itemize}
+\item
+  Bude k dispozici rozhraní pro monitorování aplikace.
+\end{itemize}
+
+\section{Doménový model}\label{sec:domenovy-model}
+
+\includesvg[width=0.9\textwidth]{diagrams/domainModel}
+
+\begin{tcolorbox}
+Dědičnost v UML vyjadřuje jiný vztah než v programování.
+Třída je množina a odvozená třída je její podmnožina.
+Vztahy mezi odvozenými třídami, tedy podmnožinami, mohou být 4 typů podle toho zda-li se podmnožiny překrývají a zda-li je jejich sjednocení množina definovaná třídou, od které odvozujeme.
+Tento vztah je vždy popsán v poznámce k třídě, od které odvozujeme.
+\end{tcolorbox}
+
+\subsection{Definice entit}\label{subsec:definice-entit}
+
+\begin{description}
+\item[Osoba]
+  Lidská bytost, která má vztah k systému.
+
+\item[Zaměstnanec]
+  Osoba, která je zaměstnána v NUDZ\@.
+
+\item[SprávceÚkolů]
+  Zaměstnanec, který je zodpovědný za správu úkolů v systému.
+
+\item[ZadavatelÚkolů]
+  Zaměstnanec, který zadává pro plnitelé úkoly v systému.
+
+\item[Plnitel]
+  Osoba, která vypracovává úkoly v systému.
+
+\item[Klient]
+  Plnitel, který je klientem NUDZ (platí za poskytovanou péči).
+
+\item[Pacient]
+  Plnitel, který je pacientem NUDZ (poskytovaná péče je hrazena pojišťovnou).
+
+\item[DefiniceÚkol]
+  Obecný potenciálně znovupoužitelný popis činnosti plnitele.
+
+\item[DefiniceFormuláře]
+  Definice úkolu, která obsahuje formulář, který je určen k vyplnění plnitelem.
+
+\item[ZadáníÚkolu]
+  Zadání úkolu pro konkrétního plnitele na základě definice úkolu.
+
+\item[VypracováníÚkolu]
+  Vypracování úkolu plnitelem na základě zadání úkolu.
+
+\item[VypracováníFormuláře]
+  Vypracování úkolu ve tvaru vyplnění formuláře.
+
+\item[AnalýzaVypracováníFormuláře]
+  Analýza vypracování formuláře, která je určena k uložení odvozených dat.
+
+\item[NedokončenéVyplněníFormuláře]
+  Nedokončené vyplnění formuláře, které slouží k uložení částečně vyplněných formulářů.
+  (Umožňuje uživateli přerušit vyplňování formuláře a pokračovat později)
+
+\end{description}
+
+\subsection{Omezení}\label{subsec:omezeni}
+
+Zde jsou vypsána omezení, která nejsou vyjádřena v diagramu.
+Každé omezení je napsáno jak v neformální textové podobě, tak v \href{https://www.omg.org/spec/OCL/2.4/About-OCL}{Object constraint language}.
+
+\subsubsection{NedokončenéVyplněníFormuláře}
+
+Nedokončené vyplnění formuláře pro definici formuláře, zadání úkolu a uživatele může existovat pouze pokud je zadání úkolu pro uživatele a zadání úkolu zadává stejný formulář, který je částečně vyplněn nedokončeným vyplněním formuláře.
+
+\begin{verbatim}
+context plnitel: Plnitel inv
+  plnitel->vlastni->forAll(
+      nedokonceneVyplneniFormulare |
+          nedokonceneVyplneniFormulare
+            ->castecneVypracovava
+            ->zadanPro = self
+          and
+          nedokonceneVyplneniFormulare
+            ->castecneVypracovava
+            ->definovano = nedokonceneVyplneniFormulare->vyplnuje
+          )
+\end{verbatim}
+
+\subsubsection{ZadáníÚkolu}
+
+Definice úkolu musí logicky odpovídat vypracování úkolu.
+Např.\ nemůžeme považovat přečtení článku jako vypracování úkolu, který je definován jako vypracování formuláře.
+
+\begin{verbatim}
+context z: ZadáníÚkolu inv
+    if vypracování.oclIsKindOf(VypracováníFormuláře) then
+        definováno.oclIsKidnOf(DefiniceFormuláře)
+    endif
+\end{verbatim}
+
+\subsubsection{VypracováníÚkolu}
+
+ID musí být unikátní.
+
+\begin{verbatim}
+context v1, v2: VypracováníÚkolu inv v1.ID = v2.ID implies v1 = v2
+\end{verbatim}
+
+\subsubsection{DefiniceÚkolu}
+
+ID musí být unikátní.
+
+\begin{verbatim}
+context d1, d2: DefiniceÚkolu inv d1.ID = d2.ID implies d1 = d2
+\end{verbatim}
+
+\subsubsection{Osoba}
+
+ID musí být unikátní.
+
+\begin{verbatim}
+context o1, o2: Osoba inv o1.ID = o2.ID implies o1 = o2
+\end{verbatim}
+
+\section{User stories}\label{sec:user-stories}
+
+Zde je seznam funkčních požadavků ve standardizované formě.
+Jedná se o přepis neformální specifikace ze sekce~\ref{sec:specifikace}.
+
+\begin{itemize}
+  \item
+  Jako zaměstnanec chci mít možnost založit účet pro klienta/pacienta, abych mohl využít systém v rámci terapie/výzkumu.
+  \item
+  Jako klient/pacient chci aby moje data nemohli číst ostatní klienti/pacienti, protože jsou soukromá.
+  \item
+  Jako terapeut/výzkumník chci aby byl klient/pacient schopen plnit pouze úkoly, které mu byly zadány, aby se zachovala integrita sbíraných dat.
+  \item
+  Jako klient/pacient chci být schopen zobrazit svá data, abych věděl co je o mě v systému evidováno (např.\ vyplněné dotazníky).
+  \item
+  Jako správce dotazníků chci mít možnost zadávat dotazníky a úkoly konkrétnímu uživateli, nastavit frekvenci opakování a nastavit start/deadline, abych mohl správně koordinovat procesy a aktivity v systému.
+  \item
+  Jako správce dotazníků chci mít možnost vytvářet otázky v dotaznících, které mohou přijímat odpovědi typu text, více možností (možno zvolit právě jeden) a více možností (možno zvolit libovolný počet), abych mohl vytvářet různorodé a komplexní dotazníky.
+  \item
+  Jako správce dotazníků chci mít možnost nastavit podmíněné zobrazení otázky, takže otázka se uživateli zobrazí pokud je splněna podmínka definovaná mnou při vytvoření, což umožní flexibilní a přizpůsobené průzkumy.
+  \item
+  Jako správce dotazníků chci mít možnost vytvářet, mazat dotazníky a způsoby vyhodnocení, abych mohl udržovat aktuální a relevantní soubor dotazníků.
+  \item
+  Jako správce dotazníků chci mít možnost nastavit automaticky počítané metriky pomocí vzorce (např.\ \texttt{otázka1 + otázka2 - otázka4}), což mi umožní efektivně vyhodnocovat odpovědi.
+  \item
+  Jako uživatel chci mít možnost vypracovat dotazníky a úkoly, které mi byly přiděleny správcem/zadavatelem dotazníků, abych mohl aktivně participovat v systému.
+  \item
+  Jako uživatel chci mít možnost vyplnit část dotazníku, uložit si dosud zodpovězené otázky a v budoucnu vyplňování dotazníku dokončit, aby bylo vyplňování dotazníků flexibilní a pohodlné.
+  \item
+  Jako uživatel chci mít možnost smazat svá data, abych měl kontrolu nad svými daty.
+  \item
+  Jako správce/zadavatel dotazníků chci mít možnost vidět výsledky dotazníků a úkolů všech uživatelů a vybrat data, která budou vizualizována na grafech, abych mohl monitorovat a analyzovat výsledky.
+  \item
+  Jako správce dotazníků/člen technické podpory chci mít možnost vytvářet/mazat uživatelské účty, účty pro ostatní správce a účty pro zadavatele dotazníků, abych mohl efektivně spravovat uživatelské účty.
+  \item
+  Jako správce/zadavatel dotazníků chci mít možnost exportovat výsledky dotazníků uživatelů z aplikace do formátu CSV, abych mohl dělat pokročilé analýzy dat.
+  \item
+  Jako uživatel chci, aby aplikace byla v Českém jazyce, ale byla připravena na internacionalizaci, abych mohl používat aplikaci v jazyce, kterému rozumím.
+  \item
+  Jako uživatel chci vidět vyhodnocení svých dotazníků, u kterých to správce/zadavatel dovolil, abych mohl sledovat svůj pokrok a výsledky.
+  \item
+  Jako správce/zadavatel dotazníků chci moci dovolit uživateli vidět výsledky konkrétního dotazníku - číselná hodnota/graf/text, abych mohl sdílet výsledky a zpětnou vazbu s uživateli.
+  \item
+  Jako uživatel chci, aby uživatelské rozhraní bylo vhodné pro uživatele s malými technickými znalostmi, abych mohl snadno používat aplikaci bez ohledu na své technické dovednosti.
+  \item
+  Jako uživatel chci, aby k programu byla dodána uživatelská a technická dokumentace, abych mohl lépe porozumět, jak aplikace funguje a jak ji používat.
+  \item
+  Jako technický pracovník chci, aby aplikace byla spouštěna v kontejneru, abych mohl snadno spravovat a nasazovat aplikaci.
+  \item
+  Jako technický pracovník chci mít k dispozici rozhraní pro monitorování aplikace, abych mohl sledovat výkon a stav aplikace a rychle reagovat na potenciální problémy.
+  \item
+  Jako uživatel chci v systému vystupovat pod ID, které je náhodně vygenerováno, aby bylo zajištěno mé soukromí.
+  \item
+  Jako správce dotazníků chci být schopen upravovat text již existující otázky, abych mohl opravit překlepy nebo vylepšit formulaci otázky.
+  \item
+  Jako uživatel chci měnit heslo svého účtu, abych zajistil bezpečnost svého účtu.
+\end{itemize}
+
+\subsection{Volitelné}\label{subsec:volitelnuxe9}
+
+\begin{itemize}
+  \item
+  Jako uživatel chci dostávat e-mail upozornění na nové úkoly a na nesplněné úkoly, abych byl vždy informován o svých úkolech a termínech.
+  \item
+  Jako uživatel chci dostávat push notifikace v prohlížeči na nové úkoly a na nesplněné úkoly, abych byl vždy aktuálně informován o svých úkolech.
+\end{itemize}
+
+\section{Stakeholdeři a jejich zájmy}\label{sec:stakeholderi}
+
+\subsection{Uživatelé aplikace}\label{subsec:uzivatele-aplikace}
+
+\begin{itemize}
+  \item
+  Podpora mobilních zařízení
+\end{itemize}
+
+\subsubsection{Klienti/pacienti}\label{subsubsec:klientipacienti}
+
+\begin{itemize}
+  \item
+  Jednoduché rozhraní pro plnění úkolů, které zajistí zlepšení jejich
+  zdravotního stavu a poskytne terapeutům potřebné informace pro jejich
+  léčbu.
+\end{itemize}
+
+\subsubsection{Terapeuti}\label{subsubsec:terapeuti}
+
+\begin{itemize}
+  \item
+  Jednoduché rozhraní vhodné pro uživatele s nízkými technickými
+  znalostmi
+  \item
+  Jednoduchý přístup k výsledkům pacientů s přehlednou vizuální
+  reprezentací
+  \item
+  Spolupráce s klienty/pacienty v rámci terapie formou domácích úkolů
+  pro zlepšení poskytované péče a prevenci kriminality
+\end{itemize}
+
+\subsection{Ostatní}\label{subsec:ostatni}
+
+\subsection{Vývojáři}\label{subsec:vyvojari}
+
+\begin{itemize}
+  \item
+  Dobře dokumentovaný kód a vhodně dokumentovaná architektura aplikace
+  \item
+  Dobře nastavené procesy pro prevenci chyb (testy, kontinuální
+  integrace, \ldots{})
+  \item
+  Jednoduchá rozšiřitelnost aplikace
+  \item
+  Vysoká modifikovatelnost aplikace
+\end{itemize}
+
+\subsection{Provozovatel (správce) software}\label{subsec:provozovatel-spravce-software}
+
+\begin{itemize}
+  \item
+  Jednoduché nasazení aplikace na server
+  \item
+  Monitoring aplikace
+\end{itemize}
+
+\subsection{Výzkumníci}\label{subsec:vyzkumnici}
+
+\begin{itemize}
+  \item
+  Možnost tvorby komplexních výzkumných studií
+  \item
+  Možnost pokročilé analýzy dat vlastním nástrojem
+\end{itemize}
+
+\subsection{Vedení organizace}\label{subsec:vedeni-organizace}
+
+\begin{itemize}
+  \item
+  Nízká cena za vývoj a provoz aplikace
+  \item
+  Nízké časové nároky na zaučení uživatelů
+  \item
+  Vysoké zabezpečení aplikace
+\end{itemize}

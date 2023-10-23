@@ -1,32 +1,27 @@
 export TEXINPUTS=../tex//:
 
-PLANTUML_JAR=diagrams/plantuml.jar
-
 DIAGRAMS_PUML=$(wildcard ./diagrams/*.puml)
-DIAGRAMS_EPS=$(DIAGRAMS_PUML:.puml=.eps)
+DIAGRAMS_SVG=$(DIAGRAMS_PUML:.puml=.svg)
 
 all: prace.pdf abstrakt.pdf
 
-# Stáhnutí PlantUML spustitelného JAR souboru
-$(PLANTUML_JAR):
-	wget -O $(PLANTUML_JAR) https://github.com/plantuml/plantuml/releases/download/v1.2023.8/plantuml-1.2023.8.jar
-
 # Generovaní SVG diagramů z PlantUML
-$(DIAGRAMS_EPS):./diagrams/%.eps: ./diagrams/%.puml $(PLANTUML_JAR)
-	java -jar $(PLANTUML_JAR) -teps $<
+$(DIAGRAMS_SVG):./diagrams/%.svg: ./diagrams/%.puml
+	plantuml -tsvg $<
 
 # LaTeX je potreba spustit nekolikrat, aby spravne spocital odkazy
-prace.pdf: prace.tex $(wildcard *.tex) literatura.bib prace.xmpdata $(DIAGRAMS_EPS)
-	pdflatex $<
+# --shell-escape je potreba pro spusteni Inkscape (konverze SVG->PDF)
+prace.pdf: prace.tex $(wildcard *.tex) literatura.bib prace.xmpdata $(DIAGRAMS_SVG)
+	pdflatex --shell-escape $<
 	bibtex prace
-	pdflatex $<
-	pdflatex $<
+	pdflatex --shell-escape $<
+	pdflatex --shell-escape $<
 
 abstrakt.pdf: abstrakt.tex abstrakt.xmpdata
 	pdflatex $<
 
 clean:
-	rm -f *.log *.dvi *.aux *.toc *.lof *.lot *.out *.bbl *.blg *.xmpi
+	rm -f *.log *.dvi *.aux *.toc *.lof *.lot *.out *.bbl *.blg *.xmpi *.fls
 	rm -f prace.pdf abstrakt.pdf
-	rm -f ./diagrams/*.eps
-	rm -f $(PLANTUML_JAR)
+	rm -f ./diagrams/*.svg
+	rm -rf svg-inkscape
