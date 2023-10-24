@@ -1,3 +1,214 @@
-\chapter{Test diagram}\label{ch:test-diagram}
+\chapter{Vývojová dokumentace}\label{ch:vyvojova-dokumentace}
 
-\includesvg[width=0.9\textwidth]{diagrams/sequenceDiagram}
+Tato kapitola chronologicky popisuje vývoj aplikace.
+Navrhneme uživatelské rozhraní formou wireframů, vybereme technologie, které budeme používat a také si rozmyslíme architekturu.
+Na závěr popíšeme deployment aplikace.
+
+
+\section{Návrh řešení}\label{sec:navrh-reseni}
+
+Jelikož chceme, aby byla aplikace dostupná jak na počítačích, tak na mobilních zařízeních, nabízí se dvě možnosti.
+První možností je vyvinout mobilní aplikaci a desktopovou aplikaci zvlášť.
+Druhou možností je vyvinout webovou aplikaci s responzivním rozhraním, která bude dostupná na všech zařízeních.
+Jelikož nepotřebujeme žádné nativní funkce zařízení, tak je výhodnější vyvinout pouze jednu webovou aplikaci.
+Webová aplikace má také výhodu v tom, že ji není potřeba instalovat a aktualizovat.
+Nezapomeňme zmínit, že zadavatel má již zkušenosti s provozem webových aplikací a má již existující infrastrukturu.
+
+Budeme se snažit použít co nejvíce již existujícího software, abychom se vyhnuli duplicitě práce a zároveň zjednodušili údržbu aplikace.
+Naším cílem bude vybrat software, který nám dá dostatek flexibility a zároveň bude dostatečně stabilní a udržitelný.
+Nemáme rozpočet na použití placeného software a proto budeme vybírat pouze z open-source řešení.
+Systém chceme navrhnout tak, aby bylo možné v budoucnu vyměnit některé komponenty za komplexnější placené řešení.
+
+Abychom zajistili spokojenost zadavatele, budeme se snažit pravidelně prezentovat výsledky vývoje a získávat zpětnou vazbu.
+Na začátku vývoje budeme směřovat k vytvoření minimálního životaschopného produktu, který bude mít základní funkce.
+
+
+\section{Návrh uživatelského rozhraní}\label{sec:navrh-uzivatelskeho-rozhrani}
+
+Jak již víme z analýzy požadavků budeme potřebovat navrhnout rozhraní pro plnitele úkolů a také pro terapeuty.
+Předpokládáme, že uživatelé mají nízké technické dovednosti a proto se budeme snažit navrhnout co nejjednodušší rozhraní.
+Abychom předešli vývoji rozhraní, které by zadavatel nepovažoval za vhodné, tak vytvoříme wireframy, které necháme zadavatelem schválit.
+Výsledné wireframy naleznete v přílohách práce\ \ref{sec:wireframy-uzivatelskeho-rozhrani}.
+
+
+\section{Výběr technologií}\label{sec:vyber-technologii}
+
+V této sekci se budeme zabývat výběrem technologií, které budeme používat při vývoji aplikace.
+Chceme volit populární nástroje, jelikož programátoři, kteří budou aplikaci v budoucnu rozšiřovat, je pravděpodobně budou znát.
+Zároveň také chceme co nejméně komplikovat workflow a deployment, abychom zbytečně nezvyšovali nároky na programátory, kteří budou aplikaci v budoucnu rozšiřovat.
+Jelikož nemáme rozpočet na placené aplikace, tak musíme vybírat primárně z open-source řešení a nebo vyjednat smlouvu s komerčními firmami.
+
+\subsection{Software pro práci s formuláři}\label{subsec:software-pro-praci-s-formulari}
+
+Software pro práci s formuláři je klíčovou součástí aplikace.
+Musíme zvážit v jakém formátu definice formulářů ukládat, jaký software použít pro tvorbu formulářů, vykreslení formulářů a sběr odpovědí.
+
+Existuje mnoho knihoven pro vykreslování formulářů na základě schématu.
+Existuje však velmi málo knihoven pro tvorbu formulářů.
+Knihovny pro tvorbu formulářů jsou náročné na vývoj a proto jsou velmi často součástí pouze placených řešení.
+
+Jedna z takových knihoven je vyvíjena firmou \href{https://www.vazco.eu/}{Vazco}.
+Knihovna je však součástí placeného produktu.
+Firmu jsem kontaktoval a dostal jsem potvrzení, že můžeme jejich knihovnu pro tento projekt použít.
+Hned po obdržení potvrzení však firma přestala reagovat na mé e-maily.
+Navzdory několika dalším pokusům o kontaktování firmy dopadlo toto jednání neúspěšně.
+
+Další alternativou je knihovna \href{https://formilyjs.org/}{Formily}.
+Formily je velký open-source projekt, který dosáhl poměrně velké popularity.
+Za projektem navíc stojí velká komerční firma Alibaba.
+Projekt je aktivně vyvíjen, ale bohužel v době volby technologie nebyla dostupná dokumentace v anglickém jazyce.
+Z důvodu chybějící dokumentace jsem tuto knihovnu musel zavrhnout.
+
+Posledním velkým projektem z oblasti knihoven pro tvorbu formulářů, který jsem našel je \href{https://form.io/}{Form.io}.
+Tento projekt byl již zmíněn v sekci o již existujících řešení\ \ref{ch:analyza-existujicich-reseni-pro-praci-s-formulari}.
+Tentokrát se nebudeme dívat na placené služby, ale na open-source jádro projektu, které má licenci Open Software License 3.0, což dovoluje komerční použití.
+Zásadní výhodou tohoto projektu je, že řeší všechny problémy týkající se správy formulářů - formát definic formulářů, tvorbu formulářů, vykreslení formulářů a sběr odpovědí.
+Produkt má spoustu dokumentace, kvalitní API a je stále aktivně vyvíjen.
+Řešení navíc obsahuje základní systém pro správu uživatelů.
+Projekt je zastřešen komerční firmou, což zvyšuje jeho dlouhodobou udržitelnost.
+Nevýhodou je, že použití vlastního autentifikačního poskytovatele je dostupné pouze v placených verzích.
+Software Form.io je využíván pro provoz pohraničních sil Britské vlády (viz \href{https://www.youtube.com/watch?v=nuf46N5vU34}{video z konference CamundaCon}).
+Dle oficiálních stránek Form.io je také využíván organizacemi jako Visa či ICANN\@.
+
+Po zvážení těchto možností jsem se rozhodl použít jádro produktu Form.io.
+Některé placené funkce by použití ulehčily, ale nejsou pro tento projekt nezbytně nutné.
+Zároveň se nabízí jednoduchý přechod na placenou verzi po nárazu na limity bezplatné verze.
+
+\subsection{Frontend aplikace}\label{subsec:frontend-aplikace}
+
+\begin{description}
+    \item[Bootstrap]
+    Jednoduchý způsob jak pracovat s CSS\@.
+    Knihovna je velmi populární, takže je pravděpodobné, že ji ostatní programátoři znají.
+    Alternativy jako Tailwind CSS nabízejí větší míru flexibility, ale neposkytují žádné hotové komponenty.
+    Tento projekt nemá za cíl vytvářet vlastní designovou identitu, proto je výhodnější použít hotové komponenty, které Bootstrap nabízí.
+    \item[JavaScript/TypeScript]
+    Výchozí volba pro programování webových stránek.
+    TypeScript poskytne statickou typovou kontrolu, což pomůže předejít mnoha chybám.
+    Přestože TypeScript zkomplikuje a zpomalí vývoj, tak se, dle mého názoru, z dlouhodobého hlediska vyplatí jej používat.
+    \item[React]
+    React je dle průzkumu \href{https://2022.stateofjs.com/en-US/libraries/front-end-frameworks/}{State of JavaScript} z roku 2022 nejpoužívanější front-end framework.
+    React je vyspělý framework, který má velkou komunitu a mnoho existujících knihoven.
+    \item[NextJS]
+    Místo volby jednotlivých balíků pro základy řešení routing, middleware, sdílených layoutů apod.\ zvolme populární framework, který všechny tyto funkce poskytuje.
+    Jedná se o full-stack framework, takže jej využijme i na serverovou část.
+    Tím se vyhneme nutnosti zakládat další projekt.
+    \item[react-bootstrap]
+    Tato knihovna značně zjednodušuje použití knihovny Bootstrap v React aplikacích a navíc zajistí alespoň základní webovou přístupnost.
+    \item[react-i18next]
+    Aplikace bude podporovat více jazyků a proto je vhodné použít knihovnu, která nám usnadní práci s překlady.
+    Oproti alternativám jako \href{https://github.com/airbnb/polyglot.js}{Polyglot.js} nebo \href{https://github.com/formatjs/formatjs}{Format.js} nabízí knihovna react-i18next více funkcí.
+    Knihovna react-i18next je s 2.9 milióny stažení za týden nejpopulárnější ze zvažovaných knihoven dle počtu stažení z npm registry.
+    \item[React formio]
+    Knihovna pro vykreslování formulářů na základě schématu.
+    Tato oficiální knihovna je součástí projektu Form.io.
+    \item[NextAuth.js]
+    Knihovna pro autentifikaci uživatelů v prohlížeči i na serveru.
+    Ukázalo se, že Formio React není vhodný pro autentifikaci uživatele.
+    První důvod je, že vyžaduje, aby si vývojář psal vlastní logiku pro ochranu stránek, přesměrování apod.
+    To zbytečně vytvářelo prostor pro chyby.
+    Druhý důvod je ten, že inicializace autentifikace se dělala pouze na klientovi, jelikož knihovna nepodporuje server-side rendering, což mělo negativní vliv na výkon aplikace.
+    Třetí důvod je špatná dokumentace knihovny.
+    Jako alternativy jsem zvažoval Passport.js a NextAuth.
+    Passport.js je více nízko-úrovňový a opět vyžaduje, aby si vývojář psal vlastní logiku.
+    Oproti Formio React má však pěknou dokumentaci.
+    Poslední výhodou použití jiné knihovny než Formio React je to, že máme v kódu vrstvu abstrakce a tedy kód webové aplikace není závislý na konkrétním autetifikačním systému.
+    \item[Zod]
+    Pro validaci dat na serveru a validaci formulářů na klientovi využijeme validační knihovnu.
+    Knihovnu Zod jsem zvolil jelikož má rozhraní, se kterým se dobře pracuje.
+    \item[React hook form]
+    Aplikace bude obsahovat formuláře pro přihlášení, správu uživatelů, tvorbu úkolů a mnoho dalších.
+    Pro lepší práci s formuláři využijeme knihovnu.
+    Díky této knihovně budeme moci snadno validovat formuláře, získávat hodnoty formulářů a zobrazovat chybové hlášky.
+    Lze zvážit také knihovnu \href{https://formik.org}{Formik}.
+    Recenze na internetu byly stejně dobré jako pro React hook form, ale integrace s validační knihovnou Zod existuje pouze jako \href{https://github.com/robertLichtnow/zod-formik-adapter}{komunitní balíček}.
+    React hook form má oficiální integraci s validační knihovnou zod pomocí \href{https://github.com/react-hook-form/resolvers}{balíčku resolvers}.
+    \item[Tanstack query]
+    Aplikace bude obsahovat mnoho dat, která budou načítána ze serveru.
+    Pro zvýšení kvality kódu a zlepšení výkonu aplikace využijeme knihovnu.
+    Populární řešení jsou Tanstack query a SWR\@.
+    Tanstack query nabízí více funkcí a mnoho z nich nám značně ulehčí práci.
+    Tanstack query například nabízí podporu pro stránkování.
+    \item[Tanstack table]
+    Aplikace bude obsahovat velké množství tabulek.
+    Vykreslování velkých tabulek efektivně je náročný úkol.
+    Vzhledem k tomu, že používáme knihovnu Tanstack query, tak se nabízí použít i knihovnu Tanstack table.
+    Výhodou této knihovny je, že je velmi flexibilní a umožňuje vytvářet vlastní komponenty pro vykreslování tabulek.
+    Jedná se o tzv. \textit{headless UI} knihovnu.
+    \item[Recharts]
+    Aplikace bude potřebovat vizualizovat sesbíraná data a proto potřebujeme knihovnu na vykreslování grafů.
+    Pro tyto účely byly zváženy knihovny \href{https://github.com/airbnb/visx}{visx} od AirBnB, \href{https://github.com/apache/echarts} od Apache a \href{https://github.com/recharts/recharts}{Recharts}.
+    Knihovna visx má velmi komplikovanou dokumentaci i příklady.
+    Knihovna má evidentně strmou výukovou křivku a pro naše účely je zbytečně komplexní.
+    Knihovna echarts je velmi populární, ale nemá oficiální podporu pro React.
+    Knihovna Recharts má kvalitní dokumentaci obsahující jak jednoduché tak složitější příklady a navíc má přímou podporu pro React.
+\end{description}
+
+\subsection{Middleware}\label{subsec:middleware}
+
+Pro komunikaci mezi klientem a serverem využijeme middleware.
+To nám automaticky zajistí typovou bezpečnost, serializaci dat a zlepší vývojářskou zkušenost.
+Abychom neztratili interoperabilitu serveru s ostatními aplikacemi, použijeme knihovnu, která umožní vytvořit i REST API\@.
+Mezi populární volby řešení patří knihovny \href{https://grpc.io/}{gRPC} od firmy Google, \href{https://www.npmjs.com/package/json-rpc-2.0}{json-rpc-2.0} implementující \href{https://www.jsonrpc.org/specification}{standard JSON-RPC 2.0}  a \href{https://trpc.io/}{tRPC}.
+Knihovna gRPC však nefunguje v prohlížeči (viz \href{https://grpc.io/blog/state-of-grpc-web/}{článek}).
+Knihovna tRPC má skvělou podporu pro TypeScript a je kompatibilní s knihovnou NextAuth.js.
+Knihovna tRPC je oproti knihovně json-rpc-2.0 značně populárnější, nabízí více funkcí a má aktivnější vývoj.
+
+\subsection{Backend aplikace}\label{subsec:backend-aplikace}
+
+\begin{description}
+    \item[nginx]
+    Veškeré požadavky na server budou směrovány přes reverse proxy.
+    To nám umožní konfigurovat routing, SSL certifikáty apod.
+    Mezi další zvážené možnosti patří \href{https://httpd.apache.org/}{Apache HTTP Server}.
+    Po prostudování dokumentace obou nástrojů jsem dospěl k názoru, že nginx má lepší dokumentaci a čitelnější formát konfigurace.
+    Nginx má navíc největší podíl z počítačů na internetu dle \href{https://news.netcraft.com/archives/category/web-server-survey/}{průzkumu z března 2023}.
+    \item[NextJS]
+    Důvody popsány v sekci~\ref{subsec:frontend-aplikace}.
+    \item[Form.io]
+    Důvody popsány v sekci~\ref{subsec:software-pro-praci-s-formulari}.
+    \item[MongoDB]
+    Form.io server podporuje pouze MongoDB pro ukládání dat\@.
+    \item[PostgreSQL]
+    Potřebujeme databázi pro ukládání dat o úkolech a také nedokončené odpovědi na dotazníky.
+    Chceme bezplatné řešení, které je dostatečně stabilní a jeho licence umožňuje komerční použití.
+    Jelikož naše data lze dobře modelovat pomocí relací jak uvidíme v sekci x. % TODO: add reference
+    tak použijeme relační databází.
+    Výběr konkrétního řešení není příliš důležitý z následujících důvodů.
+    Naše nároky na databázový systém jsou poměrně nízké a navíc budeme používat abstrakci nad databází, která nám umožní databázový systém kdykoliv vyměnit.
+    PostgreSQL patří mezi nejlepší řešení splňující všechny naše požadavky.
+    \item[Prisma]
+    Abychom zajistili dobrou modifikovatelnost celého systému použijeme techniku object-relational mapping.
+    Mezi populární volby patří knihovny \href{https://github.com/drizzle-team/drizzle-orm}{Drizzle ORM}, \href{https://github.com/typeorm/typeorm}{TypeORM} a \href{https://github.com/prisma/prisma}{Prisma}.
+    Knihovna Prisma je nejvyspělejší a nejpopulárnější z těchto knihoven co se týče počtu stažení za týden z npm registry.
+    Knihovna Prisma je navíc vyvíjena komerční firmou, což zvyšuje její dlouhodobou udržitelnost.
+\end{description}
+
+\subsection{Nástroje}\label{subsec:nastroje}
+
+\begin{description}
+    \item[Prettier]
+    Formátování kódu.
+    \item[ESLint]
+    Statická analýza kódu.
+    \item[Github Workflows]
+    Continuous integration.
+    \item[TypeDoc]
+    Implementuje generování dokumentace z dokumentačních komentářů dle standardu \href{https://tsdoc.org/}{TSDoc}.
+    Alternativou je \href{https://github.com/dotnet/docfx}{DocFX}, ale to je nástroj napsaný v C\#.
+    Tento nástroj nemá npm balíček, což komplikuje integraci do našeho projektu.
+    Jelikož TypeDoc implementuje stejný standard a jeho použití je v našem případě jednodušší, zvolil jsem jej pro tento projekt.
+    \item[Vitest]
+    Původně jsem používal pro testování knihovnu \href{https://jestjs.io/}{Jest}, ale narazil jsem na problémy s konfigurací.
+    Složité chybové hlášky a nedostatečná dokumentace mě přiměly zkusit jinou knihovnu.
+    Zvolil jsem knihovnu Vitest, se kterou jsem měl vělmi dobrou zkušenost.
+    \item[Docusaurus]
+    Původně jsem používal \href{https://docs.github.com/en/communities/documenting-your-project-with-wikis/about-wikis}{Github Wiki}, ale časem se ukázalo, že je pro tento projekt nevhodná.
+    Github Wiki chybí podpora pro diagramy jako kód a také nelze zahrnout automaticky generovanou dokumentaci.
+    Proto jsem zvažoval další alternativy jako \href{https://www.mkdocs.org/}{MkDocs}, \href{https://www.gitbook.com/}{GitBook} a \href{https://docusaurus.io/}{Docusaurus}.
+    Docusaurus působil moderně, jednoduše a všechny jeho funkce jsou zdarma.
+    Docusaurus má mnoho rozšíření jako například podporu pro diagramy jako kód.
+    Docusaurus má oficiální plugin pro \href{https://mermaid.js.org/}{MermaidJS}, což je nástroj pro tvorbu diagramů.
+    Ukázalo se, že MermaidJS není vhodný pro náš projekt, protože nemá dobrou podporu \href{https://c4model.com/}{C4 diagramu}, které používáme pro dokumentaci architektury.
+    Díky velkému ekosystému nástroje Docusaurus však existuje i komunitní plugin pro podporu PlantUML diagramů, který má skvělou podporu C4 diagramů.
+\end{description}
