@@ -16,10 +16,10 @@ note top of Zamestnanec
     Dědičnost typu {incomplete, overlapping}
 end note
 
-class "SprávceÚkolů" as SprávceÚkolů {
+class "SprávceÚkolů" as SpravceUkolu {
 }
-Zamestnanec <|-- SprávceÚkolů
-SprávceÚkolů "1" --> "0..n" DefiniceÚkolu : definoval
+Zamestnanec <|-- SpravceUkolu
+SpravceUkolu "1" --> "0..n" DefiniceUkolu : definoval
 
 abstract class "Plnitel" as Plnitel {
 }
@@ -36,14 +36,14 @@ class "Pacient" as Pacient {
 }
 Plnitel <|-- Pacient
 
-abstract class "DefiniceÚkolu" as DefiniceÚkolu {
+abstract class "DefiniceÚkolu" as DefiniceUkolu {
     ID: String
 }
 
 class "DefiniceFormuláře" as DefiniceFormuláře {
     data
 }
-DefiniceÚkolu <|-- DefiniceFormuláře
+DefiniceUkolu <|-- DefiniceFormuláře
 
 class "ZadáníÚkolu" as ZadáníÚkolu {
     ID: String
@@ -51,7 +51,7 @@ class "ZadáníÚkolu" as ZadáníÚkolu {
     zadáno: Date
     opakování: TimeSpan
 }
-ZadáníÚkolu "1" --> "1" DefiniceÚkolu : definováno
+ZadáníÚkolu "1" --> "1" DefiniceUkolu : definováno
 ZadáníÚkolu "1" --> "1" Plnitel : zadán pro
 ZadáníÚkolu "1" --> "0..1" VypracováníÚkolu : vypracování
 
@@ -65,10 +65,10 @@ class "VypracováníFormuláře" as VypracováníFormuláře {
 }
 VypracováníFormuláře --|> VypracováníÚkolu
 
-class "ZadavatelÚkolů" as ZadavatelÚkolů {
+class "ZadavatelÚkolů" as ZadavatelUkolu {
 }
-Zamestnanec <|-- ZadavatelÚkolů
-ZadavatelÚkolů "1" --> "0..n" ZadáníÚkolu : zadal
+Zamestnanec <|-- ZadavatelUkolu
+ZadavatelUkolu "1" --> "0..n" ZadáníÚkolu : zadal
 
 class "AnalýzaVypracováníFormuláře" as AnalýzaVypracováníFormuláře {
     data
