@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Install dependencies
-        run: sudo apt update && sudo apt install -y inkscape
+        run: sudo apt-get update && sudo apt-get install -y inkscape
 
       - uses: actions/checkout@v3
       - name: Build the thesis
