@@ -60,20 +60,20 @@ abstract class "VypracováníÚkolu" as VypracovaniUkolu {
     datumVypracování: Date
 }
 
-class "VypracováníFormuláře" as VypracováníFormuláře {
+class "VypracováníFormuláře" as VypracovaniFormulare {
     data
 }
-VypracováníFormuláře --|> VypracovaniUkolu
+VypracovaniFormulare --|> VypracovaniUkolu
 
 class "ZadavatelÚkolů" as ZadavatelUkolu {
 }
 Zamestnanec <|-- ZadavatelUkolu
 ZadavatelUkolu "1" --> "0..n" ZadaniUkolu : zadal
 
-class "AnalýzaVypracováníFormuláře" as AnalýzaVypracováníFormuláře {
+class "AnalýzaVypracovaniFormulare" as AnalyzaVypracovaniFormulare {
     data
 }
-AnalýzaVypracováníFormuláře "1" --> "1" VypracováníFormuláře : analyzuje
+AnalyzaVypracovaniFormulare "1" --> "1" VypracovaniFormulare : analyzuje
 
 class "NedokončenéVyplněníFormuláře" as NedokonceneVyplneniFormulare {
     data
