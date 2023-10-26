@@ -1,9 +1,10 @@
 export TEXINPUTS=../tex//:
 
-DIAGRAMS_PUML=$(wildcard ./diagrams/*.puml)
+DIAGRAMS_PUML=$(shell find diagrams -name '*.puml')
 DIAGRAMS_SVG=$(DIAGRAMS_PUML:.puml=.svg)
 
 all: prace.pdf abstrakt.pdf
+diagrams: $(DIAGRAMS_SVG)
 
 # Generovaní SVG diagramů z PlantUML
 $(DIAGRAMS_SVG):./diagrams/%.svg: ./diagrams/%.puml
