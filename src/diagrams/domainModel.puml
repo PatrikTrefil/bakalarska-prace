@@ -40,22 +40,22 @@ abstract class "DefiniceÚkolu" as DefiniceUkolu {
     ID: String
 }
 
-class "DefiniceFormuláře" as DefiniceFormuláře {
+class "DefiniceFormuláře" as DefiniceFormulare {
     data
 }
-DefiniceUkolu <|-- DefiniceFormuláře
+DefiniceUkolu <|-- DefiniceFormulare
 
-class "ZadáníÚkolu" as ZadáníÚkolu {
+class "ZadáníÚkolu" as ZadaniUkolu {
     ID: String
     splnitDo: Date
     zadáno: Date
     opakování: TimeSpan
 }
-ZadáníÚkolu "1" --> "1" DefiniceUkolu : definováno
-ZadáníÚkolu "1" --> "1" Plnitel : zadán pro
-ZadáníÚkolu "1" --> "0..1" VypracováníÚkolu : vypracování
+ZadaniUkolu "1" --> "1" DefiniceUkolu : definováno
+ZadaniUkolu "1" --> "1" Plnitel : zadán pro
+ZadaniUkolu "1" --> "0..1" VypracovaniUkolu : vypracování
 
-abstract class "VypracováníÚkolu" as VypracováníÚkolu {
+abstract class "VypracováníÚkolu" as VypracovaniUkolu {
     ID: String
     datumVypracování: Date
 }
@@ -63,23 +63,23 @@ abstract class "VypracováníÚkolu" as VypracováníÚkolu {
 class "VypracováníFormuláře" as VypracováníFormuláře {
     data
 }
-VypracováníFormuláře --|> VypracováníÚkolu
+VypracováníFormuláře --|> VypracovaniUkolu
 
 class "ZadavatelÚkolů" as ZadavatelUkolu {
 }
 Zamestnanec <|-- ZadavatelUkolu
-ZadavatelUkolu "1" --> "0..n" ZadáníÚkolu : zadal
+ZadavatelUkolu "1" --> "0..n" ZadaniUkolu : zadal
 
 class "AnalýzaVypracováníFormuláře" as AnalýzaVypracováníFormuláře {
     data
 }
 AnalýzaVypracováníFormuláře "1" --> "1" VypracováníFormuláře : analyzuje
 
-class "NedokončenéVyplněníFormuláře" as NedokončenéVyplněníFormuláře {
+class "NedokončenéVyplněníFormuláře" as NedokonceneVyplneniFormulare {
     data
 }
-NedokončenéVyplněníFormuláře "0..n" --> "1" DefiniceFormuláře : vyplňuje
-Plnitel "1" --> "0..n" NedokončenéVyplněníFormuláře : vlastní
-NedokončenéVyplněníFormuláře "0..1" --> "1" ZadáníÚkolu : částečně vypracovává
+NedokonceneVyplneniFormulare "0..n" --> "1" DefiniceFormulare : vyplňuje
+Plnitel "1" --> "0..n" NedokonceneVyplneniFormulare : vlastní
+NedokonceneVyplneniFormulare "0..1" --> "1" ZadaniUkolu : částečně vypracovává
 
 @enduml
