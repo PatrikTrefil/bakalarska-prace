@@ -12,8 +12,7 @@ přehled, vizualizace dat a export dat do formátu CSV.
 
 ## Kompilace
 
-Pro kompilaci je nutné mít nainstalovaný [PlantUML](https://plantuml.com/),
-[GraphViz](https://graphviz.org/) a [Inkscape](https://inkscape.org/).
+Pro kompilaci je nutné mít nainstalovaný [Inkscape](https://inkscape.org/).
 
 ```bash
 make --directory src

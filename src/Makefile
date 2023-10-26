@@ -1,6 +1,6 @@
 export TEXINPUTS=../tex//:
 
-DIAGRAMS_PUML=$(shell find diagrams -name '*.puml')
+DIAGRAMS_PUML=$(shell find diagrams -path 'diagrams/lib' -prune -o -name '*.puml' -print)
 DIAGRAMS_SVG=$(DIAGRAMS_PUML:.puml=.svg)
 
 all: prace.pdf abstrakt.pdf
@@ -8,7 +8,7 @@ diagrams: $(DIAGRAMS_SVG)
 
 # Generovaní SVG diagramů z PlantUML
 $(DIAGRAMS_SVG):./diagrams/%.svg: ./diagrams/%.puml
-	plantuml -tsvg $<
+	java -Dplantuml.include.path="diagrams" -jar ../lib/plantuml-1.2023.12.jar -tsvg -DRELATIVE_INCLUDE=relative $<
 
 # LaTeX je potreba spustit nekolikrat, aby spravne spocital odkazy
 # --shell-escape je potreba pro spusteni Inkscape (konverze SVG->PDF)
@@ -24,5 +24,5 @@ abstrakt.pdf: abstrakt.tex abstrakt.xmpdata
 clean:
 	rm -f *.log *.dvi *.aux *.toc *.lof *.lot *.out *.bbl *.blg *.xmpi *.fls
 	rm -f prace.pdf abstrakt.pdf
-	rm -f ./diagrams/*.svg
+	find diagrams -name '*.svg' -exec rm -f {} \;
 	rm -rf svg-inkscape
