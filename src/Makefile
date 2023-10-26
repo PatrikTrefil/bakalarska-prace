@@ -8,7 +8,8 @@ diagrams: $(DIAGRAMS_SVG)
 
 # Generovaní SVG diagramů z PlantUML
 $(DIAGRAMS_SVG):./diagrams/%.svg: ./diagrams/%.puml
-	java -Dplantuml.include.path="diagrams" -jar ../lib/plantuml-1.2023.12.jar -tsvg -DRELATIVE_INCLUDE=relative $<
+	java -Dplantuml.include.path="diagrams" -jar ../lib/plantuml-1.2023.12.jar -tsvg -DRELATIVE_INCLUDE=relative $< \
+ 		|| (cat $@ && exit 1) # Print out detailed error included in the svg if conversion fails
 
 # LaTeX je potreba spustit nekolikrat, aby spravne spocital odkazy
 # --shell-escape je potreba pro spusteni Inkscape (konverze SVG->PDF)
