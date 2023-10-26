@@ -7,16 +7,18 @@ note top of Osoba
     Dědičnost typu {incomplete, disjoint}
 end note
 
-class "Zaměstnanec" as Zaměstnanec {
+class "Zaměstnanec" as Zamestnanec {
 }
-Osoba <|-- Zaměstnanec
-note top of Zaměstnanec
+
+Osoba <|-- Zamestnanec
+
+note top of Zamestnanec
     Dědičnost typu {incomplete, overlapping}
 end note
 
 class "SprávceÚkolů" as SprávceÚkolů {
 }
-Zaměstnanec <|-- SprávceÚkolů
+Zamestnanec <|-- SprávceÚkolů
 SprávceÚkolů "1" --> "0..n" DefiniceÚkolu : definoval
 
 abstract class "Plnitel" as Plnitel {
@@ -65,7 +67,7 @@ VypracováníFormuláře --|> VypracováníÚkolu
 
 class "ZadavatelÚkolů" as ZadavatelÚkolů {
 }
-Zaměstnanec <|-- ZadavatelÚkolů
+Zamestnanec <|-- ZadavatelÚkolů
 ZadavatelÚkolů "1" --> "0..n" ZadáníÚkolu : zadal
 
 class "AnalýzaVypracováníFormuláře" as AnalýzaVypracováníFormuláře {
