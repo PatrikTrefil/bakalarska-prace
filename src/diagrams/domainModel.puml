@@ -1,4 +1,6 @@
 @startuml
+skinparam dpi 300
+
 abstract class "Osoba" as Osoba {
     ID: String
     heslo: String
