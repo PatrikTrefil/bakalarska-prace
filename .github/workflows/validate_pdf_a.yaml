@@ -35,7 +35,7 @@ jobs:
 
       - uses: MrFlynn/upload-to-netlify-action@v3
         with:
-          source-file: prace.pdf
+          source-file: src/prace.pdf
           destination-path: prace.pdf
           site-name: patriktrefil
           branch-name: master
