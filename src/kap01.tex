@@ -1,6 +1,6 @@
 \chapter{Analýza požadavků}\label{ch:analyza-pozadavku}
 
-Výsledkem prvních několika schůzek byla následující neformální specifikace.
+Výsledkem prvních několika schůzek byla neformální specifikace.
 Již v tomto stádiu bylo jasné, že bude potřeba definovat společný jazyk pro komunikaci mezi všemi zúčastněnými stranami.
 Dalším krokem bylo tedy vytvoření doménového modelu, který dostal formu UML diagramu a textového souboru definic entit.
 Časem byla neformální specifikace převedena do formy user stories.
@@ -57,7 +57,10 @@ Všechny tyto artefakty se nachází v následujících podkapitolách.
     V aplikaci by mělo být možné vytvořit \hyperref[sec:ukazkovyDotaznik]{ukázkový dotazník}.
   \end{itemize}
 \item
-  Správce dotazníků je schopen vytvářet, mazat dotazníky a způsoby vyhodnocení (\emph{v dotazníku lze upravit pouze již existující otázky a lze v nich upravit obsah otázky a obsah již existujících odpovědí; \textbf{nelze} přidat/odebrat otázky, přidat/odebrat možné odpovědo, ani upravit způsob výpočtu skóre - slouží pouze pro opravy/objasnění otázek}).
+Správce dotazníků je schopen vytvářet/mazat dotazníky a způsoby vyhodnocení
+\item
+Správce dotazníků může v dotazníku upravit obsah otázek a možných odpovědí v případě, že se jedná o volbu z možností.
+\textbf{Nelze} přidat/odebrat otázky, přidat/odebrat možné odpovědi, ani upravit způsob výpočtu skóre.
 
   \begin{itemize}
   \item
@@ -94,11 +97,9 @@ Všechny tyto artefakty se nachází v následujících podkapitolách.
 
 \begin{itemize}
 \item
-  Uživatel je schopen vidět vyhodnocení svých dotazníků, u kterých to správce/zadavatel dovolil.
+Uživatel je schopen vidět vyhodnocení svých dotazníků, u kterých to správce povolil.
 \item
-  Správce/zadavatel dotazníků může dovolit uživateli vidět výsledky konkrétního dotazníku - číselná hodnota/graf/text.
-\item
-  Rozhodnutí o viditelnosti výsledků pro uživatele dělá správce/zadavatel dotazníku při zadávání dotazníku.
+Správce dotazníků může dovolit uživateli vidět výsledky konkrétního dotazníku - číselná hodnota/graf/text.
 \item
   Viditelnost výsledků lze nastavit následujícími způsoby:
 
@@ -133,7 +134,7 @@ Všechny tyto artefakty se nachází v následujících podkapitolách.
 
 \begin{itemize}
 \item
-  Uživatelské rozhraní by mělo být vhodné pro uživatelé s malými technickými znalostmi.
+Uživatelské rozhraní by mělo být vhodné pro uživatelé s nízkými technickými znalostmi.
 \item
   K programu by měla být dodána uživatelská a technická dokumentace.
 \end{itemize}
@@ -169,7 +170,7 @@ Všechny tyto artefakty se nachází v následujících podkapitolách.
 
 \begin{figure}[H]
     \includegraphics[width=0.9\textwidth]{diagrams/domainModel}
-    \caption{Doménový model}\label{fig:figure}
+    \caption{Doménový model}\label{fig:domain-model}
 \end{figure}
 
 \begin{tcolorbox}
@@ -219,11 +220,11 @@ Tento vztah je vždy popsán v poznámce k třídě, od které odvozujeme.
   Vypracování úkolu ve tvaru vyplnění formuláře.
 
 \item[AnalýzaVypracováníFormuláře]
-  Analýza vypracování formuláře, která je určena k uložení odvozených dat.
+Odvozená data z vypracování formuláře (např.\ výsledné skóre).
 
 \item[NedokončenéVyplněníFormuláře]
-  Nedokončené vyplnění formuláře, které slouží k uložení částečně vyplněných formulářů.
-  (Umožňuje uživateli přerušit vyplňování formuláře a pokračovat později)
+Částečné vyplnění formuláře.
+(Umožňuje uživateli přerušit vyplňování formuláře a pokračovat později.)
 
 \end{description}
 
@@ -257,8 +258,8 @@ Např.\ nemůžeme považovat přečtení článku jako vypracování úkolu, kt
 
 \begin{verbatim}
 context z: ZadáníÚkolu inv
-    if vypracování.oclIsKindOf(VypracováníFormuláře) then
-        definováno.oclIsKidnOf(DefiniceFormuláře)
+    if z.vypracování.oclIsKindOf(VypracováníFormuláře) then
+        z.definováno.oclIsKidnOf(DefiniceFormuláře)
     endif
 \end{verbatim}
 
@@ -289,13 +290,14 @@ context o1, o2: Osoba inv o1.ID = o2.ID implies o1 = o2
 \section{User stories}\label{sec:user-stories}
 
 Zde je seznam funkčních požadavků ve standardizované formě.
+Požadavky mají formu \uv{Jako \textless{}role\textgreater{} chci \textless{}funkčnost\textgreater{}, abych/protože/aby \textless{}cíl\textgreater{}}.
 Jedná se o přepis neformální specifikace ze sekce~\ref{sec:specifikace}.
 
 \begin{itemize}
   \item
   Jako zaměstnanec chci mít možnost založit účet pro klienta/pacienta, abych mohl využít systém v rámci terapie/výzkumu.
   \item
-  Jako klient/pacient chci aby moje data nemohli číst ostatní klienti/pacienti, protože jsou soukromá.
+  Jako klient/pacient chci, aby moje data nemohli číst ostatní klienti/pacienti, protože jsou soukromá.
   \item
   Jako terapeut/výzkumník chci aby byl klient/pacient schopen plnit pouze úkoly, které mu byly zadány, aby se zachovala integrita sbíraných dat.
   \item
@@ -309,7 +311,7 @@ Jedná se o přepis neformální specifikace ze sekce~\ref{sec:specifikace}.
   \item
   Jako správce dotazníků chci mít možnost vytvářet, mazat dotazníky a způsoby vyhodnocení, abych mohl udržovat aktuální a relevantní soubor dotazníků.
   \item
-  Jako správce dotazníků chci mít možnost nastavit automaticky počítané metriky pomocí vzorce (např.\ \texttt{otázka1 + otázka2 - otázka4}), což mi umožní efektivně vyhodnocovat odpovědi.
+  Jako správce dotazníků chci mít možnost nastavit automaticky počítané metriky pomocí vzorce (např.\ \texttt{otázka1 + otázka2 - otázka4}), abych mohl efektivně vyhodnocovat odpovědi.
   \item
   Jako uživatel chci mít možnost vypracovat dotazníky a úkoly, které mi byly přiděleny správcem/zadavatelem dotazníků, abych mohl aktivně participovat v systému.
   \item
@@ -325,9 +327,9 @@ Jedná se o přepis neformální specifikace ze sekce~\ref{sec:specifikace}.
   \item
   Jako uživatel chci, aby aplikace byla v Českém jazyce, ale byla připravena na internacionalizaci, abych mohl používat aplikaci v jazyce, kterému rozumím.
   \item
-  Jako uživatel chci vidět vyhodnocení svých dotazníků, u kterých to správce/zadavatel dovolil, abych mohl sledovat svůj pokrok a výsledky.
+  Jako uživatel chci vidět vyhodnocení svých dotazníků, u kterých to správce povolil, abych mohl sledovat svůj pokrok a výsledky.
   \item
-  Jako správce/zadavatel dotazníků chci moci dovolit uživateli vidět výsledky konkrétního dotazníku - číselná hodnota/graf/text, abych mohl sdílet výsledky a zpětnou vazbu s uživateli.
+  Jako správce dotazníků chci moci dovolit uživateli vidět výsledky konkrétního dotazníku - číselná hodnota/graf/text, abych mohl sdílet výsledky a zpětnou vazbu s uživateli.
   \item
   Jako uživatel chci, aby uživatelské rozhraní bylo vhodné pro uživatele s malými technickými znalostmi, abych mohl snadno používat aplikaci bez ohledu na své technické dovednosti.
   \item
@@ -366,23 +368,18 @@ Jedná se o přepis neformální specifikace ze sekce~\ref{sec:specifikace}.
 
 \begin{itemize}
   \item
-  Jednoduché rozhraní pro plnění úkolů, které zajistí zlepšení jejich
-  zdravotního stavu a poskytne terapeutům potřebné informace pro jejich
-  léčbu.
+  Jednoduché rozhraní pro plnění úkolů, které zajistí zlepšení jejich zdravotního stavu a poskytne terapeutům potřebné informace pro jejich léčbu.
 \end{itemize}
 
 \subsubsection*{Terapeuti}\label{subsubsec:terapeuti}
 
 \begin{itemize}
   \item
-  Jednoduché rozhraní vhodné pro uživatele s nízkými technickými
-  znalostmi
+  Jednoduché rozhraní vhodné pro uživatele s nízkými technickými znalostmi.
   \item
-  Jednoduchý přístup k výsledkům pacientů s přehlednou vizuální
-  reprezentací
+  Jednoduchý přístup k výsledkům pacientů s přehlednou vizuální reprezentací.
   \item
-  Spolupráce s klienty/pacienty v rámci terapie formou domácích úkolů
-  pro zlepšení poskytované péče a prevenci kriminality
+  Spolupráce s klienty/pacienty v rámci terapie formou domácích úkolů pro zlepšení poskytované péče a prevenci kriminality.
 \end{itemize}
 
 \subsection*{Ostatní}\label{subsec:ostatni}
@@ -391,41 +388,40 @@ Jedná se o přepis neformální specifikace ze sekce~\ref{sec:specifikace}.
 
 \begin{itemize}
   \item
-  Dobře dokumentovaný kód a vhodně dokumentovaná architektura aplikace
+  Dobře dokumentovaný kód a vhodně dokumentovaná architektura aplikace.
   \item
-  Dobře nastavené procesy pro prevenci chyb (testy, kontinuální
-  integrace, \ldots{})
+  Dobře nastavené procesy pro prevenci chyb (testy, kontinuální integrace, apod.).
   \item
-  Jednoduchá rozšiřitelnost aplikace
+  Jednoduchá rozšiřitelnost aplikace.
   \item
-  Vysoká modifikovatelnost aplikace
+  Vysoká modifikovatelnost aplikace.
 \end{itemize}
 
 \subsubsection*{Provozovatel (správce) software}\label{subsubsec:provozovatel-spravce-software}
 
 \begin{itemize}
   \item
-  Jednoduché nasazení aplikace na server
+  Jednoduché nasazení aplikace na server.
   \item
-  Monitoring aplikace
+  Schopnost monitorování aplikace.
 \end{itemize}
 
 \subsubsection*{Výzkumníci}\label{subsubsec:vyzkumnici}
 
 \begin{itemize}
   \item
-  Možnost tvorby komplexních výzkumných studií
+  Možnost tvorby komplexních výzkumných studií.
   \item
-  Možnost pokročilé analýzy dat vlastním nástrojem
+  Možnost pokročilé analýzy dat vlastním nástrojem.
 \end{itemize}
 
 \subsubsection*{Vedení organizace}\label{subsubsec:vedeni-organizace}
 
 \begin{itemize}
   \item
-  Nízká cena za vývoj a provoz aplikace
+  Nízká cena za vývoj a provoz aplikace.
   \item
-  Nízké časové nároky na zaučení uživatelů
+  Nízké časové nároky na zaučení uživatelů.
   \item
-  Vysoké zabezpečení aplikace
+  Vysoké zabezpečení aplikace.
 \end{itemize}
