@@ -35,12 +35,8 @@ jobs:
 
       - uses: MrFlynn/upload-to-netlify-action@v3
         with:
-          source-file: |
-            prace.pdf
-            abstrakt.pdf
-          destination-path: |
-            prace.pdf
-            abstrakt.pdf
+          source-file: prace.pdf
+          destination-path: prace.pdf
           site-name: patriktrefil
           branch-name: master
           netlify-token: ${{ secrets.NETLIFY_TOKEN }}
