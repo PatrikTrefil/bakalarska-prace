@@ -1,0 +1,19 @@
+@startuml
+skinparam dpi 300
+
+!include ../lib/C4_Context.puml
+
+Person(pacient, "Pacient")
+Person(klient, "Klient")
+Person(admin, "Administrátor")
+Person(spravceUkolu, "Správce úkolů")
+Person(zadavatelUkolu, "Zadavatel úkolů")
+
+System(system, "Platforma pro monitorování mentálního zdraví")
+
+Rel_D(pacient, system, "Používá")
+Rel_D(klient, system, "Používá")
+Rel_D(admin, system, "Používá")
+Rel_D(spravceUkolu, system, "Používá")
+Rel_D(zadavatelUkolu, system, "Používá")
+@enduml

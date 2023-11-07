@@ -1,0 +1,34 @@
+@startuml
+skinparam dpi 300
+
+actor klient as "Klient"
+entity webAppKlient as "Klient webové aplikace"
+entity webAppServer as "Server webové aplikace"
+entity manazerUzivatelu as "Manažer uživatelů a autentifikace"
+database uzivateleDb as "Databáze uživatelů"
+
+klient -> webAppKlient: Přihlašení uživatele (id, heslo)
+webAppKlient -> webAppServer: Požadavek na přihlášení
+webAppServer -> manazerUzivatelu: Požadavek na vydání nového JWT tokenu
+manazerUzivatelu -> uzivateleDb: Kontrola existence v DB
+manazerUzivatelu <-- uzivateleDb
+
+webAppServer <-- manazerUzivatelu: Nový JWT token
+
+webAppKlient <-- webAppServer: Nový JWT token
+
+== Inicializace session dokončena ==
+
+klient <-- webAppKlient: Uživatel je přihlášen
+
+== Průběh komunikace po inicializaci ==
+
+klient -> webAppKlient: Interakce s aplikací
+webAppKlient -> webAppServer: Požadavek vyžadující autentizaci
+group Pouze pokud je token již neplatný nebo brzy přestane být platný
+    webAppServer -> manazerUzivatelu: Žádost o obnovení JWT tokenu
+    webAppServer <-- manazerUzivatelu: Nový JWT token
+end
+webAppKlient <-- webAppServer: Platný JWT token
+klient <-- webAppKlient: Reakce aplikace
+@enduml

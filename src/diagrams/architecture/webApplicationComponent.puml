@@ -1,0 +1,39 @@
+@startuml
+skinparam dpi 300
+
+!include ../lib/C4_Component.puml
+
+
+Person(pacient, "Pacient")
+Person(klient, "Klient")
+Person(admin, "Administrátor")
+Person(spravceUkolu, "Správce úkolů")
+Person(zadavatelUkolu, "Zadavatel úkolů")
+
+System_Boundary(systemBoundary, "Platforma pro monitorování mentálního zdraví") {
+    Container_Boundary(webAppBoundary, "Web app") {
+        Component(userSection, "Uživatelská sekce")
+        Component(managementSection, "Zaměstnanecká sekce")
+    }
+    Container(spravaFormularu, "Správa formulářů")
+    Container(spravaUkolu, "Správa úkolů")
+}
+
+Lay_D(pacient, webAppBoundary)
+Lay_D(klient, webAppBoundary)
+Lay_D(admin, webAppBoundary)
+Lay_D(spravceUkolu, webAppBoundary)
+Lay_D(zadavatelUkolu, webAppBoundary)
+
+Rel(pacient, userSection, "Používá")
+Rel(klient, userSection, "Používá")
+Rel(admin, managementSection, "Používá")
+Rel(spravceUkolu, managementSection, "Používá")
+Rel(zadavatelUkolu, managementSection, "Používá")
+
+Rel(userSection, spravaFormularu, "Používá")
+Rel(managementSection, spravaFormularu, "Používá")
+Rel(userSection, spravaUkolu, "Používá")
+Rel(managementSection, spravaUkolu, "Používá")
+
+@enduml

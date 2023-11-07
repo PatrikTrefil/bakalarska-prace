@@ -1,0 +1,12 @@
+@startuml
+skinparam dpi 300
+
+state "Připraveno" : Úkol je připraven pro splnění. V úkolu je uloženo ID dotazníku, který má být vyplněn.\nV tuto chvíli jistě neexistuje žádné vyplnění dotazníku v systému spravující formuláře, které by plnilo tento úkol.
+state "Skoro hotovo" as skoroHotovo : V formulářovém systému možná existuje vyplnění dotazníku,\nkteré patří k tomuto úkolu, ale jeho ID ještě není uloženo v úkolu.
+state "Hotovo" as Hotovo : V úkolu je uloženo ID vyplnění dotazníku, které patří k tomuto úkolu.\nVyplnění tohoto dotazníku je uloženo v systému spravující formuláře.
+
+[*] --> Připraveno
+Připraveno --> skoroHotovo
+skoroHotovo --> Hotovo
+
+@enduml

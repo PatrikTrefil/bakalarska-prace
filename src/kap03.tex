@@ -1,9 +1,8 @@
 \chapter{Vývojová dokumentace}\label{ch:vyvojova-dokumentace}
 
-Tato kapitola chronologicky popisuje vývoj aplikace.
-Navrhneme uživatelské rozhraní formou wireframů, vybereme technologie, které budeme používat a také si rozmyslíme architekturu.
-Na závěr popíšeme deployment aplikace.
-
+Tato kapitola popisuje vývoj aplikace.
+Mezí hlavní části patří návrh uživatelského rozhraní formou wireframů, výběr technologií, které budeme používat, tvorba datové modelu a architektury.
+Mimo to jsou zde popsány i řešení menších problémů, které si vyžadují vysvětlení jako je řešení autentizace, GDPR, soukromí uživatelů apod.
 
 \section{Návrh řešení}\label{sec:navrh-reseni}
 
@@ -22,14 +21,12 @@ Systém chceme navrhnout tak, aby bylo možné v budoucnu vyměnit některé kom
 Abychom zajistili spokojenost zadavatele, budeme se snažit pravidelně prezentovat výsledky vývoje a získávat zpětnou vazbu.
 Na začátku vývoje budeme směřovat k vytvoření minimálního životaschopného produktu, který bude mít základní funkce.
 
-
 \section{Návrh uživatelského rozhraní}\label{sec:navrh-uzivatelskeho-rozhrani}
 
 Jak již víme z analýzy požadavků budeme potřebovat navrhnout rozhraní pro plnitele úkolů a také pro terapeuty.
 Předpokládáme, že uživatelé mají nízké technické dovednosti a proto se budeme snažit navrhnout co nejjednodušší rozhraní.
 Abychom předešli vývoji rozhraní, které by zadavatel nepovažoval za vhodné, tak vytvoříme wireframy, které necháme zadavatelem schválit.
 Výsledné wireframy naleznete v přílohách práce\ \ref{sec:wireframy-uzivatelskeho-rozhrani}.
-
 
 \section{Výběr technologií}\label{sec:vyber-technologii}
 
@@ -109,7 +106,7 @@ Zároveň se nabízí jednoduchý přechod na placenou verzi po nárazu na limit
     To zbytečně vytvářelo prostor pro chyby.
     Druhý důvod je ten, že inicializace autentifikace se dělala pouze na klientovi, jelikož knihovna nepodporuje server-side rendering, což mělo negativní vliv na výkon aplikace.
     Třetí důvod je špatná dokumentace knihovny.
-    Jako alternativy jsem zvažoval Passport.js a NextAuth.
+    Jako alternativy jsem zvažoval Passport.js a NextAuth.js.
     Passport.js je více nízko-úrovňový a opět vyžaduje, aby si vývojář psal vlastní logiku.
     Oproti Formio React má však pěknou dokumentaci.
     Poslední výhodou použití jiné knihovny než Formio React je to, že máme v kódu vrstvu abstrakce a tedy kód webové aplikace není závislý na konkrétním autetifikačním systému.
@@ -212,3 +209,285 @@ Knihovna tRPC je oproti knihovně json-rpc-2.0 značně populárnější, nabíz
     Ukázalo se, že MermaidJS není vhodný pro náš projekt, protože nemá dobrou podporu \href{https://c4model.com/}{C4 diagramu}, které používáme pro dokumentaci architektury.
     Díky velkému ekosystému nástroje Docusaurus však existuje i komunitní plugin pro podporu PlantUML diagramů, který má skvělou podporu C4 diagramů.
 \end{description}
+
+
+\section{Architektura}\label{sec:architektura}
+
+Nyní navrhněme architekturu aplikace.
+Pro její popis použijeme C4 model, který poskytuje jednoduchou sadu abstrakcí pro popis architektury.
+Alternativy jako \href{https://www.opengroup.org/archimate-forum}{ArchiMate} míří na popis enterprise systémů a jsou pro nás zbytečně komplexní.
+Popíšeme 3 úrovně abstrakce - kontext, kontejnery a komponenty.
+Čtvrtou vrstvu, která popisuje mapování komponent na jednotlivé soubory obsahující zdrojový kód vynecháme.
+Čtvrtou vrstvu bychom mohli automaticky vygenerovat ze zdrojového kódu, ale myslím si, že nám v tomto případě nepřináší žádnou hodnotu.
+
+\subsection{Kontext}\label{subsec:kontext}
+
+\begin{figure}[H]
+    \includegraphics[width=0.9\textwidth]{diagrams/architecture/context}
+    \caption{C4 model - Systémový kontext}\label{fig:architecture-context}
+\end{figure}
+
+\subsection{Kontejnery}\label{subsec:kontejnery}
+
+\begin{figure}[H]
+    \includegraphics[width=0.9\textwidth]{diagrams/architecture/containers}
+    \caption{C4 model - Kontejnery}\label{fig:architecture-containers}
+\end{figure}
+
+\begin{tcolorbox}
+    Pokud je vztah mezi dvěma kontejnery vyznačený jako gateway, znamená to, že komunikace probíhá skrze prostředníka, který poskytuje vrstvu abstrakce.
+    Gateway snižuje provázanost komunikujících systémů (coupling) a zajišťuje modifikovatelnost.
+    Bližší informace o tomto vzoru lze nalézt v \href{https://martinfowler.com/articles/gateway-pattern.html}{článku Gateway} od Martin Fowler.
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    Monitoring server monitoruje všechny ostatní kontejnery.
+    Relace byly vynechány pro zachování čitelnosti diagramu.
+\end{tcolorbox}
+
+Správa formulářů bude realizována pomocí softwaru Form.io.
+Tento software nemá funkci pro ukládání nedokončených vyplnění formulářů.
+Proto potřebujeme separátní komponentu a databázi pro tento účel.
+
+\subsection{Komponenty}\label{subsec:komponenty}
+
+\subsubsection{Webová aplikace}
+
+\begin{figure}[H]
+    \includegraphics[width=0.9\textwidth]{diagrams/architecture/webApplicationComponent}
+    \caption{C4 model - Komponenta webová aplikace}\label{fig:architecture-component-web-application}
+\end{figure}
+
+
+\section{Nasazení}\label{sec:deployment}
+
+\begin{figure}[H]
+    \includegraphics[width=0.9\textwidth]{diagrams/deployment}
+    \caption{Diagram nasazení}\label{fig:deployment}
+\end{figure}
+
+
+\section{Ukládání dat}\label{sec:ukladani-dat}
+
+\subsection{Logický datový model}\label{subsec:logicky-datovy-model}
+
+Nyní popíšeme jak data budete ukládat na logické úrovni.
+Nebudeme se však zabývat detaily ukládání dat o uživatelích a formulářích, jelikož o to se stará software Form.io.
+Entity, jejich reprezentací se nechceme zabývat jsou označeny šedou barvou.
+Budeme se zabývat ukládáním úkolů a částečných vyplnění formulářů.
+Zvolme relační datový model pro modelování těchto dat.
+Třídy v UML diagramu budou reprezentovat tabulky v databázi.
+Pro stav úkolu budeme potřebovat místo tradičních dvou stavů (dokončený a nedokončený) stavy tři.
+Důvody k tomuto rozhodnutí jsou blíže popsány v sekci XXX. % TODO: doplnit ref
+
+\begin{figure}[H]
+    \includegraphics[width=0.9\textwidth]{diagrams/logicalDataModel}
+    \caption{Logický datový model}\label{fig:logical-data-model}
+\end{figure}
+
+\subsection{Správa dat o nedokončených vyplnění formulářů}\label{subsec:sprava-dat-o-nedokoncenych-vyplneni-formularu}
+
+Klient/pacient si může vytvořit koncept pro libovolný dotazník.
+Při odevzdání dotazníku informuje systém spravující formuláře automaticky pomocí webhook systém spravující nedokončené vyplnění formulářů.
+Díky tomu nezůstávají nedokončené vyplnění formulářů v systému navždy.
+Pokud však tento webhook selže, nedokončené vyplnění formuláře v systému zůstane.
+Tato situace je velmi nepravděpodobná, takže ji nebudeme řešit.
+Pokud by se v průběhu užívání ukázalo, že se jedná o větší problém než se předpokládalo, lze zavést omezení na životnost konceptu.
+Například bychom mohli ukládat pouze koncepty, které byly použity v posledních 30 dnech.
+Tím bychom zajistili, že i pokud webhook selže, tak se koncept v systému nezachová déle než 30 dní.
+
+
+\section{Soukromí uživatelů}\label{sec:soukromi-uzivatelu}
+
+Aplikace pracuje s citlivými daty a proto je pro nás bezpečnost na prvním místě.
+Tato sekce se věnuje krokům, které jsme podnikli pro zajištění maximální bezpečnosti.
+
+Webové rozhraní používající NextJS ve výchozím nastavení sbírá anonymní data o uživatelích.
+Na dotaz zadavatele byl sběr těchto dat vypnutý pro zvýšení důvěry uživatelů v platformu (viz produkční Dockerfile komponenty \texttt{web-app}).
+(Detailní informace jsou dostupné na této \href{https://nextjs.org/telemetry}{stránce}.)
+
+Software Form.io nesbírá žádná data o uživatelích (viz \href{https://github.com/formio/formio/issues/1499}{vyjádření společnosti}).
+
+Každá změna v softwaru prochází bezpečnostní statickou analýzou nástrojem \href{https://codeql.github.com/}{CodeQL}.
+
+Pravidelně probíhá kontrola všech závislostí nástrojem \href{https://github.com/dependabot}{Dependabot}, který upozorňuje na známé bezpečnostní chyby v závislostech.
+
+Po všech uživatelích vyžadujeme silná hesla, která jsou bezpečně uložena.
+
+
+\section{GDPR}\label{sec:gdpr}
+
+Při autentizaci uživatele používáme cookies pro správu session.
+Ukládání dat do úložiště klienta spadá pod GDPR, proto je nutno ověřit, jaké jsou naše povinnosti.
+Dle \href{https://ec.europa.eu/justice/article-29/documentation/opinion-recommendation/files/2012/wp194_en.pdf}{doporučení Evropské Unie (sekce 3.2)} pro autentizační cookies je potřeba pro \emph{persistentní} cookies upozornit uživatele o jejich užití.
+Knihovna NextAuth.js, kterou používáme má podporu pouze pro persistentní cookies (viz \href{https://github.com/nextauthjs/next-auth/issues/2534}{issue}), tedy musíme uživatele řádně upozornit.
+Pro tento účel jsem zvolil knihovnu \href{https://www.npmjs.com/package/react-cookie-consent}{react-cookie-consent}.
+
+% TODO: ověřit u NUDZ
+GDPR také vyžaduje, aby uživatelé měli možnost smazat svá data.
+Existuje však výjimka ohledně ukládání vědeckých dat.
+Veškerá data, která ukládáme slouží mimo jiné pro vědecké účely.
+
+
+\section{Autentizace}\label{sec:auth}
+
+Uživatelé se přihlašují pomocí ID a hesla.
+Administrátoři se přihlašují pomocí e-mailu a hesla.
+Pro autentifikaci se používá knihovna NextAuth.js, která vykonává kód jak na klientovi, tak na serveru webové aplikace.
+Tato knihovna má vlastní session management a vydává JWT tokeny.
+Aby klient mohl pracovat se systémem formulářů, je potřeba získat JWT token systému spravující formuláře.
+Tento token se automatický získá při přihlášení přes NextAuth.js a umístí se do tokenu webové aplikace.
+Tento systém zařizuje, že webová aplikace nemusí při každém požadavku od klienta komunikovat s formulářovým systémem, ale má vlastní session.
+Kontrola práv uživatele při přístupu na ochráněnou stránku se kontrola provádí v middleware NextJS serveru.
+
+\begin{figure}[H]
+    \includegraphics[width=0.9\textwidth]{diagrams/auth}
+    \caption{Komunikace při autentizaci uživatele}\label{fig:auth}
+\end{figure}
+
+
+\section{Konfigurace a modifikace Form.io}\label{sec:konfigurace-a-modifikace-form.io}
+
+Subrepozitář \texttt{/src/formio/} obsahuje fork projektu Form.io, kde bylo provedeno několik úprav.
+Tyto úpravy jsou popsány v této sekci popsány v této sekci.
+Dále jsou zde popsány některé části konfigurace Form.io.
+
+\subsection{Modifikace}\label{subsec:modifikace}
+
+\subsubsection{Inicializace projektu}\label{subsubsec:inicializace-projektu}
+
+První úprava se týče inicializace instance při prvním startu.
+Nepodařilo se mi najít způsob, jak nakonfigurovat inicializaci projektu tak, aby se automaticky vytvořili všechny potřebné zdroje (klient, pacient, zaměstnanec, apod.), role (admin, zaměstnanec, apod.).
+Proto jsem upravil kód inicializace tak, aby se načetla z souboru \texttt{project.json}, který program hledá v kořenu subrepozitáře.
+Původně se načítala z \texttt{project.json} v build složce, která však není uložena ve verzovacím systému.
+Tato úprava byla nutná, jelikož nelze vytvářet nové role po inicializaci projektu a konfigurační soubor je nutné zahrnout do verzovacícho systému.
+
+\subsubsection{Webhook action}\label{subsubsec:webhook-action}
+
+Webhook action je action, která umožňuje poslat HTTP dotaz na zadanou URL při vytvoření, editaci nebo smazaní vyplnění dotazníku.
+V open-source verzi formio tato action neumí přeposílat hlavičky HTTP dotazu, který akci inicioval.
+Tuto funkcionalitu potřebujeme, jelikož chceme přeposílat autentifikační hlavičky při komunikaci s komponentou spravující úkoly uživatelů.
+Proto jsem upravil tuto action tak, aby bylo lze nastavit zda-li má akce přeposílat autentifikační hlavičky.
+
+\subsubsection{Imutabilita ID uživatele}\label{subsubsec:imutabilita-id-uzivatele}
+
+Motivaci ke změně naleznete v sekci~\ref{sec:auth}.
+
+Pokud se uživatel pokusí změnit své ID, tak se změna neprovede.
+Toto řešení spoléhá na to, že přístup k databázi uživatelů děláme pouze skrze knihovnu Mongoose, která imutabilitu zajišťuje (MongoDB samotnés neumožňuje nastavit imutabilitu položek).
+Nevýhodou tohoto řešení je, že vytváří zvláštní omezení na všechny položky s klíčem \texttt{id} ve všech odevzdáních, ale zásadní výhodou je jednoduchost.
+
+Alternativní řešení by bylo vytvořit autorizační proxy mezi klientem a správcem uživatelů či mezi správcem uživatelů a databází.
+Toto řešení by pravděpodobně vyžadovalo další kontejner a má netriviální implementaci.
+Implementace by navíc měla nízkou odolnost vůči změnám.
+Pokud bychom měli více koncových bodů API, které umožňují modifikovat entitu uživatele, bylo by potřeba myslet na zabezpečení všech koncových bodů.
+V případě přidání nového bodu, by bylo vždy potřeba myslet na úpravy autorizační proxy.
+Z těchto důvodů byla tato alternativa zavrhnuta.
+
+\subsection{Konfigurace}\label{subsec:konfigurace}
+
+\subsubsection{Konfigurace zdrojů (resources)}\label{subsubsec:konfigurace-resources}
+
+Roli lze k uživateli přiřadit pouze skrze akci (action), která je přiřazena k zdroji (resource).
+Proto je potřeba vytvořit resource pro každou kombinaci rolí, kterou chceme vytvořit.
+Vzhledem k tomu, že jsou zdroje oddělené, nelze při tvorbě uživatelského účtu jednoduše validovat, že má každý uživatel unikátní ID pro přihlášení.
+Abychom předešli zmatení uživatelů, v uživatelském rozhraní vždy k ID přidáme i roli, která je uživateli přiřazena.
+
+
+\section{Propojení správy úkolů a správy formulářů}\label{sec:propojeni-spravy-ukolu-a-spravy-formularu}
+
+% TODO: make this section more understandable
+
+Potřebujeme propojit komponentu starající se o úkolu a komponentu starající se o dotazníky.
+Zde je seznam požadovaného chování:
+
+\begin{itemize}
+    \item
+    Úkol drží informaci o ID vyplnění dotazníku splnění úkolu nebo dotazník drží informaci o ID úkolu v rámci kterého byl vyplněn.
+    \item
+    Uživatel může vyplnit dotazník, právě tehdy když má dotazník ve svých úkolech.
+\end{itemize}
+
+\subsection{Řešení}\label{subsec:reseni}
+
+\subsubsection{Alternativa 1}\label{subsubsec:alternativa-1}
+
+Uživatel vyplní dotazník a \emph{odešle se požadavek na komponentu spravující formuláře}, kde je webhook, který proběhne \emph{před} uložením výsledku, kde proběhne kontrola existence úkolu na vyplnění tohoto dotazníku.
+Pokud úkol existuje, tak se vyplnění dotazníku uloží společně s identifikátorem úkolu a také se splní úkol a uloží se k němu identifikátor vyplnění dotazníku.
+
+Aktuálně však vyplnění dotazníku nedrží informaci o tom v rámci kterého úkolu byl vyplněn.
+To bychom mohli vyřešit zavedením následujícího omezení: \uv{Každý uživatel má zadaný vždy maximálně jeden úkol na vyplnění jednoho dotazníku}.
+Díky tomuto omezení je jednoznačné, kterého úkolu se vyplnění týká.
+Druhá možnost je v dotazníku vytvořit skryté pole, které obsahuje identifikátor úkolu v rámci, kterého byl dotazník vyplněn.
+Tím zajistíme, že vyplnění dotazníku drží informaci o identifikátoru úkolu v rámci kterého byl vyplněn.
+Zvolme tedy druhou možnost.
+
+\subsubsection{Alternativa 2}\label{subsubsec:alternativa-2}
+
+Uživatel vyplní dotazník a \emph{odešle se požadavek na komponentu spravující úkoly}, která za něj dotazník odevzdá pokud má uživatel úkol na jeho vyplnění.
+Situace se při tomto řešení komplikuje, protože bychom museli přidat autentifikační proxy před API endpoint pro vyplňování dotazníků, jelikož ten je veřejně dostupný a my chceme zajistit, aby všechny požadavky musely jít skrze komponentu spravující úkoly.
+Museli bychom tedy zakázat, aby uživatel odevzdal dotazník přímo.
+Kdybychom to neudělali, tak nejsme schopni zajistit integritu sesbíraných dat.
+To je příliš složité a tato nová komponenta by byla silně závislá na komponentě spravující formuláře.
+
+\subsubsection{Finální implementace}\label{subsubsec:finalni-implementace}
+
+Zvolíme první alternativu, jelikož je jednodušší na implementaci a má lepší vlastnosti.
+Nyní si rozmysleme detaily implementace.
+Formulářový systém nastavíme tak, aby zajistil unikátnost hodnoty skryté položky obsahující identifikátor úkolu.
+Proč toto nastavení potřebujeme uvidíme při pokusu o narušení integrity dat v systémech.
+První se podívejme se na diagram aktivit:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.7\textwidth, angle=90]{diagrams/activityDiagramTaskAndFormIntegration}
+    \caption{Diagram integrace systémů spravující úkoly a systému spravující formuláře}\label{fig:activity-diagram-task-and-form-integration}
+\end{figure}
+
+
+V rámci reakce na první webhook uvedeme úkol do stavu \texttt{skoro hotový}.
+Tento stav slouží k tomu, aby nebylo možné vytvořit další vyplnění dotazníku v rámci stejnénteho úkolu.
+Jelikož pokud tento požadavek na úkolový systém selže, formulářový systém neuloží vyplnění dotazníku do systému.
+Tento mechanismus se nazývá \emph{semantic lock counter-measure} dle \href{https://microservices.io/post/microservices/2019/07/09/developing-sagas-part-1.html}{tohoto článku}.
+
+Po uložení vyplnění dotazníku se zavolá druhý webhook, který zařídí uložení informace o identifikátoru vyplnění do úkolu.
+Vzhledem k tomu, že se jedná o veřejně dostupný endpoint, tak je nutné ověřit poskytnutá data.
+Musíme si tedy z úkolového systému vyžádat vyplnění dotazníku a zkontrolovat všechny náležitosti.
+Pokud by se někdo pokusil napárovat úkol, který je ve stavu \texttt{skoro hotový} na jiné vyplnění dotazníku než to, které způsobilo přechod úkolu do stavu \texttt{skoro hotový}, tak se mu to jistě nepovede.
+Pokud by se pokusil napárovat vyplnění jiného dotazníku, tak to selže, jelikož to úkolový systém kontroluje.
+Pokud by se pokusil nápárovat jiné vyplnění stejného dotazníku, tak se mu to také nepovede, jelikož toto jiné vyplnění dotazníku by muselo mít jiný identifikátor úkolu v skrytém poli, protože formulářový systém zajišťuje, že tyto hodnoty jsou v každém vyplnění (jednoho dotazníku) unikátní.
+Jelikož víme, že již existuje vyplnění dotazníku, které má identifikátor úkolu v skrytém poli stejné jako identifikátor úkolu, který se právě snažíme napárovat, tak víme, že jakékoliv jiné vyplnění stejného dotazníku bude mít jiný identifikátor úkolu v skrytém poli.
+
+\paragraph{Autentifikace webhooku}
+
+První možnost je poskytnout webhooku speciální přístupový token.
+Toto však nelze provést pouze pro jeden webhook, ale pouze pro všechny webhooky v formulářovém systému bez většího zásahu do zdrojového kódu formulářového systému.
+Navíc to situaci zbytečně komplikuje.
+
+Druhá možnost je využití JWT tokenu z požadavku na formulářový systém.
+Toto je dobrá možnost, ale open-source verze formulářového systému tuto funkci nemá.
+Nicméně není těžké ji do něj přidat.
+
+Třetí možností je vyhnout se autentifikaci webhooku pomocí přihlášení.
+Místo toho bychom mohli vytvořit endpoint komponenty spravující úkoly, který je přístupný pouze z komponenty spravující formuláře.
+Toto však znamená netriviální úpravy síťové infrastruktury.
+Tyto úpravy jsou poměrně špatně udržovatelné.
+
+
+Zvolme první možnost.
+Provedené úpravy formulářového systému jsou popsány v sekci~\ref{sec:modifikace-form.io}.
+
+\subsection{Stavy úkolu}\label{subsec:stavy-ukolu}
+
+\begin{figure}[H]
+    \includegraphics[width=0.9\textwidth]{diagrams/taskState}
+    \caption{Stavový diagram úkolů}\label{fig:task-state}
+\end{figure}
+
+
+Pokud požadavek na uložení vyplnění dotazníku spustí webhook, který proběhne před uložením do systému spravující formuláře, a následně selže operace uložení vyplnění dotazníku v systému spravující formuláře, tak se úkol dostane do neřešitelného stavu.
+Z tohoto stavu se nelze dostat.
+Pokud bychom se z něj chtěli dostat, potřebovali bychom komplexnější implementaci \href{https://microservices.io/patterns/data/saga.html}{ság}, která zahrnuje implementaci kompenzačních transakcí.
+Popsaná situace je však natolik vyjímečná, že se v tuto chvíli problematice věnovat nebudeme.
+Vystačíme si s tím, že formulářový systém nikdy nebude obsahovat vyplnění dotazníku, které vzniklo bez zadání úkolu.
+

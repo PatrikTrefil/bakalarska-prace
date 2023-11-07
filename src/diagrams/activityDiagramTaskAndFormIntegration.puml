@@ -1,0 +1,67 @@
+@startuml
+skinparam dpi 400
+
+|Uživatel|
+|Správa formulářů|
+|Správa úkolů|
+
+
+|Uživatel|
+start
+:vyplní formulář a odešle data na server;
+:vyplnění formuláře
+`ukolID, formularID, data`]
+|Správa formulářů|
+if (Identifikátor úkolu není unikátní) then (ano)
+    :Vrátí chybu;
+    |Uživatel|
+    #eb4443:Oznámení selhání operace;
+    stop
+else (ne)
+    |Správa formulářů|
+    :Webhook před uložením dat;
+    :`ukolID, formularID`]
+    |Správa úkolů|
+    if (Existuje úkol s předaným ID, který je nesplněný\na je to úkol pro formulář, který byl právě vyplněn?) then (ne)
+        |Správa formulářů|
+        :Neuloží vyplnění dotazníku a vrátí chybu;
+        |Uživatel|
+        #eb4443:Oznámení o selhání operace;
+        stop
+    else (ano)
+        |Správa úkolů|
+        :Uvede úkol do stavu "skoro hotový";
+        note left
+            Toto zajistí, že jakékoliv další požadavky na uložení
+            vyplnění dotazníku pro tento úkol selžou.
+        end note
+        |Správa formulářů|
+        :Uložení vyplnění dotazníku;
+        :Webhook po uložení dat;
+        :`ukolID, vyplneniID`]
+        |Správa úkolů|
+        :Vyžádá si vyplnění dotazníku;
+        :`vyplneniID`]
+        |Správa formulářů|
+        :Vrátí vyplnění dotazníku;
+        :`vyplneniID, formularID, ukolID`]
+        |Správa úkolů|
+        if (Zkontroluje, že vyplnění bylo vytvořeno v rámci splnění\núkolu s předaným ID a týká se správného formuláře) then (ne)
+            |Správa formulářů|
+            :Přepošle informaci o selhání;
+            |Uživatel|
+            #eb4443:Oznámení o selhání operace;
+            stop
+        else (ano)
+            |Správa úkolů|
+            :Uloží ID vyplnění dotazníku do úkolu\na uvede jej do stavu "hotový";
+            :Potvrzení splnění úkolu;
+            |Správa formulářů|
+            :Potvrzení vykonání operace;
+            |Uživatel|
+            #a6f76d:Oznámení o úspěchu operace;
+            stop
+        endif
+    endif
+endif
+@enduml
