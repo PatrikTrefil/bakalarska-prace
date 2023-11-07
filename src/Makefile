@@ -8,7 +8,7 @@ diagrams: $(DIAGRAMS_PNG)
 
 # Generovaní PNG diagramů z PlantUML
 $(DIAGRAMS_PNG):./diagrams/%.png: ./diagrams/%.puml
-	java -Dplantuml.include.path="diagrams" -jar ../lib/plantuml-1.2023.12.jar -charset UTF-8 -tpng -DRELATIVE_INCLUDE=relative $< \
+	java -DPLANTUML_LIMIT_SIZE=16384 -Dplantuml.include.path="diagrams" -jar ../lib/plantuml-1.2023.12.jar -charset UTF-8 -tpng -DRELATIVE_INCLUDE=relative $< \
  		|| (cat $@ && exit 1) # Print out detailed error included in the svg if conversion fails
 
 # LaTeX je potreba spustit nekolikrat, aby spravne spocital odkazy
