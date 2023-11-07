@@ -33,6 +33,18 @@ jobs:
           name: Thesis
           path: src/*.pdf
 
+      - uses: MrFlynn/upload-to-netlify-action@v3
+        with:
+          source-file: |
+            src/prace.pdf
+            src/abstrakt.pdf
+          destination-path: |
+            prace.pdf
+            abstrakt.pdf
+          site-name: patriktrefil
+          branch-name: master
+          netlify-token: ${{ secrets.NETLIFY_TOKEN }}
+
   verify:
     name: Verify PDF/A
     runs-on: ubuntu-latest
