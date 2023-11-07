@@ -24,7 +24,7 @@ Výsledné PDF soubory se nachází v adresáři `src`.
 
 Repozitář má workflow pro kompilaci a uložení výsledných PDF souborů. Soubory
 lze najít jako artefakty běhů workflow a aktuální veze je dostupná na
-[této stránce][pdf_upload]. Výsledné PDF soubory jsou také validovány
+[této stránce][pdf-upload]. Výsledné PDF soubory jsou také validovány
 (musí být validní PDF/A).
 
 ## Šablona
