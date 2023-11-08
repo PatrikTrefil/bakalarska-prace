@@ -1,5 +1,9 @@
 # Text bakalářské práce
 
+Toto je repozitář obsahující zdrojový kód textu bakalářské práce.
+Repozitář obsahující zdrojový kód programu naleznete v repozitáři
+[mental-health-monitoring-platform][program-repo].
+
 ## Zadání
 
 Cílem bakalářské práce je navržení, vytvoření a praktické otestování v provozu
@@ -36,3 +40,4 @@ LaTeXu][oficialni-sablona]. Informace k šabloně lze najít [zde][sablona-readm
   https://www.mff.cuni.cz/cs/studenti/bc-a-mgr-studium/bakalarske-a-diplomove-prace
 [sablona-readme]: ./SABLONA-README
 [pdf-upload]: https://patriktrefil.com/bakalarska-prace.pdf
+[program-repo]: https://github.com/PatrikTrefil/mental-health-monitoring-platform
