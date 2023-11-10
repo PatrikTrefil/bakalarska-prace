@@ -35,8 +35,12 @@ jobs:
 
       - uses: MrFlynn/upload-to-netlify-action@v3
         with:
-          source-file: src/prace.pdf
-          destination-path: bakalarska-prace.pdf
+          source-file: |
+            src/prace.pdf
+            src/abstrakt.pdf
+          destination-path: |
+            bakalarska-prace.pdf
+            bakalarska-prace-abstrakt.pdf
           site-name: patriktrefil
           branch-name: master
           netlify-token: ${{ secrets.NETLIFY_TOKEN }}
