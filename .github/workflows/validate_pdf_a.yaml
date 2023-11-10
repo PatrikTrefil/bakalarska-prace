@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Install dependencies
-        run: apt-get update && apt-get install -y inkscape
+        run: apt-get update && apt-get install -y inkscape graphviz
 
       - name: Build the thesis
         run: make
