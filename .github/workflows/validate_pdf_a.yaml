@@ -35,10 +35,10 @@ jobs:
 
       - uses: MrFlynn/upload-to-netlify-action@v3
         with:
-          source-file: |
+          source-file: |-
             src/prace.pdf
             src/abstrakt.pdf
-          destination-path: |
+          destination-path: |-
             bakalarska-prace.pdf
             bakalarska-prace-abstrakt.pdf
           site-name: patriktrefil
