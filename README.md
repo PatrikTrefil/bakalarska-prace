@@ -1,5 +1,9 @@
 # Text bakalářské práce
 
+Toto je repozitář obsahující zdrojový kód textu bakalářské práce.
+Repozitář obsahující zdrojový kód programu naleznete v repozitáři
+[mental-health-monitoring-platform][program-repo].
+
 ## Zadání
 
 Cílem bakalářské práce je navržení, vytvoření a praktické otestování v provozu
@@ -23,7 +27,8 @@ Výsledné PDF soubory se nachází v adresáři `src`.
 ## Workflows
 
 Repozitář má workflow pro kompilaci a uložení výsledných PDF souborů. Soubory
-lze najít jako artefakt běhu workflow. Výsledné PDF soubory jsou také validovány
+lze najít jako artefakty běhů workflow a aktuální veze je dostupná na
+[této stránce][pdf-upload]. Výsledné PDF soubory jsou také validovány
 (musí být validní PDF/A).
 
 ## Šablona
@@ -34,3 +39,5 @@ LaTeXu][oficialni-sablona]. Informace k šabloně lze najít [zde][sablona-readm
 [oficialni-sablona]:
   https://www.mff.cuni.cz/cs/studenti/bc-a-mgr-studium/bakalarske-a-diplomove-prace
 [sablona-readme]: ./SABLONA-README
+[pdf-upload]: https://patriktrefil.com/bakalarska-prace.pdf
+[program-repo]: https://github.com/PatrikTrefil/mental-health-monitoring-platform
