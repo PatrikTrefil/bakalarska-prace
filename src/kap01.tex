@@ -12,6 +12,7 @@ Všechny tyto artefakty se nachází v následujících podkapitolách.
 
 \subsection{Skupiny uživatelů}\label{subsec:skupiny-uzivatelu}
 
+% TODO: rename uživatel na plnitel
 \begin{itemize}
 \item
   Uživatel = pacient/klient
@@ -52,15 +53,14 @@ Všechny tyto artefakty se nachází v následujících podkapitolách.
       více možností (možno zvolit libovolný počet)
     \end{itemize}
   \item
-    u každé otázky je možno nastavit podmíněné zobrazení, tj.\ otázka se uživateli zobrazí pokud je splněna podmínka definovaná správcem dotazníku při vytvoření.
-  \item
-    V aplikaci by mělo být možné vytvořit \hyperref[sec:ukazkovyDotaznik]{ukázkový dotazník}.
+  U každé otázky je možno nastavit podmíněné zobrazení.
+  Jinými slovy otázka se uživateli zobrazí, pokud je splněna podmínka definovaná správcem dotazníku při vytvoření.
   \end{itemize}
 \item
 Správce dotazníků je schopen vytvářet/mazat dotazníky a způsoby vyhodnocení
 \item
 Správce dotazníků může v dotazníku upravit obsah otázek a možných odpovědí v případě, že se jedná o volbu z možností.
-\textbf{Nelze} přidat/odebrat otázky, přidat/odebrat možné odpovědi, ani upravit způsob výpočtu skóre.
+\textit{Nelze} přidat/odebrat otázky, přidat/odebrat možné odpovědi, ani upravit způsob výpočtu skóre.
 
   \begin{itemize}
   \item
@@ -77,6 +77,7 @@ Správce dotazníků může v dotazníku upravit obsah otázek a možných odpov
   Uživatel může smazat svá data.
 \item
   Správce/zadavatel dotazníků je schopen vidět výsledky dotazníků a úkolů všech uživatelů.
+\item
   Správce/zadavatel může vybrat data, která budou vizualizována na grafech.
 \item
   Správce dotazníků/člen technické podpory je schopen vytvářet/mazat uživatelské účty, účty pro ostatní správce a účty pro zadavatele dotazníků.
@@ -118,7 +119,7 @@ Správce dotazníků může dovolit uživateli vidět výsledky konkrétního do
 
 \begin{itemize}
 \item
-  Sledování jak dlouho trvalo odpovědět na konkrétní otázku, kdy uživatel dotazník vyplnil, počet změn odpovědí.
+Sledování délky času stráveného nad jednotlivými otázkami, času kdy uživatel dotazník vyplnil, počtu změn odpovědí.
 \item
   E-mail upozornění na nové úkoly, na nesplněné úkoly.
 \item
@@ -167,6 +168,7 @@ Uživatelské rozhraní by mělo být vhodné pro uživatelé s nízkými techni
 \end{itemize}
 
 \section{Doménový model}\label{sec:domenovy-model}
+% TODO: někde odcitovat že používám pro všechny diagramy UML
 
 \begin{figure}[H]
     \includegraphics[width=0.9\textwidth]{diagrams/domainModel}
@@ -174,6 +176,7 @@ Uživatelské rozhraní by mělo být vhodné pro uživatelé s nízkými techni
 \end{figure}
 
 \begin{tcolorbox}
+    % TODO: možná vyžaduje citaci?
 Dědičnost v UML vyjadřuje jiný vztah než v programování.
 Třída je množina a odvozená třída je její podmnožina.
 Vztahy mezi odvozenými třídami, tedy podmnožinami, mohou být 4 typů podle toho zda-li se podmnožiny překrývají a zda-li je jejich sjednocení množina definovaná třídou, od které odvozujeme.
