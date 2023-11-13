@@ -37,6 +37,11 @@ jobs:
           name: Thesis
           path: src/*.pdf
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+
       - name: Install Vercel CLI
         run: npm install --global vercel
 
