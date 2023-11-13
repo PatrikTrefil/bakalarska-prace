@@ -2,21 +2,25 @@ name: Validate PDF/A
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
   workflow_dispatch:
-
 
 jobs:
   build:
     name: Build thesis PDFs and upload to artifacts and Netlify
     runs-on: ubuntu-latest
-    container: { image: 'aergus/latex' }
+    container: { image: "aergus/latex" }
     defaults:
       run:
         working-directory: src
+
+    env:
+      # Secrets are configured on github.com in repository settings
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
     steps:
       - uses: actions/checkout@v3
@@ -33,23 +37,33 @@ jobs:
           name: Thesis
           path: src/*.pdf
 
-      - uses: MrFlynn/upload-to-netlify-action@v3
-        with:
-          source-file: |-
-            src/prace.pdf
-            src/abstrakt.pdf
-          destination-path: |-
-            bakalarska-prace.pdf
-            bakalarska-prace-abstrakt.pdf
-          site-name: patriktrefil
-          branch-name: master
-          netlify-token: ${{ secrets.NETLIFY_TOKEN }}
+      - name: Install Vercel CLI
+        run: npm install --global vercel
+
+      - name: Prepare folder to upload
+        run: >-
+          mkdir upload &&
+          cp prace.pdf abstrakt.pdf upload &&
+          echo '{ "redirects": [ { "source": "/", "destination": "/prace.pdf", "permanent": false } ] }'
+
+      - name: Pull Vercel Environment Information
+        working-directory: src/upload
+        run: vercel pull --yes --environment=production --token=${{
+          secrets.VERCEL_TOKEN }}
+
+      - name: Build Project Artifacts
+        working-directory: src/upload
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy Project Artifacts to Vercel
+        working-directory: src/upload
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
 
   verify:
     name: Verify PDF/A
     runs-on: ubuntu-latest
     needs: build
-    container: { image: 'ghcr.io/mff-cuni-cz/cuni-thesis-validator' }
+    container: { image: "ghcr.io/mff-cuni-cz/cuni-thesis-validator" }
 
     steps:
       - name: Get PDFs
