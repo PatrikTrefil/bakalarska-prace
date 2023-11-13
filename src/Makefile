@@ -14,10 +14,10 @@ $(DIAGRAMS_PNG):./diagrams/%.png: ./diagrams/%.puml
 # LaTeX je potreba spustit nekolikrat, aby spravne spocital odkazy
 # --shell-escape je potreba pro spusteni Inkscape (konverze SVG->PDF)
 prace.pdf: prace.tex $(wildcard *.tex) literatura.bib prace.xmpdata $(DIAGRAMS_PNG)
-	pdflatex --shell-escape $<
+	pdflatex --shell-escape -halt-on-error $<
 	bibtex prace
-	pdflatex --shell-escape $<
-	pdflatex --shell-escape $<
+	pdflatex --shell-escape -halt-on-error $<
+	pdflatex --shell-escape -halt-on-error $<
 
 abstrakt.pdf: abstrakt.tex abstrakt.xmpdata
 	pdflatex $<
