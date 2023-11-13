@@ -39,5 +39,5 @@ LaTeXu][oficialni-sablona]. Informace k šabloně lze najít [zde][sablona-readm
 [oficialni-sablona]:
   https://www.mff.cuni.cz/cs/studenti/bc-a-mgr-studium/bakalarske-a-diplomove-prace
 [sablona-readme]: ./SABLONA-README
-[pdf-upload]: https://patriktrefil.com/bakalarska-prace.pdf
+[pdf-upload]: https://bakalarska-prace.patriktrefil.com/
 [program-repo]: https://github.com/PatrikTrefil/mental-health-monitoring-platform
