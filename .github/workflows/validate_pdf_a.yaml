@@ -48,7 +48,7 @@ jobs:
         run: >-
           mkdir upload &&
           cp prace.pdf abstrakt.pdf upload &&
-          echo '{ "redirects": [ { "source": "/", "destination": "/prace.pdf", "permanent": false } ] }'
+          echo '{ "redirects": [ { "source": "/", "destination": "/prace.pdf", "permanent": false } ] }' > upload/vercel.json
 
       - name: Pull Vercel Environment Information
         working-directory: src/upload
