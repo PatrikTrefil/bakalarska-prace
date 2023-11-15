@@ -12,10 +12,9 @@ Všechny tyto artefakty se nachází v následujících podkapitolách.
 
 \subsection{Skupiny uživatelů}\label{subsec:skupiny-uzivatelu}
 
-% TODO: rename uživatel na plnitel
 \begin{itemize}
 \item
-  Uživatel = pacient/klient
+Plnitel = pacient/klient
 
 \item
   Zaměstnanci NUDZ
@@ -34,7 +33,7 @@ Všechny tyto artefakty se nachází v následujících podkapitolách.
 \subsection{Funkční požadavky}\label{subsec:funkcni-pozadavky}
 \begin{itemize}
 \item
-  Zadavatel/správce dotazníků může zadávat dotazníky a úkoly konkrétnímu uživateli, nastavit frekvenci opakování a nastavit start/deadline.
+Zadavatel/správce dotazníků může zadávat dotazníky a úkoly konkrétnímu plniteli, nastavit frekvenci opakování a nastavit start/deadline.
 
   \begin{itemize}
   \item
@@ -54,7 +53,7 @@ Všechny tyto artefakty se nachází v následujících podkapitolách.
     \end{itemize}
   \item
   U každé otázky je možno nastavit podmíněné zobrazení.
-  Jinými slovy otázka se uživateli zobrazí, pokud je splněna podmínka definovaná správcem dotazníku při vytvoření.
+  Jinými slovy, otázka se plniteli zobrazí, pokud je splněna podmínka definovaná správcem dotazníku při vytvoření.
   \end{itemize}
 \item
 Správce dotazníků je schopen vytvářet/mazat dotazníky a způsoby vyhodnocení
@@ -67,30 +66,30 @@ Správce dotazníků může v dotazníku upravit obsah otázek a možných odpov
     Při tvorbě dotazníku je možno nastavit automaticky počítané metriky pomocí vzorce (např.\ \texttt{otázka1\ +\ otázka2\ -\ otázka4}, kde \texttt{otázka1}, \texttt{otázka2} a \texttt{otázka4} jsou proměnné reprezentující výsledky příslušných otázek).
   \end{itemize}
 \item
-  Uživatel může v aplikaci vypracovat dotazníky a úkoly, které mu byly přiděleny správcem/zadavatelem dotazníků.
+Plnitel může v aplikaci vypracovat dotazníky a úkoly, které mu byly přiděleny správcem/zadavatelem dotazníků.
 
   \begin{itemize}
   \item
-    Uživatel je schopen vyplnit část dotazníku, uložit si dosud zodpovězené otázky a v budoucnu vyplňování dotazníku dokončit.
+  Plnitel je schopen vyplnit část dotazníku, uložit si dosud zodpovězené otázky a v budoucnu vyplňování dotazníku dokončit.
   \end{itemize}
 \item
-  Uživatel může smazat svá data.
+Plnitel může smazat svá data.
 \item
-  Správce/zadavatel dotazníků je schopen vidět výsledky dotazníků a úkolů všech uživatelů.
+Správce/zadavatel dotazníků je schopen vidět výsledky dotazníků a úkolů všech plnitelů.
 \item
   Správce/zadavatel může vybrat data, která budou vizualizována na grafech.
 \item
-  Správce dotazníků/člen technické podpory je schopen vytvářet/mazat uživatelské účty, účty pro ostatní správce a účty pro zadavatele dotazníků.
+Správce dotazníků/člen technické podpory je schopen vytvářet/mazat účty plnitelů, účty pro ostatní správce a účty pro zadavatele dotazníků.
 \item
   Správce dotazníků/člen technické podpory je schopen měnit přístupová práva všech ostatních účtů.
 \item
-  Uživatel je schopen měnit heslo svého účtu a je schopen svůj účet smazat.
+Plintel je schopen měnit heslo svého účtu a je schopen svůj účet smazat.
 \item
-  Výsledky dotazníků uživatelů může správce/zadavatel dotazníků z aplikace exportovat do formátu CSV\@.
+Výsledky dotazníků plnitelů může správce/zadavatel dotazníků z aplikace exportovat do formátu CSV\@.
 \item
   Aplikace bude pouze v Českém jazyce, ale bude připravena na internacionalizaci.
 \item
-  Uživatel v systému vystupuje pod ID, které je náhodně vygenerováno.
+Plnitel v systému vystupuje pod ID, které je náhodně vygenerováno.
 \end{itemize}
 
 
@@ -98,19 +97,19 @@ Správce dotazníků může v dotazníku upravit obsah otázek a možných odpov
 
 \begin{itemize}
 \item
-Uživatel je schopen vidět vyhodnocení svých dotazníků, u kterých to správce povolil.
+Plnitel je schopen vidět vyhodnocení svých dotazníků, u kterých to správce povolil.
 \item
-Správce dotazníků může dovolit uživateli vidět výsledky konkrétního dotazníku - číselná hodnota/graf/text.
+Správce dotazníků může dovolit plniteli vidět výsledky konkrétního dotazníku - číselná hodnota/graf/text.
 \item
   Viditelnost výsledků lze nastavit následujícími způsoby:
 
   \begin{itemize}
   \item
-    uživatel vidí výsledky
+  plnitel vidí výsledky
   \item
-    uživatel nevidí výsledky
+  plnitel nevidí výsledky
   \item
-    uživatel vidí výsledky pouze výsledek dotazníku splňuje podmínku (např.\ výsledné skóre je větší než 10)
+  plnitel vidí výsledky pouze výsledek dotazníku splňuje podmínku (např.\ výsledné skóre je větší než 10)
   \end{itemize}
 \end{itemize}
 
@@ -119,13 +118,13 @@ Správce dotazníků může dovolit uživateli vidět výsledky konkrétního do
 
 \begin{itemize}
 \item
-Sledování délky času stráveného nad jednotlivými otázkami, času kdy uživatel dotazník vyplnil, počtu změn odpovědí.
+Sledování délky času stráveného nad jednotlivými otázkami, času, kdy plnitel dotazník vyplnil, počtu změn odpovědí.
 \item
   E-mail upozornění na nové úkoly, na nesplněné úkoly.
 \item
   Push notifikace v prohlížeči na nové úkoly, na nesplněné úkoly.
 \item
-  Chat mezi terapeutem a uživatelem.
+Chat mezi terapeutem a plnitelem.
 \item
   Rozšíření již vystavěné infrastruktury pro zadávání dotazníků pro zadávání cvičení (např.\ přečíst článek, zhlédnout video nebo vypracovat interaktivní cvičení).
 \end{itemize}
@@ -135,7 +134,7 @@ Sledování délky času stráveného nad jednotlivými otázkami, času kdy už
 
 \begin{itemize}
 \item
-Uživatelské rozhraní by mělo být vhodné pro uživatelé s nízkými technickými znalostmi.
+Uživatelské rozhraní by mělo být vhodné pro uživatele s nízkými technickými znalostmi.
 \item
   K programu by měla být dodána uživatelská a technická dokumentace.
 \end{itemize}
@@ -227,7 +226,7 @@ Odvozená data z vypracování formuláře (např.\ výsledné skóre).
 
 \item[NedokončenéVyplněníFormuláře]
 Částečné vyplnění formuláře.
-(Umožňuje uživateli přerušit vyplňování formuláře a pokračovat později.)
+(Umožňuje plniteli přerušit vyplňování formuláře a pokračovat později.)
 
 \end{description}
 
@@ -238,7 +237,7 @@ Každé omezení je napsáno jak v neformální textové podobě, tak v \href{ht
 
 \subsubsection{NedokončenéVyplněníFormuláře}
 
-Nedokončené vyplnění formuláře pro definici formuláře, zadání úkolu a uživatele může existovat pouze pokud je zadání úkolu pro uživatele a zadání úkolu zadává stejný formulář, který je částečně vyplněn nedokončeným vyplněním formuláře.
+Nedokončené vyplnění formuláře pro definici formuláře, zadání úkolu a plnitele může existovat pouze pokud je zadání úkolu pro plnitele a zadání úkolu zadává stejný formulář, který je částečně vyplněn nedokončeným vyplněním formuláře.
 
 \begin{verbatim}
 context plnitel: Plnitel inv
@@ -298,64 +297,64 @@ Jedná se o přepis neformální specifikace ze sekce~\ref{sec:specifikace}.
 
 \begin{itemize}
   \item
-  Jako zaměstnanec chci mít možnost založit účet pro klienta/pacienta, abych mohl využít systém v rámci terapie/výzkumu.
+  Jako zaměstnanec chci mít možnost založit účet pro plnitele, abych mohl využít systém v rámci terapie/výzkumu.
   \item
-  Jako klient/pacient chci, aby moje data nemohli číst ostatní klienti/pacienti, protože jsou soukromá.
+  Jako plnitel chci, aby moje data nemohli číst ostatní plnitelé, protože jsou soukromá.
   \item
-  Jako terapeut/výzkumník chci aby byl klient/pacient schopen plnit pouze úkoly, které mu byly zadány, aby se zachovala integrita sbíraných dat.
+  Jako terapeut/výzkumník chci aby byl plnitel schopen plnit pouze úkoly, které mu byly zadány, aby se zachovala integrita sbíraných dat.
   \item
-  Jako klient/pacient chci být schopen zobrazit svá data, abych věděl co je o mě v systému evidováno (např.\ vyplněné dotazníky).
+  Jako plnitel chci být schopen zobrazit svá data, abych věděl co je o mě v systému evidováno (např.\ vyplněné dotazníky).
   \item
-  Jako správce dotazníků chci mít možnost zadávat dotazníky a úkoly konkrétnímu uživateli, nastavit frekvenci opakování a nastavit start/deadline, abych mohl správně koordinovat procesy a aktivity v systému.
+  Jako správce dotazníků chci mít možnost zadávat dotazníky a úkoly konkrétnímu plniteli, nastavit frekvenci opakování a nastavit start/deadline, abych mohl správně koordinovat procesy a aktivity v systému.
   \item
   Jako správce dotazníků chci mít možnost vytvářet otázky v dotaznících, které mohou přijímat odpovědi typu text, více možností (možno zvolit právě jeden) a více možností (možno zvolit libovolný počet), abych mohl vytvářet různorodé a komplexní dotazníky.
   \item
-  Jako správce dotazníků chci mít možnost nastavit podmíněné zobrazení otázky, takže otázka se uživateli zobrazí pokud je splněna podmínka definovaná mnou při vytvoření, což umožní flexibilní a přizpůsobené průzkumy.
+  Jako správce dotazníků chci mít možnost nastavit podmíněné zobrazení otázky, takže otázka se plniteli zobrazí pokud je splněna podmínka definovaná mnou při vytvoření, což umožní flexibilní a přizpůsobené průzkumy.
   \item
   Jako správce dotazníků chci mít možnost vytvářet, mazat dotazníky a způsoby vyhodnocení, abych mohl udržovat aktuální a relevantní soubor dotazníků.
   \item
   Jako správce dotazníků chci mít možnost nastavit automaticky počítané metriky pomocí vzorce (např.\ \texttt{otázka1 + otázka2 - otázka4}), abych mohl efektivně vyhodnocovat odpovědi.
   \item
-  Jako uživatel chci mít možnost vypracovat dotazníky a úkoly, které mi byly přiděleny správcem/zadavatelem dotazníků, abych mohl aktivně participovat v systému.
+  Jako plnitel chci mít možnost vypracovat dotazníky a úkoly, které mi byly přiděleny správcem/zadavatelem dotazníků, abych mohl aktivně participovat v systému.
   \item
-  Jako uživatel chci mít možnost vyplnit část dotazníku, uložit si dosud zodpovězené otázky a v budoucnu vyplňování dotazníku dokončit, aby bylo vyplňování dotazníků flexibilní a pohodlné.
+  Jako plnitel chci mít možnost vyplnit část dotazníku, uložit si dosud zodpovězené otázky a v budoucnu vyplňování dotazníku dokončit, aby bylo vyplňování dotazníků flexibilní a pohodlné.
   \item
-  Jako uživatel chci mít možnost smazat svá data, abych měl kontrolu nad svými daty.
+  Jako plnitel chci mít možnost smazat svá data, abych měl kontrolu nad svými daty.
   \item
-  Jako správce/zadavatel dotazníků chci mít možnost vidět výsledky dotazníků a úkolů všech uživatelů a vybrat data, která budou vizualizována na grafech, abych mohl monitorovat a analyzovat výsledky.
+  Jako správce/zadavatel dotazníků chci mít možnost vidět výsledky dotazníků a úkolů všech plnitelů a vybrat data, která budou vizualizována na grafech, abych mohl monitorovat a analyzovat výsledky.
   \item
-  Jako správce dotazníků/člen technické podpory chci mít možnost vytvářet/mazat uživatelské účty, účty pro ostatní správce a účty pro zadavatele dotazníků, abych mohl efektivně spravovat uživatelské účty.
+  Jako správce dotazníků/člen technické podpory chci mít možnost vytvářet/mazat účty plnitelů, účty pro ostatní správce a účty pro zadavatele dotazníků, abych mohl efektivně spravovat uživatelské účty.
   \item
-  Jako správce/zadavatel dotazníků chci mít možnost exportovat výsledky dotazníků uživatelů z aplikace do formátu CSV, abych mohl dělat pokročilé analýzy dat.
+  Jako správce/zadavatel dotazníků chci mít možnost exportovat výsledky dotazníků plnitelů z aplikace do formátu CSV, abych mohl dělat pokročilé analýzy dat.
   \item
-  Jako uživatel chci, aby aplikace byla v Českém jazyce, ale byla připravena na internacionalizaci, abych mohl používat aplikaci v jazyce, kterému rozumím.
+  Jako plnitel chci, aby aplikace byla v Českém jazyce, ale byla připravena na internacionalizaci, abych mohl používat aplikaci v jazyce, kterému rozumím.
   \item
-  Jako uživatel chci vidět vyhodnocení svých dotazníků, u kterých to správce povolil, abych mohl sledovat svůj pokrok a výsledky.
+  Jako plnitel chci vidět vyhodnocení svých dotazníků, u kterých to správce povolil, abych mohl sledovat svůj pokrok a výsledky.
   \item
-  Jako správce dotazníků chci moci dovolit uživateli vidět výsledky konkrétního dotazníku - číselná hodnota/graf/text, abych mohl sdílet výsledky a zpětnou vazbu s uživateli.
+  Jako správce dotazníků chci moci dovolit plniteli vidět výsledky konkrétního dotazníku - číselná hodnota/graf/text, abych mohl sdílet výsledky a zpětnou vazbu s uživateli.
   \item
-  Jako uživatel chci, aby uživatelské rozhraní bylo vhodné pro uživatele s malými technickými znalostmi, abych mohl snadno používat aplikaci bez ohledu na své technické dovednosti.
+  Jako plnitel chci, aby uživatelské rozhraní bylo vhodné pro uživatele s malými technickými znalostmi, abych mohl snadno používat aplikaci bez ohledu na své technické dovednosti.
   \item
-  Jako uživatel chci, aby k programu byla dodána uživatelská a technická dokumentace, abych mohl lépe porozumět, jak aplikace funguje a jak ji používat.
+  Jako plnitel chci, aby k programu byla dodána uživatelská a technická dokumentace, abych mohl lépe porozumět, jak aplikace funguje a jak ji používat.
   \item
   Jako technický pracovník chci, aby aplikace byla spouštěna v kontejneru, abych mohl snadno spravovat a nasazovat aplikaci.
   \item
   Jako technický pracovník chci mít k dispozici rozhraní pro monitorování aplikace, abych mohl sledovat výkon a stav aplikace a rychle reagovat na potenciální problémy.
   \item
-  Jako uživatel chci v systému vystupovat pod ID, které je náhodně vygenerováno, aby bylo zajištěno mé soukromí.
+  Jako plnitel chci v systému vystupovat pod ID, které je náhodně vygenerováno, aby bylo zajištěno mé soukromí.
   \item
   Jako správce dotazníků chci být schopen upravovat text již existující otázky, abych mohl opravit překlepy nebo vylepšit formulaci otázky.
   \item
-  Jako uživatel chci měnit heslo svého účtu, abych zajistil bezpečnost svého účtu.
+  Jako plnitel chci měnit heslo svého účtu, abych zajistil bezpečnost svého účtu.
 \end{itemize}
 
 \subsection{Volitelné}\label{subsec:volitelne}
 
 \begin{itemize}
   \item
-  Jako uživatel chci dostávat e-mail upozornění na nové úkoly a na nesplněné úkoly, abych byl vždy informován o svých úkolech a termínech.
+  Jako plnitel chci dostávat e-mail upozornění na nové úkoly a na nesplněné úkoly, abych byl vždy informován o svých úkolech a termínech.
   \item
-  Jako uživatel chci dostávat push notifikace v prohlížeči na nové úkoly a na nesplněné úkoly, abych byl vždy aktuálně informován o svých úkolech.
+  Jako plnitel chci dostávat push notifikace v prohlížeči na nové úkoly a na nesplněné úkoly, abych byl vždy aktuálně informován o svých úkolech.
 \end{itemize}
 
 \section{Stakeholdeři a jejich zájmy}\label{sec:stakeholderi}
@@ -367,7 +366,7 @@ Jedná se o přepis neformální specifikace ze sekce~\ref{sec:specifikace}.
   Podpora mobilních zařízení
 \end{itemize}
 
-\subsubsection*{Klienti/pacienti}\label{subsubsec:klientipacienti}
+\subsubsection*{Plnitelé (klienti a pacienti)}\label{subsubsec:plnitele}
 
 \begin{itemize}
   \item
@@ -382,7 +381,7 @@ Jedná se o přepis neformální specifikace ze sekce~\ref{sec:specifikace}.
   \item
   Jednoduchý přístup k výsledkům pacientů s přehlednou vizuální reprezentací.
   \item
-  Spolupráce s klienty/pacienty v rámci terapie formou domácích úkolů pro zlepšení poskytované péče a prevenci kriminality.
+  Spolupráce s plniteli v rámci terapie formou domácích úkolů pro zlepšení poskytované péče a prevenci kriminality.
 \end{itemize}
 
 \subsection*{Ostatní}\label{subsec:ostatni}
@@ -424,7 +423,7 @@ Jedná se o přepis neformální specifikace ze sekce~\ref{sec:specifikace}.
   \item
   Nízká cena za vývoj a provoz aplikace.
   \item
-  Nízké časové nároky na zaučení uživatelů.
+  Nízké časové nároky na zaučení plnitel.
   \item
   Vysoké zabezpečení aplikace.
 \end{itemize}
