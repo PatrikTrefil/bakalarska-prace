@@ -63,7 +63,7 @@ Zásadní výhodou tohoto projektu je, že řeší všechny problémy týkajíc�
 Produkt má spoustu dokumentace, kvalitní API a je stále aktivně vyvíjen.
 Řešení navíc obsahuje základní systém pro správu uživatelů.
 Projekt je zastřešen komerční firmou, což zvyšuje jeho dlouhodobou udržitelnost.
-Nevýhodou je, že použití vlastního autentifikačního poskytovatele je dostupné pouze v placených verzích.
+Nevýhodou je, že použití vlastního autentizačního poskytovatele je dostupné pouze v placených verzích.
 Software Form.io je využíván pro provoz pohraničních sil Britské vlády (viz \href{https://www.youtube.com/watch?v=nuf46N5vU34}{video z konference CamundaCon}).
 Dle oficiálních stránek Form.io je také využíván organizacemi jako Visa či ICANN\@.
 
@@ -100,11 +100,11 @@ Zároveň se nabízí jednoduchý přechod na placenou verzi po nárazu na limit
     Knihovna pro vykreslování formulářů na základě schématu.
     Tato oficiální knihovna je součástí projektu Form.io.
     \item[NextAuth.js]
-    Knihovna pro autentifikaci uživatelů v prohlížeči i na serveru.
-    Ukázalo se, že Formio React není vhodný pro autentifikaci uživatele.
+    Knihovna pro autentizaci uživatelů v prohlížeči i na serveru.
+    Ukázalo se, že Formio React není vhodný pro autentizaci uživatele.
     První důvod je, že vyžaduje, aby si vývojář psal vlastní logiku pro ochranu stránek, přesměrování apod.
     To zbytečně vytvářelo prostor pro chyby.
-    Druhý důvod je ten, že inicializace autentifikace se dělala pouze na klientovi, jelikož knihovna nepodporuje server-side rendering, což mělo negativní vliv na výkon aplikace.
+    Druhý důvod je ten, že inicializace autentizace se dělala pouze na klientovi, jelikož knihovna nepodporuje server-side rendering, což mělo negativní vliv na výkon aplikace.
     Třetí důvod je špatná dokumentace knihovny.
     Jako alternativy jsem zvažoval Passport.js a NextAuth.js.
     Passport.js je více nízko-úrovňový a opět vyžaduje, aby si vývojář psal vlastní logiku.
@@ -331,12 +331,12 @@ Veškerá data, která ukládáme slouží mimo jiné pro vědecké účely.
 \section{Autentizace}\label{sec:auth}
 
 Uživatelé se přihlašují pomocí náhodně generovaného ID a hesla.
-Administrátoři se přihlašují pomocí e-mailu a hesla.
-Pro autentifikaci se používá knihovna NextAuth.js, která vykonává kód jak na klientovi, tak na serveru webové aplikace.
+Administrátoři se přihlašují pomocí e\babelhyphen{nobreak}mailu a hesla.
+Pro autentizaci se používá knihovna NextAuth.js, která vykonává kód jak na klientovi, tak na serveru webové aplikace.
 Tato knihovna má vlastní session management a vydává JWT tokeny.
 Aby klient mohl pracovat se systémem spravující formuláře, je potřeba získat JWT token systému spravující formuláře.
 Token systému spravující formuláře je vložen do tokenu vydávaného knihovnou NextAuth.js.
-Tento systém zařizuje, že webová aplikace nemusí při každém požadavku od klienta komunikovat s formulářovým systémem, ale má vlastní session.
+Tento systém zařizuje, že webová aplikace nemusí při každém požadavku od klienta komunikovat s systémem spravující formuláře, ale má vlastní session.
 Kontrola práv uživatele při přístupu na ochráněnou stránku se kontrola provádí v middleware NextJS serveru.
 
 \begin{figure}[H]
@@ -347,7 +347,7 @@ Kontrola práv uživatele při přístupu na ochráněnou stránku se kontrola p
 
 \section{Konfigurace a modifikace Form.io}\label{sec:konfigurace-a-modifikace-form.io}
 
-Subrepozitář \texttt{/src/formio/} obsahuje fork projektu Form.io, kde bylo provedeno několik úprav.
+\href{https://git-scm.com/book/en/v2/Git-Tools-Submodules}{Submodul} \texttt{/src/formio/} obsahuje fork projektu Form.io, kde bylo provedeno několik úprav.
 Tyto úpravy jsou popsány v této sekci popsány v této sekci.
 Dále jsou zde popsány některé části konfigurace Form.io.
 
@@ -356,18 +356,18 @@ Dále jsou zde popsány některé části konfigurace Form.io.
 \subsubsection{Inicializace projektu}\label{subsubsec:inicializace-projektu}
 
 První úprava se týče inicializace instance při prvním startu.
-Nepodařilo se mi najít způsob, jak nakonfigurovat inicializaci projektu tak, aby se automaticky vytvořili všechny potřebné zdroje (klient, pacient, zaměstnanec, apod.), role (admin, zaměstnanec, apod.).
+Nepodařilo se mi najít způsob, jak nastavit inicializaci projektu tak, aby se automaticky vytvořili všechny potřebné zdroje (klient, pacient, zaměstnanec, apod.), role (admin, zaměstnanec, apod.).
 Proto jsem upravil kód inicializace tak, aby se načetla z souboru \texttt{project.json} z kořenu subrepozitáře.
 Původně se načítala z \texttt{project.json} v build složce, která však není uložena ve verzovacím systému.
-Tato úprava byla nutná, jelikož nelze vytvářet nové role po inicializaci projektu a konfigurační soubor je nutné zahrnout do verzovacícho systému.
+Tato úprava byla nutná, jelikož nelze vytvářet nové role po inicializaci projektu a konfigurační soubor je nutné zahrnout do verzovacího systému.
 
 \subsubsection{Webhook action}\label{subsubsec:webhook-action}
 
 Webhook action je koncept software Form.io, který umožňuje poslat HTTP dotaz na zadanou URL jako reakci na určitou událost (např.\ vytvoření nebo smazání formuláře).
 V open-source verzi Form.io software tato funkce neumí přeposílat hlavičky HTTP dotazu, který požadavek inicioval.
-Tuto funkcionalitu potřebujeme, jelikož chceme přeposílat autentifikační hlavičky při komunikaci mezi systémem spravující formuláře a systémem spravující úkoly uživatelů.
+Tuto funkcionalitu potřebujeme, jelikož chceme přeposílat autentizační hlavičky při komunikaci mezi systémem spravující formuláře a systémem spravující úkoly uživatelů.
 Detaily ohledně této komunikace jsou popsány v sekci\ \ref{sec:propojeni-spravy-ukolu-a-spravy-formularu}.
-Proto jsem upravil tuto funkci tak, aby bylo možné přeposílat autentifikační hlavičky.
+Proto jsem upravil tuto funkci tak, aby bylo možné přeposílat autentizační hlavičky.
 
 \subsubsection{Imutabilita ID uživatele}\label{subsubsec:imutabilita-id-uzivatele}
 
@@ -377,7 +377,7 @@ Motivaci k této změně naleznete v sekci~\ref{sec:auth}.
 Databáze \href{https://www.mongodb.com/}{MongoDB}, která je použita pro ukládání dat o uživatelích neumí zajistit imutabilitu ukládaných dat.
 Form.io však vždy přistupuje k databázi uživatelů skrze knihovnu \href{https://mongoosejs.com/}{Mongoose}.
 Tato knihovna umí zajistit imutability zvolených položek.
-Mongoose nakonfigurujeme tak, aby zajistil imutabilitu položky \texttt{data.id} (ID uživatele).
+Mongoose nastavíme tak, aby zajistil imutabilitu položky \texttt{data.id} (ID uživatele).
 Pokud se uživatel pokusí změnit své ID v rámci úpravy svého profilu, tak se změna neprovede.
 Nevýhodou tohoto řešení je, že vytváří omezení na položky \texttt{data.id} ve všech objektech reprezentující odevzdání, tedy i v těch, které nejsou uživatelské účty.
 
@@ -430,7 +430,7 @@ Museli bychom tedy zakázat, aby uživatel odevzdal dotazník přímo do systém
 Kdybychom to neudělali, tak nejsme schopni zajistit integritu sesbíraných dat.
 Toto omezení bychom mohli zajistit úpravou konfigurace reverse proxy, kterou prochází všechny požadavky z vnějšího světa.
 Tento způsob by však nezajistil ochranu před požadavky z vnitřní sítě.
-Pro ochranu před požadavky z vnitřní sítě bychom veškerou komunikaci s systémem spravující formuláře skrze autentifikační proxy.
+Pro ochranu před požadavky z vnitřní sítě bychom veškerou komunikaci s systémem spravující formuláře skrze autentizační proxy.
 
 \subsubsection{Finální implementace}\label{subsubsec:finalni-implementace}
 
@@ -459,22 +459,22 @@ Pokud by se někdo pokusil spárovat jiné vyplnění stejného dotazníku, tak 
 Ono jiné vyplnění dotazníku by muselo mít jiný identifikátor úkolu v skrytém poli, protože systém spravující formuláře zajišťuje unikátnost těchto hodnot.
 Jelikož víme, že již existuje vyplnění dotazníku, které má identifikátor úkolu v skrytém poli stejné jako identifikátor úkolu, který se právě snažíme napárovat, tak víme, že jakékoliv jiné vyplnění stejného dotazníku bude mít jiný identifikátor úkolu v skrytém poli.
 
-\paragraph{Autentifikace webhooku}
+\paragraph{Autentizace webhooku}
 
 První možnost je poskytnout webhooku speciální přístupový token.
 Toto však nelze provést pouze pro jeden webhook bez většího zásahu do zdrojového kódu systému spravující formuláře, ale pouze pro všechny webhooky najednou.
 Navíc to situaci zbytečně komplikuje.
 
-Druhá možnost je využití JWT tokenu z požadavku na formulářový systém.
-Toto je dobrá možnost, ale open-source verze formulářového systému tuto funkci nemá.
+Druhá možnost je využití JWT tokenu z požadavku na systém spravující formuláře.
+Toto je dobrá možnost, ale open-source verze systému spravující formuláře tuto funkci nemá.
 Nicméně není těžké ji do něj přidat.
 
-Třetí možností je vyhnout se autentifikaci webhooku pomocí přihlášení.
+Třetí možností je vyhnout se autentizaci webhooku pomocí přihlášení.
 Místo toho bychom mohli vytvořit endpoint komponenty spravující úkoly, který je přístupný pouze z komponenty spravující formuláře.
 Toto však znamená netriviální úpravy síťové infrastruktury.
 Tyto úpravy jsou poměrně špatně udržovatelné.
 
-Zvolme druhou možnost, jelikož má jednoduchou implemetaci.
+Zvolme druhou možnost, jelikož má jednoduchou implementaci.
 Provedené úpravy systému spravující formuláře jsou popsány v sekci~\ref{sec:konfigurace-a-modifikace-form.io}.
 
 \subsection{Stavy úkolu}\label{subsec:stavy-ukolu}
