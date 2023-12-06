@@ -1,14 +1,23 @@
 \chapter{Analýza požadavků}\label{ch:analyza-pozadavku}
 
-Výsledkem prvních několika schůzek byla neformální specifikace.
-Již v tomto stádiu bylo jasné, že bude potřeba definovat společný jazyk pro komunikaci mezi všemi zúčastněnými stranami.
+Pro analýzu požadavků proběhlo několik online schůzek s pracovníky Národního ústavu duševního zdraví.
+Na první schůzce se probíraly možnosti využití digitálních technologií v oblasti duševního zdraví.
+Na této schůzce jsme se shodli na tvorbě platformy pro digitalizaci práce s dotazníky.
+Výsledkem několika dalších schůzek byla neformální specifikace požadavků.
+Doména se ukázala býti poměrně složitá a bylo důležité detailně zdokumentovat její fungování.
 Dalším krokem bylo tedy vytvoření doménového modelu, který dostal formu UML diagramu a textového souboru definic entit.
+Tato dokumentace nám poskytla společný jazyk pro další komunikaci.
+V průběhu tvorby modelu došlo k ujasnění některých požadavků a fungování domény.
 Časem byla neformální specifikace převedena do formy user stories.
 Tato konverze byla provedena zejména pro lepší organizaci vývoje softwaru.
 Dále jsme identifikovali stakeholdery a sepsali jejich zájmy.
 Všechny tyto artefakty se nachází v následujících podkapitolách.
 
 \section{Specifikace}\label{sec:specifikace}
+
+Tato sekce obsahuje neformální specifikaci požadavků na aplikaci.
+Specifikace vznikla v rané fázi vývoje a některé požadavky byly později změněny.
+Změny jsou popsány v sekci~\ref{subsec:zmeny-specifikace}.
 
 \subsection{Skupiny uživatelů}\label{subsec:skupiny-uzivatelu}
 
@@ -92,8 +101,7 @@ Výsledky dotazníků plnitelů může správce/zadavatel dotazníků z aplikace
 Plnitel v systému vystupuje pod ID, které je náhodně vygenerováno.
 \end{itemize}
 
-
-\subsubsection{Viditelnost vyhodnocení dotazníků}
+\subsubsection{Viditelnost vyhodnocení dotazníků}\label{subsubsec:viditelnost-vyhodnoceni-dotazniku}
 
 \begin{itemize}
 \item
@@ -166,8 +174,21 @@ Uživatelské rozhraní by mělo být vhodné pro uživatele s nízkými technic
   Bude k dispozici rozhraní pro monitorování aplikace.
 \end{itemize}
 
+\subsection{Změny specifikace}\label{subsec:zmeny-specifikace}
+
+V průběhu vývoj se ukázalo, že některé požadavky popsané v sekci~\ref{subsubsec:viditelnost-vyhodnoceni-dotazniku} lze zjednodušit.
+Původní specifikace pracovala s možností nastavení viditelnosti vyhodnocení dotazníků.
+Možnost s nastavením viditelnosti na základě splnění podmínky byla zavrhnuta z následujícího důvodu.
+Pokud by plnitel neviděl vyhodnocení dotazníku, tak by si mohl odvodit, že výsledek dotazníku je nepříznivý.
+Toto zjištění by mohlo mít negativní vliv na jeho psychiku.
+Možnost nastavit vyhodnocení dotazníku jako vždy viditelné pro plnitele bylo zavrhnuto ze stejného důvodu.
+Vyhodnocení složitějších dotazníků navíc může správně interpretovat pouze odborník.
+
+% TODO: uživatel nemůže mazat svá data (vědecké účely viz sekce GDPR)
+
 \section{Doménový model}\label{sec:domenovy-model}
-% TODO: někde odcitovat že používám pro všechny diagramy UML
+
+Nyní popíšeme doménu formou diagramu v notaci \href{https://www.omg.org/spec/UML/2.5.1/PDF}{UML} (Obr.~\ref{fig:domain-model}).
 
 \begin{figure}[H]
     \includegraphics[width=0.9\textwidth]{diagrams/domainModel}
@@ -175,11 +196,10 @@ Uživatelské rozhraní by mělo být vhodné pro uživatele s nízkými technic
 \end{figure}
 
 \begin{tcolorbox}
-    % TODO: možná vyžaduje citaci?
 Dědičnost v UML vyjadřuje jiný vztah než v programování.
-Třída je množina a odvozená třída je její podmnožina.
+Třída v UML je množina a odvozená třída je její podmnožina.
 Vztahy mezi odvozenými třídami, tedy podmnožinami, mohou být 4 typů podle toho zda-li se podmnožiny překrývají a zda-li je jejich sjednocení množina definovaná třídou, od které odvozujeme.
-Tento vztah je vždy popsán v poznámce k třídě, od které odvozujeme.
+Tento vztah je vždy popsán v poznámce k třídě, od které odvozujeme (\href{https://www.omg.org/spec/UML/2.5.1/PDF}{zdroj}).
 \end{tcolorbox}
 
 \subsection{Definice entit}\label{subsec:definiceentit}
@@ -294,6 +314,7 @@ context o1, o2: Osoba inv o1.ID = o2.ID implies o1 = o2
 Zde je seznam funkčních požadavků ve standardizované formě.
 Požadavky mají formu \uv{Jako \textless{}role\textgreater{} chci \textless{}funkčnost\textgreater{}, abych/protože/aby \textless{}cíl\textgreater{}}.
 Jedná se o přepis neformální specifikace ze sekce~\ref{sec:specifikace}.
+Tato sekce pracuje již s změnami specifikace, které byly popsány v sekci~\ref{subsec:zmeny-specifikace}.
 
 \begin{itemize}
   \item
@@ -328,10 +349,6 @@ Jedná se o přepis neformální specifikace ze sekce~\ref{sec:specifikace}.
   Jako správce/zadavatel dotazníků chci mít možnost exportovat výsledky dotazníků plnitelů z aplikace do formátu CSV, abych mohl dělat pokročilé analýzy dat.
   \item
   Jako plnitel chci, aby aplikace byla v Českém jazyce, ale byla připravena na internacionalizaci, abych mohl používat aplikaci v jazyce, kterému rozumím.
-  \item
-  Jako plnitel chci vidět vyhodnocení svých dotazníků, u kterých to správce povolil, abych mohl sledovat svůj pokrok a výsledky.
-  \item
-  Jako správce dotazníků chci moci dovolit plniteli vidět výsledky konkrétního dotazníku - číselná hodnota/graf/text, abych mohl sdílet výsledky a zpětnou vazbu s uživateli.
   \item
   Jako plnitel chci, aby uživatelské rozhraní bylo vhodné pro uživatele s malými technickými znalostmi, abych mohl snadno používat aplikaci bez ohledu na své technické dovednosti.
   \item

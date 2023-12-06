@@ -1,25 +1,18 @@
 \chapter*{Úvod}
 \addcontentsline{toc}{chapter}{Úvod}
 
-Cílem bakalářské práce je navržení, vytvoření a praktické otestování v provozu platformy pro spolupráci terapeutů/výzkumníků a pacientů/klientů/účastníků studie.
-Platforma bude sloužit primárně pro sběr dat týkajících se mentálního zdraví uživatelů za účelem zvýšení efektivity poskytované psychoterapie, výzkumu a prevence kriminality.
-Platformu však bude možno použít i v jiných kontextech.
-Sběr dat bude možno provádět jednorázově či dlouhodobě.
-Aplikace bude poskytovat základní přehled, vizualizace dat a export dat do formátu CSV\@.
-Tato práce vznikla ve spolupráci s Národním ústavem duševního zdraví.
+Tato bakalářská práce vznikla z motivace zlepšit kvalitu poskytované zdravotní péče v oblasti duševního zdraví za pomoci digitálních technologií.
+Prvním cílem práce je posílení spolupráce mezi terapeuty a jejich pacienty/klienty.
+Druhým cílem práce je zefektivnění sběru dat v oblasti duševního zdraví.
+Psychoterapie a výzkum jsou oblasti, které mohou získat velký prospěch z digitalizace, ale vyžadují specializované nástroje.
+V této práci navrhneme, implementujeme a otestujeme platformu pro spolupráci terapeutů/výzkumníků a pacientů/klientů/účastníků studie.
 
-Sběr dat o pacientech/klientech/účastnících studie může mít mnoho podob.
-V této práci se zaměříme na sběr dat pomocí dotazníků. 
-Dotazníky jsou v psychologii a psychiatrii velmi častým nástrojem pro sběr dat. 
-Dotazníky využívané ve vědeckých studiích mohou být poměrně komplexní.
-Důležitým úkolem je tedy poskytnutí uživatelsky přívětivého rozhraní, které umožní definovat i složitější dotazníky.
-Rozhraní by mělo být intuitivní i pro uživatele s nízkým stupněm technické zdatnosti.
+Tato práce vznikla ve spolupráci s \href{https://www.nudz.cz/}{Národním ústavem duševního zdraví}.
+Tato instituce se zabývá výzkumem v oblasti věd o mozku a chování, realizující sběr a zpracování demografických, epidemiologických a sociologických dat souvisejících s duševním zdravím.
+Ústav současně poskytuje i psychiatrickou péči nemocným (\href{https://cs.wikipedia.org/wiki/Národní_ústav_duševního_zdraví}{zdroj}).
 
-Existující řešení pro sběr dat pomocí dotazníků v oblasti mentálního zdraví jsem v době navrhování řešení nenašel. 
-Obecná řešení pro sběr dat pomocí dotazníků existují, ale typicky běží pouze v cloudu. 
-Národní ústav duševního zdraví vyžaduje plnou kontrolu nad svými daty, takže cloudová řešení nepřipadají v úvahu. 
-Již existující řešení také typicky neřeší dlouhodobý sběr dat, ale pouze jednorázové dotazníky. 
-Tuto funkcionalitu bude třeba implementovat a integrovat do platformy.
+Sběr dat o účastnících studie a spolupráce mezi terapeuty a pacienty/klienty může mít mnoho podob.
+V této práci se zaměříme na sběr dat pomocí dotazníků, jelikož je to jeden z nejčastějších způsobů sběru dat a lze dobře převést do digitální podoby.
 
 Sekundární využití aplikace je zadávání domácích úkolů pro pacienty/klienty.
 Tyto domácí úkoly mohou mít podobu různých mentálních cvičení či vzdělávacích aktivit jako čtení článků nebo sledování videí.
@@ -28,7 +21,7 @@ Tuto funkcionalitu nebudeme implementovat, ale software navrhneme tak, aby ji by
 \section*{Struktura práce}\label{sec:struktura-prace}
 
 Nejprve provedeme analýzu požadavků Národního ústavu duševního zdraví a popíšeme doménu.
-Následně prozkoumáme již existující software, který v práci použijeme. 
+Následně prozkoumáme již existující software, který v práci použijeme.
 Ná základě průzkumu navrhneme architekturu softwaru.
 Poté popíšeme jakým způsobem jsme postupovali při implementaci a proč jsme tento postup zvolili.
 Na závěr provedeme akceptační testování a zhodnotíme úspěšnost projektu.
