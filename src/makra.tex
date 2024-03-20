@@ -18,6 +18,12 @@
    \par\nobreak
    \vskip 20\p@
 }}
+% Source: https://texblog.org/2012/03/21/cross-referencing-list-items/
+\def\namedlabel#1#2{\begingroup
+#2%
+\def\@currentlabel{#2}%
+\phantomsection\label{#1}\endgroup
+}
 \makeatother
 
 % Toto makro definuje kapitolu, která není očíslovaná, ale je uvedena v obsahu.
@@ -88,3 +94,17 @@
 %%% Vychytávky pro tabulky
 \newcommand{\pulrad}[1]{\raisebox{1.5ex}[0pt]{#1}}
 \newcommand{\mc}[1]{\multicolumn{1}{c}{#1}}
+
+%%% Symboly
+
+\newcommand{\tikzxmark}{%
+    \tikz[scale=0.23] {
+        \draw[line width=0.7,line cap=round, red] (0,0) to [bend left=6] (1,1);
+        \draw[line width=0.7,line cap=round, red] (0.2,0.95) to [bend right=3] (0.8,0.05);
+    }}
+\definecolor{mygreen}{rgb}{0.0, 0.5, 0.0}
+\newcommand{\tikzcmark}{%
+    \tikz[scale=0.23] {
+        \draw[line width=0.7,line cap=round, mygreen] (0.25,0) to [bend left=10] (1,1);
+        \draw[line width=0.8,line cap=round, mygreen] (0,0.35) to [bend right=1] (0.23,0);
+    }}

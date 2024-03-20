@@ -1,0 +1,31 @@
+@startuml
+skinparam dpi 300
+skinparam defaultFontSize 30
+
+|Uživatel|
+|Správa formuláře|
+|Správa nedokončených vyplnění|
+
+|Uživatel|
+start
+
+:Částečně vyplní formulář;
+|Správa formuláře|
+:Uloží částečně vyplněný formulář;
+|Uživatel|
+:Dokončí vyplnění formuláře;
+:Odešle vyplněný formulář;
+|Správa formuláře|
+:Uloží vyplněný formulář;
+fork
+    :Informuje o úspěšném uložení;
+    |Uživatel|
+    :Obdrží informaci o úspěšném uložení;
+    end
+fork again
+    :Informuje o úspěšném uložení;
+    |Správa nedokončených vyplnění|
+    :Smaže částečne vyplněný formulář pro daný formulář vlastněný uživatelem;
+    end
+
+@enduml

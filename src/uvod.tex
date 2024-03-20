@@ -2,26 +2,38 @@
 \addcontentsline{toc}{chapter}{Úvod}
 
 Tato bakalářská práce vznikla z motivace zlepšit kvalitu poskytované zdravotní péče v oblasti duševního zdraví za pomoci digitálních technologií.
-Prvním cílem práce je posílení spolupráce mezi terapeuty a jejich pacienty/klienty.
-Druhým cílem práce je zefektivnění sběru dat v oblasti duševního zdraví.
+Léčba duševních potíží se nazývá psychoterapie a trvá obvykle několik měsíců až let.
+V průběhu terapie pacient pravidelně dochází na sezení s terapeutem.
+Na těchto sezeních terapeut zadává pacientovi různé úkoly, které pacient následně vypracuje mimo sezení.
+Úkoly mají často formu dotazníků, mentálních cvičení nebo vzdělávacích aktivit jako je čtení článků.
+Tyto úkoly jsou často zadávány papírovou formou a následně ručně vyhodnocovány.
+Digitalizací tohoto procesu lze zajistit efektivnější spolupráci mezi terapeuty a pacienty a automatizovaný sběr dat o pacientech.
+Získaná data lze využít pro sledování vývoje stavu pacientů a také pro výzkum.
+Cílem je tedy posílení spolupráce mezi terapeuty a jejich pacienty/klienty.
+Psychoterapie využívá poznatky z psychologie, což je věda, která studuje lidské chování a mentální procesy.
+Výzkum z oblasti psychologie může mít mnoho forem.
+Jedna z častých forem výzkumu je sběr dat o skupině pomocí dotazníků.
+Dotazníky mají často papírovou formu a následně jsou ručně vyhodnocovány.
+Digitalizací tohoto procesu lze zajistit efektivnější sběr dat a automatizované vyhodnocování.
 Psychoterapie a výzkum jsou oblasti, které mohou získat velký prospěch z digitalizace, ale vyžadují specializované nástroje.
 V této práci navrhneme, implementujeme a otestujeme platformu pro spolupráci terapeutů/výzkumníků a pacientů/klientů/účastníků studie.
 
-Tato práce vznikla ve spolupráci s \href{https://www.nudz.cz/}{Národním ústavem duševního zdraví}.
-Tato instituce se zabývá výzkumem v oblasti věd o mozku a chování, realizující sběr a zpracování demografických, epidemiologických a sociologických dat souvisejících s duševním zdravím.
-Ústav současně poskytuje i psychiatrickou péči nemocným (\href{https://cs.wikipedia.org/wiki/Národní_ústav_duševního_zdraví}{zdroj}).
+Tato práce vznikla ve spolupráci s \href{https://www.nudz.cz/}{Národním ústavem duševního zdraví (NUDZ)}, který poskytl svou expertízu a zkušenosti v oblasti duševního zdraví.
+Tato instituce se zabývá výzkumem neurobiologických a psychosociálních mechanismů spojených se vznikem a průběhem nejzávažnějších duševních poruch~\cite{nudz-profil}.
+Ústav současně poskytuje i psychiatrickou péči nemocným a plánuje vytvořenou platformu sám používat.
 
 Sběr dat o účastnících studie a spolupráce mezi terapeuty a pacienty/klienty může mít mnoho podob.
-V této práci se zaměříme na sběr dat pomocí dotazníků, jelikož je to jeden z nejčastějších způsobů sběru dat a lze dobře převést do digitální podoby.
+My se zaměříme na sběr dat pomocí dotazníků, jelikož je to jeden z nejčastějších způsobů sběru dat a lze dobře převést do digitální podoby.
 
 Sekundární využití aplikace je zadávání domácích úkolů pro pacienty/klienty.
 Tyto domácí úkoly mohou mít podobu různých mentálních cvičení či vzdělávacích aktivit jako čtení článků nebo sledování videí.
-Tuto funkcionalitu nebudeme implementovat, ale software navrhneme tak, aby ji bylo možno v budoucnu jednoduše přidat.
+Všechny zmíněné aktivity bude možno zadávat a vyhodnocovat v rámci aplikace.
 
-\section*{Struktura práce}\label{sec:struktura-prace}
-
-Nejprve provedeme analýzu požadavků Národního ústavu duševního zdraví a popíšeme doménu.
-Následně prozkoumáme již existující software, který v práci použijeme.
+Zbytek práce má následující strukturu.
+Na začátku provedeme analýzu požadavků Národního ústavu duševního zdraví a popíšeme doménu (kapitola~\ref{ch:analyza-pozadavku}).
+Následně prozkoumáme již existující software, který v práci použijeme (kapitola~\ref{ch:analyza-existujicich-reseni-pro-praci-s-formulari}).
 Ná základě průzkumu navrhneme architekturu softwaru.
-Poté popíšeme jakým způsobem jsme postupovali při implementaci a proč jsme tento postup zvolili.
-Na závěr provedeme akceptační testování a zhodnotíme úspěšnost projektu.
+Poté popíšeme jakým způsobem jsme postupovali při implementaci a proč jsme tento postup zvolili (kapitola~\ref{ch:vyvojova-dokumentace}).
+Vysvětlíme, jak se aplikace používá z pohledu uživatele (kapitola~\ref{ch:uzivatelska-dokumentace}) a jak se aplikace spravuje z pohledu administrátora (kapitola~\ref{ch:administratorska-prirucka}).
+Dále zhodnotíme jednotlivé části procesu vývoje a zhodnotíme celkovou úspěšnost projektu (kapitola~\nameref{ch:zhodnoceni-vyvoje}).
+Na závěr shrneme dosažené výsledky a navrhneme možnosti dalšího vývoje (kapitola~\ref{ch:zaver}).

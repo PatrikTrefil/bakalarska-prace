@@ -1,0 +1,321 @@
+<mxfile host="Electron" modified="2024-03-15T09:22:34.607Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.0.4 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="SafGDZmSL6t2Qqwm2eBs" version="24.0.4" type="device">
+  <diagram name="Page-1" id="aqeceY1p5TdOrNBBEWP9">
+    <mxGraphModel dx="1221" dy="717" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="s02w349n_ghEumkxoNO4-16" value="Uživatel" style="swimlane;startSize=20;whiteSpace=wrap;html=1;rounded=0;strokeColor=default;align=center;verticalAlign=middle;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="80" y="60" width="280" height="1300" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="s02w349n_ghEumkxoNO4-16" source="s02w349n_ghEumkxoNO4-26" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="125" y="160" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="150" y="160" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-26" value="" style="points=[[0.145,0.145,0],[0.5,0,0],[0.855,0.145,0],[1,0.5,0],[0.855,0.855,0],[0.5,1,0],[0.145,0.855,0],[0,0.5,0]];shape=mxgraph.bpmn.event;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=ellipsePerimeter;outlineConnect=0;aspect=fixed;outline=standard;symbol=general;rounded=1;strokeColor=default;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-16" vertex="1">
+          <mxGeometry x="125" y="60" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-28" value="&lt;div style=&quot;font-size: 15px;&quot;&gt;vyplní formulář a odešle data na server&lt;/div&gt;" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;rounded=1;strokeColor=default;align=center;verticalAlign=middle;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-16" vertex="1">
+          <mxGeometry x="90" y="160" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-35" value="&lt;div style=&quot;font-size: 15px;&quot;&gt;vyplnění formuláře&lt;/div&gt;&lt;div style=&quot;font-size: 15px;&quot;&gt;&lt;font style=&quot;font-size: 15px;&quot; face=&quot;Lucida Console&quot;&gt;ukolID, formularID, data&lt;/font&gt;&lt;/div&gt;" style="shape=mxgraph.bpmn.data;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;size=15;html=1;rounded=1;strokeColor=default;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-16" vertex="1">
+          <mxGeometry x="99" y="270" width="40" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-47" value="" style="points=[[0.145,0.145,0],[0.5,0,0],[0.855,0.145,0],[1,0.5,0],[0.855,0.855,0],[0.5,1,0],[0.145,0.855,0],[0,0.5,0]];shape=mxgraph.bpmn.event;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=ellipsePerimeter;outlineConnect=0;aspect=fixed;outline=throwing;symbol=general;rounded=1;strokeColor=default;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-16" vertex="1">
+          <mxGeometry x="30" y="414.9999999999998" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-45" value="Oznámí selhání operace" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;rounded=1;strokeColor=#b85450;align=center;verticalAlign=middle;arcSize=40;fontFamily=Helvetica;fontSize=15;fillColor=#f8cecc;" parent="s02w349n_ghEumkxoNO4-16" vertex="1">
+          <mxGeometry x="120" y="400" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="s02w349n_ghEumkxoNO4-16" source="s02w349n_ghEumkxoNO4-45" target="s02w349n_ghEumkxoNO4-47" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="140" y="519.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-55" value="Oznámí selhání operace" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;rounded=1;strokeColor=#b85450;align=center;verticalAlign=middle;arcSize=40;fontFamily=Helvetica;fontSize=15;fillColor=#f8cecc;" parent="s02w349n_ghEumkxoNO4-16" vertex="1">
+          <mxGeometry x="120" y="500" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-57" value="" style="points=[[0.145,0.145,0],[0.5,0,0],[0.855,0.145,0],[1,0.5,0],[0.855,0.855,0],[0.5,1,0],[0.145,0.855,0],[0,0.5,0]];shape=mxgraph.bpmn.event;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=ellipsePerimeter;outlineConnect=0;aspect=fixed;outline=throwing;symbol=general;rounded=1;strokeColor=default;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-16" vertex="1">
+          <mxGeometry x="30" y="515" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="s02w349n_ghEumkxoNO4-16" source="s02w349n_ghEumkxoNO4-55" target="s02w349n_ghEumkxoNO4-57" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-94" value="Oznámí selhání operace" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;rounded=1;strokeColor=#b85450;align=center;verticalAlign=middle;arcSize=40;fontFamily=Helvetica;fontSize=15;fillColor=#f8cecc;" parent="s02w349n_ghEumkxoNO4-16" vertex="1">
+          <mxGeometry x="120" y="1040" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-96" value="" style="points=[[0.145,0.145,0],[0.5,0,0],[0.855,0.145,0],[1,0.5,0],[0.855,0.855,0],[0.5,1,0],[0.145,0.855,0],[0,0.5,0]];shape=mxgraph.bpmn.event;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=ellipsePerimeter;outlineConnect=0;aspect=fixed;outline=throwing;symbol=general;rounded=1;strokeColor=default;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-16" vertex="1">
+          <mxGeometry x="40" y="1055" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-95" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="s02w349n_ghEumkxoNO4-16" source="s02w349n_ghEumkxoNO4-94" target="s02w349n_ghEumkxoNO4-96" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="90" y="1080" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-106" value="Oznámí úspěch operace" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;rounded=1;strokeColor=#82b366;align=center;verticalAlign=middle;arcSize=40;fontFamily=Helvetica;fontSize=15;fillColor=#d5e8d4;" parent="s02w349n_ghEumkxoNO4-16" vertex="1">
+          <mxGeometry x="120" y="1170" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-108" value="" style="points=[[0.145,0.145,0],[0.5,0,0],[0.855,0.145,0],[1,0.5,0],[0.855,0.855,0],[0.5,1,0],[0.145,0.855,0],[0,0.5,0]];shape=mxgraph.bpmn.event;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=ellipsePerimeter;outlineConnect=0;aspect=fixed;outline=throwing;symbol=general;rounded=1;strokeColor=default;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-16" vertex="1">
+          <mxGeometry x="40" y="1185" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-107" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="s02w349n_ghEumkxoNO4-16" source="s02w349n_ghEumkxoNO4-106" target="s02w349n_ghEumkxoNO4-108" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="1210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="1" source="s02w349n_ghEumkxoNO4-28" target="s02w349n_ghEumkxoNO4-30" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="235" y="345" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-33" value="Je identifikátor&lt;div&gt;úkolu unikátní?&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-32" vertex="1" connectable="0">
+          <mxGeometry x="-0.2071" relative="1" as="geometry">
+            <mxPoint x="113" y="25" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-37" value="Správa formulářů" style="swimlane;startSize=20;whiteSpace=wrap;html=1;rounded=0;strokeColor=default;align=center;verticalAlign=middle;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="360" y="60" width="320" height="1300" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-104" value="Potvrdí úspěch operace" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;rounded=1;strokeColor=default;align=center;verticalAlign=middle;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-37" vertex="1">
+          <mxGeometry x="140" y="1170" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-90" value="Vrátí chybu" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;rounded=1;strokeColor=default;align=center;verticalAlign=middle;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-37" vertex="1">
+          <mxGeometry x="140" y="1040" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-77" value="Vrátí vyplnění dotazníku" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;rounded=1;strokeColor=default;align=center;verticalAlign=middle;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-37" vertex="1">
+          <mxGeometry x="140" y="820" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-65" value="Webhook po uložení dat" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;rounded=1;strokeColor=default;align=center;verticalAlign=middle;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-37" vertex="1">
+          <mxGeometry x="140" y="710" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-62" value="Uloží vyplnění dotazníku" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;rounded=1;strokeColor=default;align=center;verticalAlign=middle;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-37" vertex="1">
+          <mxGeometry x="140" y="600" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-64" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="s02w349n_ghEumkxoNO4-37" source="s02w349n_ghEumkxoNO4-62" target="s02w349n_ghEumkxoNO4-65" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="225" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-53" value="Vrátí chybu" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;rounded=1;strokeColor=default;align=center;verticalAlign=middle;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-37" vertex="1">
+          <mxGeometry x="140" y="500" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-42" value="Vrátí chybu" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;rounded=1;strokeColor=default;align=center;verticalAlign=middle;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-37" vertex="1">
+          <mxGeometry x="139.99999999999977" y="400" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-30" value="" style="points=[[0.25,0.25,0],[0.5,0,0],[0.75,0.25,0],[1,0.5,0],[0.75,0.75,0],[0.5,1,0],[0.25,0.75,0],[0,0.5,0]];shape=mxgraph.bpmn.gateway2;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=rhombusPerimeter;outlineConnect=0;outline=none;symbol=none;rounded=1;strokeColor=default;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-37" vertex="1">
+          <mxGeometry x="175" y="260" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="s02w349n_ghEumkxoNO4-37" source="s02w349n_ghEumkxoNO4-30" target="s02w349n_ghEumkxoNO4-42" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="224.99999999999977" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-43" value="Ano" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-41" vertex="1" connectable="0">
+          <mxGeometry x="-0.4014" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-39" value="Webhook před uložením dat" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;rounded=1;strokeColor=default;align=center;verticalAlign=middle;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-37" vertex="1">
+          <mxGeometry x="139.99999999999977" y="120" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="s02w349n_ghEumkxoNO4-37" source="s02w349n_ghEumkxoNO4-30" target="s02w349n_ghEumkxoNO4-39" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="224.99999999999977" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-40" value="Ne" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-38" vertex="1" connectable="0">
+          <mxGeometry x="-0.4069" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="1" source="s02w349n_ghEumkxoNO4-39" target="s02w349n_ghEumkxoNO4-49" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="930.0000000000002" y="220" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="830" y="220" />
+              <mxPoint x="830" y="335" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-50" value="Existuje úkol s předaným ID,&lt;div style=&quot;font-size: 15px;&quot;&gt;který je nesplněný na je to úkol&lt;/div&gt;&lt;div style=&quot;font-size: 15px;&quot;&gt;pro formulář, který byl právě vyplněn?&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-48" vertex="1" connectable="0">
+          <mxGeometry x="0.5164" relative="1" as="geometry">
+            <mxPoint x="-8" y="-55" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="1" source="s02w349n_ghEumkxoNO4-42" target="s02w349n_ghEumkxoNO4-45" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="220" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="1" source="s02w349n_ghEumkxoNO4-49" target="s02w349n_ghEumkxoNO4-59" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="975.0000000000005" y="160" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1050" y="335" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-60" value="Ano" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-58" vertex="1" connectable="0">
+          <mxGeometry x="-0.5667" y="-4" relative="1" as="geometry">
+            <mxPoint x="-4" y="5" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-84" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="1" source="s02w349n_ghEumkxoNO4-49" target="s02w349n_ghEumkxoNO4-85" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="975.0000000000002" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-49" value="" style="points=[[0.25,0.25,0],[0.5,0,0],[0.75,0.25,0],[1,0.5,0],[0.75,0.75,0],[0.5,1,0],[0.25,0.75,0],[0,0.5,0]];shape=mxgraph.bpmn.gateway2;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=rhombusPerimeter;outlineConnect=0;outline=none;symbol=none;rounded=1;strokeColor=default;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="950.0000000000002" y="310" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="1" source="s02w349n_ghEumkxoNO4-53" target="s02w349n_ghEumkxoNO4-55" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="320" y="600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="1" source="s02w349n_ghEumkxoNO4-59" target="s02w349n_ghEumkxoNO4-62" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="585" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-63" value="Správa úkolů" style="swimlane;startSize=20;whiteSpace=wrap;html=1;rounded=0;strokeColor=default;align=center;verticalAlign=middle;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="680" y="60" width="450" height="1300" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-68" value="" style="shape=mxgraph.bpmn.data;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;size=15;html=1;rounded=1;strokeColor=default;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-63" vertex="1">
+          <mxGeometry x="50" y="680" width="40" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-74" value="Vyžádá si vyplnění dotazníku" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;rounded=1;strokeColor=default;align=center;verticalAlign=middle;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-63" vertex="1">
+          <mxGeometry x="178" y="710" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-78" value="" style="shape=mxgraph.bpmn.data;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;size=15;html=1;rounded=1;strokeColor=default;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-63" vertex="1">
+          <mxGeometry x="260" y="795" width="40" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-82" value="" style="points=[[0.25,0.25,0],[0.5,0,0],[0.75,0.25,0],[1,0.5,0],[0.75,0.75,0],[0.5,1,0],[0.25,0.75,0],[0,0.5,0]];shape=mxgraph.bpmn.gateway2;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=rhombusPerimeter;outlineConnect=0;outline=none;symbol=none;rounded=1;strokeColor=default;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-63" vertex="1">
+          <mxGeometry x="315" y="961" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-85" value="Vrátí chybu" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;rounded=1;strokeColor=default;align=center;verticalAlign=middle;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-63" vertex="1">
+          <mxGeometry x="180.00000000000023" y="360" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-88" value="Vrátí chybu" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;rounded=1;strokeColor=default;align=center;verticalAlign=middle;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-63" vertex="1">
+          <mxGeometry x="40" y="1040" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-87" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="s02w349n_ghEumkxoNO4-63" source="s02w349n_ghEumkxoNO4-82" target="s02w349n_ghEumkxoNO4-88" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="255" y="1070" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="340" y="1080" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-97" value="Selhání" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-87" vertex="1" connectable="0">
+          <mxGeometry x="-0.7095" y="-5" relative="1" as="geometry">
+            <mxPoint y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-99" value="Uloží ID vyplnění dotazníku do úkolu&amp;nbsp;&lt;span style=&quot;background-color: initial; font-size: 15px;&quot;&gt;a uvede jej do stavu &quot;hotový&quot;&lt;/span&gt;" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;rounded=1;strokeColor=default;align=center;verticalAlign=middle;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-63" vertex="1">
+          <mxGeometry x="260" y="1170" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-98" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="s02w349n_ghEumkxoNO4-63" source="s02w349n_ghEumkxoNO4-82" target="s02w349n_ghEumkxoNO4-99" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="330" y="1140" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="415" y="985" />
+              <mxPoint x="415" y="1210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-100" value="Úspěch" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-98" vertex="1" connectable="0">
+          <mxGeometry x="-0.4018" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-102" value="Potvrdí úspěch operace" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;rounded=1;strokeColor=default;align=center;verticalAlign=middle;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-63" vertex="1">
+          <mxGeometry x="40" y="1170" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-101" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="s02w349n_ghEumkxoNO4-63" source="s02w349n_ghEumkxoNO4-99" target="s02w349n_ghEumkxoNO4-102" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="180" y="1210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-59" value="Uvede úkol do stavu &quot;skoro hotový&quot;" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;rounded=1;strokeColor=default;align=center;verticalAlign=middle;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-63" vertex="1">
+          <mxGeometry x="310.00000000000045" y="600" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-66" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="1" source="s02w349n_ghEumkxoNO4-65" target="s02w349n_ghEumkxoNO4-74" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="885" y="810" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="760" y="810" />
+              <mxPoint x="760" y="810" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-73" value="&lt;font style=&quot;font-size: 15px;&quot; face=&quot;Lucida Console&quot;&gt;ukolID, vyplneniID&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-66" vertex="1" connectable="0">
+          <mxGeometry x="0.5141" y="-2" relative="1" as="geometry">
+            <mxPoint x="-34" y="16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-76" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="1" source="s02w349n_ghEumkxoNO4-74" target="s02w349n_ghEumkxoNO4-77" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="610" y="940" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="930" y="920" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-79" value="&lt;font style=&quot;font-size: 15px;&quot; face=&quot;Lucida Console&quot;&gt;vyplneniID&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-76" vertex="1" connectable="0">
+          <mxGeometry x="-0.0235" y="-2" relative="1" as="geometry">
+            <mxPoint x="121" y="17" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-80" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="1" source="s02w349n_ghEumkxoNO4-77" target="s02w349n_ghEumkxoNO4-82" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="920" y="1060" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="585" y="1045" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-83" value="Zkontroluje, že vyplnění bylo vytvořeno&lt;div style=&quot;font-size: 15px;&quot;&gt;v rámci splnění úkolu s předaným ID&lt;/div&gt;&lt;div style=&quot;font-size: 15px;&quot;&gt;a týká se správného formuláře&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;arcSize=40;fontFamily=Helvetica;fontSize=15;fontColor=#000000;fillColor=#FFFFFF;" parent="s02w349n_ghEumkxoNO4-80" vertex="1" connectable="0">
+          <mxGeometry x="0.6801" relative="1" as="geometry">
+            <mxPoint x="-79" y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-86" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="1" source="s02w349n_ghEumkxoNO4-85" target="s02w349n_ghEumkxoNO4-53" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="780" y="520" />
+              <mxPoint x="780" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-91" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="1" source="s02w349n_ghEumkxoNO4-90" target="s02w349n_ghEumkxoNO4-94" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="310" y="1140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-89" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="1" source="s02w349n_ghEumkxoNO4-88" target="s02w349n_ghEumkxoNO4-90" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="620" y="1140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-103" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="1" source="s02w349n_ghEumkxoNO4-102" target="s02w349n_ghEumkxoNO4-104" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="1270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s02w349n_ghEumkxoNO4-105" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=bottom;fontFamily=Helvetica;fontSize=15;fontColor=#000000;labelBackgroundColor=default;endArrow=open;endSize=8;" parent="1" source="s02w349n_ghEumkxoNO4-104" target="s02w349n_ghEumkxoNO4-106" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="310" y="1270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

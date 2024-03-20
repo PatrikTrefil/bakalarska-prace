@@ -1,5 +1,6 @@
 @startuml
-skinparam dpi 400
+skinparam dpi 300
+skinparam defaultFontSize 30
 
 |Uživatel|
 |Správa formulářů|

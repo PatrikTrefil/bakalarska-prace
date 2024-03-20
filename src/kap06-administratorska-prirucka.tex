@@ -1,0 +1,132 @@
+\chapter{Administrátorská příručka}\label{ch:administratorska-prirucka}
+
+Tato kapitola popisuje, jak spravovat aplikaci z pohledu administrátora.
+První jsou popsány kroky pro instalaci a konfiguraci aplikace v sekci~\ref{sec:instalace}.
+Následně je popsáno spuštění aplikace v sekci~\ref{sec:spusteni-aplikace}.
+V sekci~\ref{sec:tvorba-uzivatelskych-uctu} jsou popsány kroky pro tvorbu uživatelských účtů.
+Nakonec jsou popsány přístupy k správcovským rozhraním jednotlivých částí aplikace v sekci~\ref{sec:sprava-aplikace}.
+
+
+\section{Instalace a konfigurace}\label{sec:instalace}
+
+Pro instalaci aplikace je potřeba mít nainstalovaný \href{https://www.docker.com/}{Docker} a \href{https://git-scm.com/}{Git}.
+
+Celý projekt je zastřešen git repozitářem \href{https://github.com/PatrikTrefil/mental-health-monitoring-platform.git}{mental-health-monitoring-platform}.
+Tento repozitář používá \href{https://git-scm.com/book/en/v2/Git-Tools-Submodules}{git submoduly}, jelikož zdrojový kód platformy Form.io je v jiném repozitáři.
+Jedná se o repozitář \href{https://github.com/PatrikTrefil/mental-health-monitoring-platform-formio}{mental-health-monitoring-platform-formio}, což je fork repozitáře \href{https://github.com/formio/formio}{formio}, který obsahuje oficiální zdrojový kód platformy Form.io.
+Pro instalaci aplikace je potřeba naklonovat repozitář \href{https://github.com/PatrikTrefil/mental-health-monitoring-platform.git}{mental-health-monitoring-platform} včetně submodulů, což lze provést následujícím příkazem:
+
+% TODO: příkazy obsahující link na repozitář se nevlezou na řádek
+\begin{verbatim}
+git clone --recurse-submodules \
+    https://github.com/PatrikTrefil/mental-health-monitoring-platform.git
+\end{verbatim}
+
+Klonování a inicializaci submodulů lze provést i pomocí následující sekvence příkazů:
+
+\begin{verbatim}
+git clone \
+    https://github.com/PatrikTrefil/mental-health-monitoring-platform.git
+cd mental-health-monitoring-platform
+git submodule init # initialize configuration file
+git submodule update # fetch submodule data
+\end{verbatim}
+
+Před spuštěním aplikace je potřeba dodat \texttt{.env} soubor do kořenu repozitáře pro konfiguraci prostředí.
+Syntax konfiguračního souboru je popsána v \href{https://docs.docker.com/compose/environment-variables/env-file/}{dokumentaci Docker compose}.
+Ukázkovou konfiguraci najdete v \texttt{.env.example}.
+Zde je seznam proměnných prostředí, které je potřeba nastavit, a jejich význam:
+
+\begin{description}
+    \item[MONGO\_INITDB\_ROOT\_USERNAME] obsahuje uživatelské jméno pro přihlášení do MongoDB jako superuživatel (root).
+    \item[MONGO\_INITDB\_ROOT\_PASSWORD] obsahuje heslo pro do MongoDB jako superuživatel (root).
+    \item[FORMIO\_NODE\_CONFIG] obsahuje konfigurace Form.io aplikace.
+    Hodnota by měla být ve formátu JSON\@.
+    Výchozí hodnoty konfigurace jsou dostupné \href{https://github.com/formio/formio/blob/3.5.x/config/default.json}{zde}.
+    Není potřeba nastavit všechny atributy konfiguračního objektu, ale pouze ty, které chceme přepsat.
+    \item[FORMIO\_ROOT\_EMAIL] obsahuje e\babelhyphen{nobreak}mail pro přihlášení do Form.io aplikace jako superuživatel (root).
+    \item[FORMIO\_ROOT\_PASSWORD] obsahuje heslo pro přihlášení do Form.io aplikace jako superuživatel (root).
+    \item[FORMIO\_MONGO\_USER] obsahuje uživatelské jméno pro přístup Form.io apliakace do MongoDB\@.
+    \item[FORMIO\_MONGO\_PASSWORD] obsahuje heslo pro přihlášení uživatele \texttt{FORMIO\_MONGO\_USER} do MongoDB\@.
+    \item[DOMAIN\_NAME] obsahuje doménové jméno, na kterém bude aplikace dostupná (např.\ domena.cz, localhost).
+    \item[NEXTAUTH\_SECRET] obsahuje klíč pro šifrování autentizačních tokenů.
+\end{description}
+
+Také je potřeba nainstalovat závislosti pro Form.io aplikaci:
+
+\begin{verbatim}
+cd src/formio && npm install
+\end{verbatim}
+
+Nyní aplikaci můžeme spustit pomocí návodu v sekci~\ref{sec:spusteni-aplikace}.
+Poté je potřeba vytvořit první uživatelský účet, jak je popsáno v sekci~\ref{sec:tvorba-uzivatelskych-uctu}.
+
+
+\section{Spuštění aplikace}\label{sec:spusteni-aplikace}
+
+Předpokládáme, že aplikace byla nainstalována a konfigurována podle návodu v sekci~\ref{sec:instalace}.
+Pro spuštění aplikace v produkčním módu spusťte následující příkaz z kořenového adresáře repozitáře:
+
+\begin{verbatim}
+docker compose up
+\end{verbatim}
+
+Po spuštění příkazu bude aplikace dostupná na \texttt{\href{http://localhost}{http://localhost}}.
+
+Pokud se jedná o první spuštění aplikace, vytvořte prvního uživatele dle návodu v sekci~\ref{sec:tvorba-uzivatelskych-uctu}.
+
+Pro spuštění aplikace ve vývojovém módu použijte následující příkaz:
+
+\begin{verbatim}
+docker compose --file ./docker-compose.yml \
+    --file ./docker-compose.dev.yml \
+    up
+\end{verbatim}
+
+Po spuštění příkazu bude aplikace dostupná na \texttt{\href{http://localhost:8080}{http://localhost:8080}}.
+Na jednotlivé služby aplikace se lze připojit i přímo.
+Mapování portů je definováno v \texttt{docker-compose.dev.yml}.
+
+
+\section{Tvorba uživatelských účtů}\label{sec:tvorba-uzivatelskych-uctu}
+
+Tato sekce popisuje kroky pro vytvoření uživatelských účtů.
+Účty uživatelů libovolné role lze vytvořit pomocí webového rozhraní Form.io aplikace.
+Po prvním spuštění aplikace je doporučeno vytvořit uživatele s rolí správce dotazníků.
+Pro jednoduchost tvorby tohoto uživatele je připraven shell skript, jehož užití je popsáno v sekci~\ref{subsec:tvorba-uctu-pomoci-shell-skriptu}.
+
+\subsection{Tvorba účtu pomocí webového rozhraní}\label{subsec:tvorba-uctu-pomoci-weboveho-rozhrani}
+
+Účet lze vytvořit pomocí webového rozhraní Form.io aplikace, která je dostupná na \texttt{/formio/} po spuštění aplikace.
+Po otevření rozhraní se zobrazí přihlašovací formulář.
+Do formuláře vyplníme přihlašovací údaje adminisrátorského účtu, které jsme definovali v konfiguračním souboru při instalaci aplikace (viz sekce~\ref{sec:instalace}).
+Po přihlášení je potřeba vyplnit formulář \textit{Správce dotazníků registrace}.
+Uživatele \textit{nevytvářejte} skrze modul \textit{Resources}.
+
+\subsection{Tvorba účtu pomocí shell skriptu}\label{subsec:tvorba-uctu-pomoci-shell-skriptu}
+
+Pokud máte k dispozici příkaz \href{https://curl.se/}{\texttt{curl}}, tak uživatele \textit{s rolí správce dotazníků} můžete vytvořit pomocí shell skriptu \texttt{./create\_form\_manager.sh}.
+Skript se spustí v interaktivním módu, pokud uživatel neposkytne všechny parametry programu.
+Parametry programu lze take předat pomocí argumentů programu.
+Parametry programu se odvíjí od konfigurace definované při instalaci aplikace (viz sekce~\ref{sec:instalace}).
+Dokumentaci nástroje lze získat pomocí příkazu \verb|./create_form_manager.sh --help|.
+
+
+\section{Správa aplikace}\label{sec:sprava-aplikace}
+
+Aplikace se skládá z několika částí, které je potřeba spravovat.
+Zde je seznam částí aplikace a možné způsoby správy:
+
+\begin{description}
+    \item[Reverse proxy] Status stránka je dostupná na \texttt{/nginx\_status}.
+    Když chceme zjistit zda-li reverse proxy běží, můžeme udělat HTTP GET požadavek na \texttt{/health}.
+    Pokud je návratový kód 200, tak reverse proxy běží.
+    \item[Monitoring] Monitoring služeb aplikace je dostupný na \texttt{/monitoring/}.
+    Oficiální dokumentace k webovému rozhraní je dostupná online v anglickém jazyce \href{https://github.com/google/cadvisor/blob/master/docs/web.md}{zde}.
+    Monitorovací aplikace poskytuje i API, které je dostupné na \texttt{/monitoring/api}.
+    Oficiální dokumentace k API je dostupná online v anglickém jazyce \href{https://github.com/google/cadvisor/blob/master/docs/api.md}{zde}.
+    \item[Form.io] Webové rozhraní a API aplikace Form.io je dostupné na \texttt{/formio/} po spuštění aplikace.
+    Oficiální dokumentace k webovému rozhraní je dostupná online v anglickém jazyce \href{https://help.form.io/}{zde}.
+    Oficiální dokumentace k API je dostupná online v anglickém jazyce \href{https://apidocs.form.io/}{zde}.
+\end{description}
+

@@ -1,131 +1,15 @@
-\chapter*{Závěr}
+\chapter*{Závěr}\label{ch:zaver}
 \addcontentsline{toc}{chapter}{Závěr}
-
-Na závěr bych se chtěl ohlédnout zpátky a zhodnotit průběh celého vývoje.
-
-
-\section{Zhodnocení architektury}\label{sec:zhodnoceni-architektury}
-
-Tento projekt byl vyvíjen jako distribuovaný systém.
-Toto rozhodnutí pramenilo z mé nezkušenosti a zpětně ho považuji za chybné.
-Distribuovaná architekura je vhodná pro vyspělé projekty, které dokáží těžit z výhod, které tato architektura poskytuje.
-Tento projekt získal pouze minimum výhod, ale musel řešit všechnu komplexitu, která je s distribuovanými systémy spojena.
-Dospěl jsem k názoru, že systém by měl být vyvíjen jako distribuovaný pouze a jen v případě, že je to nezbytně nutné.
-
-
-\section{Zhodnocení výběru technologií}\label{sec:vyber-technologii-zaver}
-
-V této sekci bych chtěl zhodnotit výběr technologií, které jsem použil při vývoji aplikace.
-Hodnocení se bude týkat pouze technologií, které měly výrazný vliv na vývoj aplikace.
-
-\subsection{Zkušenost s Form.io}\label{subsec:zkusenost-s-formio}
-
-Systém spravující formuláře Form.io na mě na začátku působil velmi profesionálně a vyspěle.
-Narazil jsem však na mnoho problémů a nedostatků, které mi výrazně zkomplikovaly práci.
-Software má mnoho dokumentace, ale některé části jsou nesrozumitelné a některé funkce jsou nedostatečně zdokumentované.
-Klientské knihovny mají mj.\ špatnou podporu TypeScript, nepodporují všechny funkce serveru a mají špatně navržené rozhraní.
-Po několika měsících práce jsem došel k závěru, že některé klientské knihovny je potřeba kompletně nahradit vlastním řešením.
-
-Dalším problémem byla špatná spolupráce se správci projektu.
-V průběhu mé práce jsem narazil na nedostatky software Form.io či dokumentace a tyto nedostatky jsem vždy nahlásil, či jsem je dokonce sám opravil.
-Většina z nahlášených chyb dodnes nebyly adresovány a návrhy na mé vylepšení nebyly přijaty.
-
-Kdybych tento projekt začínal znovu, mnohem více bych se snažil zadavateli rozmluvit požadavek na ukládání dat na vlastním serveru.
-Tento požadavek je totiž hlavním důvodem, proč jsem se nakonec rozhodl pro použití Form.io.
-Myslím si, že existuje mnoho lepších řešení pro správu formulářů, ale jedná se o cloudové služby.
-V průběhu vývoje jsem se dozvěděl o \href{https://www.hhs.gov/hipaa/index.html}{HIPAA} certifikaci.
-Software držící tuto certifikaci musí splňovat přísná pravidla pro ukládání zdravotnických dat.
-Tuto certifikaci má mnoho z nástrojů zmiňovaných v kapitole~\ref{ch:analyza-existujicich-reseni-pro-praci-s-formulari}.
-Myslím si, že užití nástroje s touto certifikací pro tvorbu a správu formulářů by byl nejlepší kompromis mezi bezpečností a kvalitou nástroje.
-O této možnosti jsme však já ani zadavatel nevěděli a proto jsme se rozhodli pro použití Form.io.
-
-\subsection{Zkušenost s NextJS}\label{subsec:zkusenost-s-nextjs}
-
-Rád bych také popsal svou zkušenost s framework NextJS\@.
-Framework mi poskytl mnoho skvělých funkcí jako je routing, caching a také sdílení a zanořování layoutů.
-Framework má skvělou dokumentaci a velkou aktivní komunitu.
-Narazil jsem však i na několik problémů.
-
-První problém byl s tzv. \textit{hot module replacement}.
-Tato funkce umožňuje přidat, odebrat nebo vyměnit moduly za běhu aplikace bez nutnosti dalšího načtení celé stránky (\href{https://webpack.js.org/concepts/hot-module-replacement/}{zdroj}).
-Kompilační systém reaguje na změny souborů, které hlásí souborový systém, a následně aplikuje změny za běhu aplikace.
-Pokud však vývojový server pustíme v Docker kontejneru, kde uděláme mount složky s kódem z hostitelského systému Windows, tak se změny v souborech nedetekují.
-Tato chyba v \href{https://learn.microsoft.com/en-us/windows/wsl/about}{Windows subsystem for Linux (WSL)} je známá již od roku 2019 a zatím nebyla opravena (viz \href{https://github.com/microsoft/WSL/issues/4739}{diskuze v Github issue}).
-
-Dalším problémem byla omezenost middleware, který NextJS poskytuje.
-Middleware je kód, který je spuštěn před zpracováním všech požadavků na server.
-Tento kód však běží v speciálním optimalizovaném prostředí nazývané \textit{\href{https://edge-runtime.vercel.app/}{edge runtime}}.
-Edge runtime je velmi omezené prostředí a spoustu knihoven na něm nelze použít.
-Důsledky toho jsou, že například nelze použít populární knihovny pro logování (\href{https://github.com/pinojs/pino}{Pino}, \href{https://github.com/winstonjs/winston}{Winston}, apod.) ani knihovnu \href{https://github.com/axios/axios}{axios}, která poskytuje alternativu k nativnímu fetch API\@.
-NextJS v tuto chvíli nedovoluje použití jiného běhové prostředí pro middleware.
-
-Posledním problémem byla implementace \textit{\href{https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP}{content security policy}}.
-Content security policy je bezpečnostní vrstva, která zabraňuje určitým typům útoků jako je například \href{https://developer.mozilla.org/en-US/docs/Glossary/Cross-site_scripting}{cross-site scripting (XSS)}.
-Pro použití tohoto bezpečnostního prvku je potřeba nakonfigurovat hlavičky HTTP odpovědí a také modifikovat zdrojový kód stránky.
-Podpora tohoto bezpečnostního mechanismu je v NextJS aktivně vyvíjena, ale v době psaní této práce nebyla plně funkční, což snižuje bezpečnost aplikace.
-
-
-\section{Zhodnocení testování aplikace}\label{sec:zhodnoceni-testovani-aplikace}
-
-Serverová část aplikace je testována pomocí unit testů.
-Testujeme pouze veřejné rozhraní všech modulů.
-Objekt fungující jako proxy databáze byl nahrazen mock objekty.
-V testech kontrolujeme, zda-li se volají konkrétní metody na mock objektech s očekávanými parametry.
-Toto je doporučený přístup object-relational mapping knihovny Prisma, který je popsán v \href{https://www.prisma.io/docs/guides/testing/unit-testing}{dokumentaci}.
-Tento přístup se mi vůbec neosvědčil.
-Kontrola volání konkrétních metod vytváří obrovskou závislost na vnitřní implementaci testovaných metod.
-Testy jsou velmi těžko udržovatelné a navíc poměrně dlouhé a složité.
-Kdybych začínal znovu, tak bych se snažil primárně testovat privátní metody, které obsahují veškerou logiku mimo databázové operace.
-Přestože tento způsob je také silně závislý na vnitřní implementaci testovaného modulu, tak je udržitelnější a jednodušší na implementaci.
-Pro testování metod obsahující databázové operace bych zvážil použití in-memory databáze\footnote{In-memory databáze je databáze spoléhající primárně na vnitřní paměť pro ukládání dat (\href{https://aws.amazon.com/nosql/in-memory/}{zdroj})}.
-
-\section{Open-source vývoj}\label{sec:open-source-vyvoj}
-
-Při vývoji jsem narazil na mnoho chyb a nedostatků v použitých nástrojích a knihovnách.
-Tyto chyby jsem hlásil správcům jednotlivých projektů a některé jsem dokonce sám opravil.
-V případě některých projektů byla komunikace se správci velmi dobrá a chyby byly rychle opraveny.
-V některých případě jsem však narazil na rozdílnosti v názorech na správné řešení problémů nebo jsem se nedočkal žádné reakce.
-Zde je výčet issues a pull requestů, které jsem vytvořil:
-
-\begin{itemize}
-    \item
-    \href{https://github.com/formio/react/issues/522}{Chyba v internacionalizaci komponenty poskytované knihovnou}
-    \item
-    \href{https://github.com/formio/react/pull/538}{Oprava chyby v internacionalizaci komponenty poskytované knihovnou}
-    \item
-    \href{https://github.com/formio/formio-app-formio/issues/35}{Bezpečnostní chyba v Form.io klientské aplikace}
-    \item
-    \href{https://github.com/formio/formio/issues/1555}{Chybějící dokumentace API endpointu}
-    \item
-    \href{https://github.com/formio/formio/issues/1485}{Chyba ve verzi databáze}
-    \item
-    \href{https://github.com/formio/formio-app-formio/issues/34}{Návrh na zlepšení organizace repozitáře}
-    \item
-    \href{https://github.com/formio/react/issues/523}{Použití zastaralého API}
-    \item
-    \href{https://github.com/tgreyuk/typedoc-plugin-markdown/issues/429}{Chyba v pluginu do Docusaurus}
-    \item
-    \href{https://github.com/tgreyuk/typedoc-plugin-markdown/issues/440}{Návrh na vylepšení pluginu do Docusaurus}
-    \item
-    \href{https://github.com/react-bootstrap/react-bootstrap/issues/6671}{Nefunkční příklad v dokumentaci}
-    \item
-    \href{https://github.com/gajus/eslint-plugin-jsdoc/issues/1138}{Návrh na vylepšení chování statické analýzy kódu}
-    \item
-    \href{https://github.com/MrFlynn/upload-to-netlify-action/issues/17}{Chyba v dokumentaci GitHub Action pro upload na Netlify}
-\end{itemize}
-
-
-\section{Spolupráce s NUDZ}\label{sec:spoluprace-s-nudz}
-
-Spolupráce s Národním ústavem duševního zdraví nebyla vždy jednoduchá.
-Nízká technická znalost zaměstnanců byla větší problém než jsem očekával.
-V některých chvílích jsem nedokázal klást ty správné otázky a nepodařilo se mi zachytit všechny důležité informace o doméně.
-Celá spolupráce byla značně ztížena tím, že se v průběhu vývoje několikrát změnila osoba, která se mnou spolupracovala a komunikovala.
-Celkově jsem však spokojený s výsledkem a věřím, že aplikace bude využívána a pomůže zlepšit kvalitu poskytované péče.
-
-\section{Shrnutí}\label{sec:shrnuti}
 
 V této práci jsme se zabývali vývojem webové aplikace pro monitorování mentálního zdraví.
 Na začátku jsme detailně analyzovali požadavky zadavatele a vytvořili návrh aplikace.
-Poté jsme rozebrali proces vývoje, popsali technické detaily a sepsali uživatelskou dokumentaci.
-Na závěr jsme zhodnotili průběh celého vývoje a výslednou aplikaci.
+Poté jsme rozebrali proces vývoje, popsali technické detaily a sepsali dokumentaci.
+Na konci jsme zhodnotili průběh celého vývoje a výslednou aplikaci.
+
+V aplikaci je mnoho možností pro navazující vývoj.
+Interaktivní vzdělávací hry nebo cvičení by mohly zvýšit motivaci pacientů ke spolupráci.
+Možnost zasílat zprávy mezi terapeutem a pacientem by bylo možné využít pro řešení akutních potíží, či nejasností v úkolech.
+Schopnost systému sledovat detailní chování pacienta jako je pohyb myši, čas strávený na konkrétní otázce, apod.\ v průběhu vyplňování dotazníku by mohlo pomoci při výzkumu.
+
+Výsledkem této práce je plně funkční webová aplikace, která splňuje všechny požadavky zaměstnavatele a je připravena do produkce.
+Aplikace má mnoho potenciálu pro další rozvoj a využití v praxi.
