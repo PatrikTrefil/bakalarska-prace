@@ -10,7 +10,7 @@ all: prace.pdf abstrakt.pdf
 diagrams: $(DIAGRAMS_PNG_FROM_PUML) $(DIAGRAMS_PNG_FROM_DRAWIO)
 
 $(DIAGRAMS_PNG_FROM_DRAWIO): ./diagrams/%.png: ./diagrams/%.drawio
-	drawio -x -f -png --zoom 400 -o $@ $<
+	drawio -x -f -png --no-sandbox --zoom 400 -o $@ $<
 
 # Generovaní PNG diagramů z PlantUML
 $(DIAGRAMS_PNG_FROM_PUML):./diagrams/%.png: ./diagrams/%.puml
