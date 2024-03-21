@@ -27,7 +27,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: lib
-        run: apt-get update && apt-get install -y inkscape graphviz libsecret-1-0 libnotify4 && dpkg -i ./drawio-amd64-24.0.4.deb
+        run: apt-get update && apt-get install -y inkscape graphviz
 
       - name: Build the thesis
         run: make

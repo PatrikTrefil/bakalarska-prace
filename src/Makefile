@@ -3,14 +3,8 @@ export TEXINPUTS=../tex//:
 DIAGRAMS_PUML=$(shell find diagrams -path 'diagrams/lib' -prune -o -name '*.puml' -print)
 DIAGRAMS_PNG_FROM_PUML=$(DIAGRAMS_PUML:.puml=.png)
 
-DIAGRAMS_DRAWIO=$(shell find diagrams -name '*.drawio' -print)
-DIAGRAMS_PNG_FROM_DRAWIO=$(DIAGRAMS_DRAWIO:.drawio=.png)
-
 all: prace.pdf abstrakt.pdf
-diagrams: $(DIAGRAMS_PNG_FROM_PUML) $(DIAGRAMS_PNG_FROM_DRAWIO)
-
-$(DIAGRAMS_PNG_FROM_DRAWIO): ./diagrams/%.png: ./diagrams/%.drawio
-	drawio -x -f -png --no-sandbox --zoom 400 -o $@ $<
+diagrams: $(DIAGRAMS_PNG_FROM_PUML)
 
 # Generovaní PNG diagramů z PlantUML
 $(DIAGRAMS_PNG_FROM_PUML):./diagrams/%.png: ./diagrams/%.puml
@@ -31,5 +25,5 @@ abstrakt.pdf: abstrakt.tex abstrakt.xmpdata
 clean:
 	rm -f *.log *.dvi *.aux *.toc *.lof *.lot *.out *.bbl *.blg *.xmpi *.fls
 	rm -f prace.pdf abstrakt.pdf
-	find diagrams -name '*.png' -exec rm -f {} \;
+	find diagrams -name '*.png' ! -name '*.drawio.png' -exec rm -f {} \;
 	rm -rf svg-inkscape
