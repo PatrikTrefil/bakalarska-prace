@@ -3,7 +3,8 @@ export TEXINPUTS=../tex//:
 DIAGRAMS_PUML=$(shell find diagrams -path 'diagrams/lib' -prune -o -name '*.puml' -print)
 DIAGRAMS_PNG_FROM_PUML=$(DIAGRAMS_PUML:.puml=.png)
 
-all: prace.pdf abstrakt.pdf
+all: prace.pdf abstracts
+abstracts: abstrakt.pdf abstrakt-en.pdf
 diagrams: $(DIAGRAMS_PNG_FROM_PUML)
 
 # Generovaní PNG diagramů z PlantUML
@@ -14,12 +15,15 @@ $(DIAGRAMS_PNG_FROM_PUML):./diagrams/%.png: ./diagrams/%.puml
 # LaTeX je potreba spustit nekolikrat, aby spravne spocital odkazy
 # --shell-escape je potreba pro spusteni Inkscape (konverze SVG->PDF)
 prace.pdf: prace.tex $(wildcard *.tex) literatura.bib prace.xmpdata diagrams
-	pdflatex --shell-escape -halt-on-error $<
+	pdflatex --shell-escape -halt-on-error $< | grep --color --ignore-case "warning"
 	bibtex prace
-	pdflatex --shell-escape -halt-on-error $<
-	pdflatex --shell-escape -halt-on-error $<
+	pdflatex --shell-escape -halt-on-error $< | grep --color --ignore-case "warning"
+	pdflatex --shell-escape -halt-on-error $< | grep --color --ignore-case "warning"
 
 abstrakt.pdf: abstrakt.tex abstrakt.xmpdata
+	pdflatex $<
+
+abstrakt-en.pdf: abstrakt-en.tex abstrakt-en.xmpdata
 	pdflatex $<
 
 clean:
