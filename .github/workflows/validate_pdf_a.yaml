@@ -48,7 +48,7 @@ jobs:
       - name: Prepare folder to upload
         run: >-
           mkdir upload &&
-          cp prace.pdf abstrakt.pdf abstrakt-en.pdf ../website/index.html upload &&
+          cp prace.pdf abstrakt.pdf abstrakt-en.pdf ../website/index.html upload
 
       - name: Pull Vercel Environment Information
         working-directory: src/upload
