@@ -14,8 +14,10 @@ Projekt využívá continous integration konkrétně pro automatizování formá
 Jednotlivé části CI pipeline jsou detailně popsány níže.
 
 \begin{description}
-    \item[\href{https://github.com/features/actions}{Github Workflows}]
+    \item[\href{https://github.com/features/actions}{GitHub Workflows}]
     Na základě dobré předchozí zkušenosti byl pro realizaci continuous integration zvolen nástroj Github Workflows.
+    \item[\href{https://github.com/features/issues}{GitHub Issues}]
+    Pro issue tracking byl zvolen nástroj GitHub Issues, který je přímo integrován do platformy GitHub.
     \item[\href{https://prettier.io/}{Prettier}]
     Standardizace formátování kódu zvýší čitelnost kódu a zrychlí vývoj~\cite{why-coding-style-matters}.
     Manuální formátování kódu je však zdlouhavé a proto použijeme nástroj, který tento proces automatizuje.
@@ -107,6 +109,7 @@ Tento systém zařizuje, že webová aplikace nemusí při každém požadavku o
 Kontrola práv uživatele při přístupu na ochráněnou stránku se kontrola provádí v middleware NextJS serveru.
 
 \begin{figure}[H]
+    \centering
     \includegraphics[width=0.9\textwidth]{diagrams/auth}
     \caption{Komunikace při autentizaci uživatele}\label{fig:auth}
 \end{figure}
@@ -201,11 +204,12 @@ Uživatel vyplní dotazník a \emph{odešle se požadavek na komponentu spravuj�
 Situace se při tomto řešení komplikuje, jelikož bychom museli zajistit, že všechny požadavky na vyplnění dotazníku musí jít skrze komponentu spravující úkoly.
 Museli bychom tedy zakázat, aby uživatel odevzdal dotazník přímo do systému spravující formuláře.
 Kdybychom to neudělali, tak nejsme schopni zajistit integritu sesbíraných dat.
-Toto omezení bychom mohli zajistit úpravou konfigurace reverse proxy, kterou prochází všechny požadavky z vnějšího světa.
-Tento způsob by však nezajistil ochranu před požadavky z vnitřní sítě.
-Pro ochranu před požadavky z vnitřní sítě bychom veškerou komunikaci s systémem spravující formuláře skrze autentizační proxy. % TODO: LAST TODO viz poznámka v PDF
+Toto omezení bychom mohli zajistit úpravou konfigurace reverse proxy, kterou prochází všechny požadavky z vnějšího světa, nebo úpravou systému spravující formuláře.
+První zmíněný způsob by však nezajistil ochranu před požadavky z vnitřní sítě.
+Pro ochranu před požadavky z vnitřní sítě je lepší druhý způsob.
+Systém spravující formuláře je řešením třetí strany a vyžadovalo by to zásah do jejich kódu.
 
-Zvolíme první alternativu, jelikož je jednodušší na implementaci a má lepší vlastnosti.
+Zvolíme první alternativu, jelikož je jednodušší na implementaci a má dobré vlastnosti.
 Nyní si rozmysleme detaily implementace.
 Chceme zajistit, aby se nám nepodařilo vytvořit více vyplnění dotazníku pro stejný úkol.
 Proto formulář, který bude zadáván jako úkol pro plnitele, nastavíme tak, aby zajistil unikátnost hodnoty skryté položky obsahující identifikátor úkolu.
@@ -230,6 +234,7 @@ Popsaná situace je však natolik výjimečná, že se v tuto chvíli problemati
 Vystačíme si s tím, že systém spravující formuláře nikdy nebude obsahovat vyplnění dotazníku, které vzniklo bez zadání úkolu.
 
 \begin{figure}[H]
+    \centering
     \includegraphics[width=0.9\textwidth]{diagrams/taskState}
     \caption{Stavový diagram úkolů}\label{fig:task-state}
 \end{figure}

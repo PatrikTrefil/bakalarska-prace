@@ -3,7 +3,8 @@ export TEXINPUTS=../tex//:
 DIAGRAMS_PUML=$(shell find diagrams -path 'diagrams/lib' -prune -o -name '*.puml' -print)
 DIAGRAMS_PNG_FROM_PUML=$(DIAGRAMS_PUML:.puml=.png)
 
-all: prace.pdf abstracts
+all: thesis abstracts
+thesis: prace.pdf
 abstracts: abstrakt.pdf abstrakt-en.pdf
 diagrams: $(DIAGRAMS_PNG_FROM_PUML)
 
@@ -15,10 +16,10 @@ $(DIAGRAMS_PNG_FROM_PUML):./diagrams/%.png: ./diagrams/%.puml
 # LaTeX je potreba spustit nekolikrat, aby spravne spocital odkazy
 # --shell-escape je potreba pro spusteni Inkscape (konverze SVG->PDF)
 prace.pdf: prace.tex $(wildcard *.tex) literatura.bib prace.xmpdata diagrams
-	pdflatex --shell-escape -halt-on-error $< | grep --color --ignore-case "warning"
+	pdflatex --shell-escape -halt-on-error $<
 	bibtex prace
-	pdflatex --shell-escape -halt-on-error $< | grep --color --ignore-case "warning"
-	pdflatex --shell-escape -halt-on-error $< | grep --color --ignore-case "warning"
+	pdflatex --shell-escape -halt-on-error $<
+	pdflatex --shell-escape -halt-on-error $<
 
 abstrakt.pdf: abstrakt.tex abstrakt.xmpdata
 	pdflatex $<
@@ -26,8 +27,10 @@ abstrakt.pdf: abstrakt.tex abstrakt.xmpdata
 abstrakt-en.pdf: abstrakt-en.tex abstrakt-en.xmpdata
 	pdflatex $<
 
-clean:
+clean_tex:
 	rm -f *.log *.dvi *.aux *.toc *.lof *.lot *.out *.bbl *.blg *.xmpi *.fls
-	rm -f prace.pdf abstrakt.pdf
+
+clean: clean_tex
+	rm -f prace.pdf abstrakt.pdf abstrakt-en.pdf
 	find diagrams -name '*.png' ! -name '*.drawio.png' -exec rm -f {} \;
 	rm -rf svg-inkscape

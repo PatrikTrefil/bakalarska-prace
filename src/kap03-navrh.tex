@@ -35,6 +35,7 @@ Popíšeme 3 úrovně abstrakce - kontext, kontejnery a komponenty.
 Začneme kontextovou vrstvou (Obr.~\ref{fig:architecture-context}), která zobrazuje vztahy mezi naším systémem, jeho uživateli a ostatními systémy.
 
 \begin{figure}[H]
+    \centering
     \includegraphics[width=0.9\textwidth]{diagrams/architecture/context}
     \caption{C4 model - Systémový kontext}\label{fig:architecture-context}
 \end{figure}
@@ -47,6 +48,7 @@ U většiny kontejnerů je zřejmý jejich účel.
 Některé však vyžadují bližší popis, který se nachází níže.
 
 \begin{figure}[H]
+    \centering
     \includegraphics[width=0.9\textwidth]{diagrams/architecture/containers}
     \caption{C4 model - Kontejnery}\label{fig:architecture-containers}
 \end{figure}
@@ -62,18 +64,16 @@ Některé však vyžadují bližší popis, který se nachází níže.
     Relace byly vynechány pro zachování čitelnosti diagramu.
 \end{tcolorbox}
 
-\subsubsection{Webová aplikace}\label{subsubsec:webova-aplikace}
-
-Webové rozhraní aplikace, která bude sloužit primárně pro prezentační účely a obsahovat minimum business logiky.
-
 \subsubsection{Správa formulářů}\label{subsubsec:sprava-formularu}
 
-Tento kontejner poběží na serveru a bude umožňovat CRUD operace nad definicemi formulářů.
+Tento kontejner poběží na serveru a bude umožňovat CRUD\footnotemark{} operace nad definicemi formulářů.
 Také bude poskytovat rozhraní pro sběr dat z formulářů a jejich export.
 
 \subsubsection{Správa úkolů}\label{subsubsec:sprava-ukolu}
 
-Tento kontejner poběží na serveru a bude umožňovat CRUD operace nad úkoly.
+Tento kontejner poběží na serveru a bude umožňovat CRUD\footnotemark[\value{footnote}] operace nad úkoly.
+
+\footnotetext{CRUD je zkratka pro \textit{create, read, update, delete}, což jsou základní operace při práci s daty~\cite{crud-def}}
 
 \subsubsection{Správa nedokočených vyplnění}\label{subsubsec:sprava-nedokoncenych-vyplneni}
 
@@ -113,6 +113,7 @@ Na komponenty budeme dělit pouze kontejner \textit{Webová aplikace}.
 Tento kontejner rozdělíme na zaměstnaneckou a uživatelskou sekci (Obr.~\ref{fig:architecture-component-web-application}).
 
 \begin{figure}[H]
+    \centering
     \includegraphics[width=0.9\textwidth]{diagrams/architecture/webApplicationComponent}
     \caption{C4 model - Komponenta webová aplikace}\label{fig:architecture-component-web-application}
 \end{figure}
@@ -128,6 +129,7 @@ Pro snížení počtu nasazených Docker kontejnerů byly kontejnery Databáze n
 Implementace dovoluje i nasazení těchto komponent na různé instance databáze.
 
 \begin{figure}[H]
+    \centering
     \includegraphics[width=0.9\textwidth]{diagrams/deployment}
     \caption{Diagram nasazení}\label{fig:deployment}
 \end{figure}
@@ -147,7 +149,7 @@ Problematika správy formulářů je detailně popsána v sekci~\ref{sec:problem
 V závěru kapitoly~\ref{ch:analyza-existujicich-reseni-pro-praci-s-formulari} jsme se rozhodli pro využití software Form.io.
 Nyní popíšeme, jak přesně tento software bude využit.
 
-Jádro software Form.io je open-source a má licenci Open Software License 3.0, což dovoluje komerční použití.
+Jádro software Form.io je open-source a má licenci Open Software License 3.0, která dovoluje komerční použití.
 Jádro také obsahuje základní systém pro správu uživatelů.
 Tato bezplatná část má samozřejmě jistá omezení oproti placené verzi.
 Nevýhodou je, že použití vlastního autentizačního poskytovatele je dostupné pouze v placených verzích.
@@ -156,8 +158,8 @@ Do budoucna se nabízí přechod na placenou verzi.
 
 V době učinění tohoto rozhodnutí bylo předpokládáno, že funkce pro uložení nedokončených vyplnění je součástí jádra.
 Ukázalo se, že přestože tato funkce není v dokumentaci označená jako placená, tak je dostupná pouze v placené verzi.
-Dojmu, že se jedná o bezplatnou funkce, pomáhá i to, že v bezplatném rozhraní pro tvorbu formulářů existuje komponenta pro uložení nedokončených vyplnění.
-Až poté, co se ji uživatel pokusí použít, zjistí že je nefunkční.
+Dojmu, že se jedná o bezplatnou funkce, napomáhá i to, že v bezplatném rozhraní pro tvorbu formulářů existují tlačítka pro uložení nedokončených vyplnění.
+Až poté, co se ji uživatel pokusí použít, zjistí že jsou nefunkční.
 Z těchto důvodů bylo nutné implementovat vlastní řešení pro uložení nedokončených vyplnění.
 
 \subsection{Frontend aplikace}\label{subsec:frontend-aplikace}
@@ -306,7 +308,7 @@ Následně navrhneme řešení správy dat o nedokončených vyplnění formulá
 Nyní popíšeme jak data budete ukládat na logické úrovni.
 Logický datový model je zobrazen na obr.~\ref{fig:logical-data-model} a používá notaci \href{https://www.omg.org/spec/UML/2.5.1/PDF}{UML}.
 Nebudeme se zabývat detaily ukládání dat o uživatelích a formulářích, jelikož o to se stará software Form.io.
-Entity, jejichž reprezentací se nechceme zabývat, jsou označeny šedou barvou.
+Entity, jejichž reprezentací se nechceme zabývat, jsou označeny na obrázku tmavě šedou barvou.
 Budeme se zabývat ukládáním úkolů a částečných vyplnění formulářů.
 Zvolíme relační datový model pro modelování těchto dat.
 Třídy v diagramu budou reprezentovat tabulky v databázi.
@@ -315,6 +317,7 @@ Pro stav úkolu budeme potřebovat místo tradičních dvou stavů (dokončený 
 Důvody k tomuto rozhodnutí jsou blíže popsány v sekci~\ref{sec:propojeni-spravy-ukolu-a-spravy-formularu}.
 
 \begin{figure}[H]
+    \centering
     \includegraphics[width=0.9\textwidth]{diagrams/logicalDataModel}
     \caption{Logický datový model}\label{fig:logical-data-model}
 \end{figure}
@@ -332,6 +335,7 @@ Například bychom mohli ukládat pouze koncepty, které byly použity v posledn
 Tím bychom zajistili, že i pokud webhook selže, tak se koncept v systému nezachová déle než 30 dní.
 
 \begin{figure}[H]
+    \centering
     \includegraphics[width=0.9\textwidth]{diagrams/draftsManagement}
     \caption{Správa nedokončených vyplnění dotazníků}\label{fig:drafts-management}
 \end{figure}

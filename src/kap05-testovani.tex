@@ -1,4 +1,4 @@
-\chapter{Zhodnocení testování aplikace}\label{ch:zhodnoceni-testovani-aplikace}
+\chapter{Testování aplikace}\label{ch:testovani-aplikace}
 
 Serverová část aplikace je testována pomocí unit testů.
 Testujeme pouze veřejné rozhraní všech modulů.
@@ -8,6 +8,6 @@ Toto je doporučený přístup object-relational mapping knihovny Prisma, který
 Tento přístup se mi vůbec neosvědčil.
 Kontrola volání konkrétních metod vytváří obrovskou závislost na vnitřní implementaci testovaných metod.
 Testy jsou velmi těžko udržovatelné a navíc poměrně dlouhé a složité.
-Kdybych začínal znovu, tak bych se snažil primárně testovat privátní metody, které obsahují veškerou logiku mimo databázové operace.
+Kdybych začínal znovu, tak bych se testoval i privátní metody, čímž bych se alespoň částečně vyhnul nutnosti mockování databáze.
 Přestože tento způsob je také silně závislý na vnitřní implementaci testovaného modulu, tak je udržitelnější a jednodušší na implementaci.
 Pro testování metod obsahující databázové operace bych zvážil použití in-memory databáze\footnote{In-memory databáze je databáze spoléhající primárně na vnitřní paměť pro ukládání dat~\cite{in-memory-db-definition}}.

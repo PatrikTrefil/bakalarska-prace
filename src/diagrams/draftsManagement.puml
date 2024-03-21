@@ -23,9 +23,11 @@ fork
     :Obdrží informaci o úspěšném uložení;
     end
 fork again
+    |Správa formuláře|
     :Informuje o úspěšném uložení;
     |Správa nedokončených vyplnění|
-    :Smaže částečne vyplněný formulář pro daný formulář vlastněný uživatelem;
+    :Smaže částečne vyplněný formulář pro daný formulář\n
+    vlastněný uživatelem;
     end
 
 @enduml

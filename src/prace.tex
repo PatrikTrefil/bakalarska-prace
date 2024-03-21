@@ -56,13 +56,15 @@
 \usepackage{booktabs}       % lepší vodorovné linky v tabulkách
 \usepackage{paralist}       % lepší enumerate a itemize
 \usepackage{xcolor}         % barevná sazba
-\usepackage{hyperref}       % odkazy
-
+% Custom packages
 \usepackage{tcolorbox}
 \usepackage{float}
 \usepackage{enumitem,amssymb}
 \usepackage{tikz}
 \usepackage{tabularx}
+% load hyperref last
+\usepackage{hyperref}       % odkazy
+
 % List with square bullets
 \newlist{todolist}{itemize}{2}
 \setlist[todolist]{label=$\square$}
@@ -182,6 +184,7 @@
 \section{Vstupy pro analýzu požadavků}\label{sec:analyza-pozadavku-prilohy}
 
 \begin{figure}[H]
+    \centering
     \includegraphics[width=0.8\textwidth]{../attachments/ukazkovy-dotaznik}
     \caption{Ukázkový dotazník poskytnutý zadavatelem}\label{fig:ukazkovy-dotaznik}
 \end{figure}
@@ -189,16 +192,19 @@
 \section{Wireframy uživatelského rozhraní}\label{sec:wireframy-uzivatelskeho-rozhrani}
 
 \begin{figure}[H]
+    \centering
     \includegraphics[width=\textwidth]{../attachments/design/zamestnanec/dotazniky-prehled}
     \caption{Přehledová stránka pro definice dotazníků pro zaměstnance}\label{fig:prehled-zamestnanec}
 \end{figure}
 
 \begin{figure}[H]
+    \centering
     \includegraphics[width=\textwidth]{../attachments/design/zamestnanec/dotazniky-vysledky}
     \caption{Stránka s výsledky dotazníků pro zaměstnance}\label{fig:vysledky-zamestnanec}
 \end{figure}
 
 \begin{figure}[H]
+    \centering
     \includegraphics[width=\textwidth]{../attachments/design/uzivatel/ukoly-prehled}
     \caption{Stránka s úkoly pro uživatele}\label{fig:ukoly-prehled}
 \end{figure}

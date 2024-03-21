@@ -86,17 +86,23 @@ Způsob ukládání definic formulářů je totiž různý mezi knihovnami.
 Najít jednu knihovnu pro tvorbu formulářů a jinou nezávislou knihovnu pro vykreslování formulářů se tedy nepovedlo.
 Proto se podíváme na knihovny, které řeší oba problémy.
 
-Největší nadějí byla knihovna \href{https://uniforms.tools/}{uniforms}.
+První zvážená knihovna se nazývá \href{https://uniforms.tools/}{uniforms}.
 Tato knihovna řeší vykreslování formulářů a podporuje několik různých formátů definice formulářů.
 Knihovna navíc není závislá na konkrétním UI frameworku, což je velká výhoda.
 Tato knihovna je vyvíjena firmou \href{https://www.vazco.eu/}{Vazco}.
 Část knihovny, která je určena pro vykreslování formulářů je však součástí placeného produktu.
-Firmu jsem kontaktoval a dostal jsem potvrzení, že můžeme jejich knihovnu pro tento projekt bezplatně použít.
-Hned po obdržení potvrzení však firma přestala reagovat na mé e\babelhyphen{nobreak}maily.
+Firma Vazco byla kontaktována ohledně možnosti možné spolupráce s žádostí o bezplatné využití software pro vykreslování formulářů.
+V odpovědi jsme obdrželi povolení pro bezplatné užití software pro vykreslování formulářů pro tento projekt.
+Po obdržení potvrzení však firma přestala reagovat na veškeré e\babelhyphen{nobreak}maily.
 Navzdory několika dalším pokusům o kontaktování firmy dopadlo toto jednání neúspěšně.
+Část knihovny, která je určena pro vykreslování definic formulářů, je možné použít pouze po individuální dohodě s firmou.
+Vzhledem k neúspěsnoti v jednání s firmou Vazco toto nebylo možné.
+Část knihovny pro definici formulářů využívá vlastní formát pro ukládání definic formulářů.
+Tedy by nebylo možné použít tuto část knihovny společně s jinou knihovnou pro vykreslování formulářů.
+Z těchto důvodů byla tato knihovna vyřazena z výběru.
 
 Další alternativou je knihovna \href{https://formilyjs.org/}{Formily}.
-Formily je open-source projekt, který má přes 10 tisíc hvězdiček \href{https://github.com/alibaba/formily}{v repozitáři na platformě Github}.
+Formily je open-source projekt, který má ke dni 20.\ 3.\ 2023 přes 9 tisíc hvězdiček \href{https://github.com/alibaba/formily}{v repozitáři na platformě Github}.
 Za projektem navíc stojí velká komerční firma \href{https://www.alibaba.com/}{Alibaba}.
 Projekt je aktivně vyvíjen, ale bohužel v době volby technologie nebyla dostupná dokumentace v anglickém jazyce.
 Z důvodu chybějící dokumentace bylo nutné zvolit jinou knihovnu.
@@ -111,30 +117,6 @@ Jak konkrétně nástroj použijeme v naší aplikaci bude popsáno v sekci~\ref
 \newcommand{\yes}{\tikzcmark\ Ano}
 \newcommand{\no}{\tikzxmark\ Ne}
 \renewcommand\tabularxcolumn[1]{m{#1}} % vertical centering in X column https://latex.org/forum/viewtopic.php?t=32433
-%\begin{table}[h!]
-%    \centering
-%    \begin{tabularx}{\textwidth}{
-%        | >{\centering\arraybackslash}X
-%        | >{\centering\arraybackslash}X
-%        | >{\centering\arraybackslash}X
-%        | >{\centering\arraybackslash}X
-%        | >{\centering\arraybackslash}X
-%        | >{\centering\arraybackslash}X |
-%    }
-%        \hline
-%        & \textbf{Podmíněné zobrazení} & \textbf{Kvalitní dokumentace} & \textbf{Self-hosting} & \textbf{Nesbírá data o uživatelích} & \textbf{Cena} \\
-%        \hline
-%        \textbf{Form.io} & \yes & \yes & \yes & \yes & \$900 \\
-%        \hline
-%        \textbf{Google formuláře} & \yes & \yes & \no & \no & \$12 na uživatele \\
-%        \hline
-%        \textbf{OpnForm} & \yes & \no & \no & Neznámé & \$0 \\
-%        \hline
-%        \textbf{TypeForm} & \yes & \yes & \no & \no & Neznámé \\
-%        \hline
-%    \end{tabularx}
-%    \caption{Srovnání existujících řešení}
-%\end{table}
 
 \begin{table}[h!]
     \centering
