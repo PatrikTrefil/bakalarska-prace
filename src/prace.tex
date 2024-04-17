@@ -42,15 +42,15 @@
 \usepackage{amsfonts}       % matematické fonty
 \usepackage{amsthm}         % sazba vět, definic apod.
 \usepackage{bbding}         % balíček s nejrůznějšími symboly
-			    % (čtverečky, hvězdičky, tužtičky, nůžtičky, ...)
+% (čtverečky, hvězdičky, tužtičky, nůžtičky, ...)
 \usepackage{bm}             % tučné symboly (příkaz \bm)
 \usepackage{graphicx}       % vkládání obrázků
 \usepackage{fancyvrb}       % vylepšené prostředí pro strojové písmo
 \usepackage{indentfirst}    % zavede odsazení 1. odstavce kapitoly
 \usepackage[numbers]{natbib}         % zajištuje možnost odkazovat na literaturu
-			    % stylem AUTOR (ROK), resp. AUTOR [ČÍSLO]
+% stylem AUTOR (ROK), resp. AUTOR [ČÍSLO]
 \usepackage[nottoc]{tocbibind} % zajistí přidání seznamu literatury,
-                            % obrázků a tabulek do obsahu
+% obrázků a tabulek do obsahu
 \usepackage{icomma}         % inteligetní čárka v matematickém módu
 \usepackage{dcolumn}        % lepší zarovnání sloupců v tabulkách
 \usepackage{booktabs}       % lepší vodorovné linky v tabulkách
@@ -115,10 +115,10 @@
 
 % 3 až 5 klíčových slov (doporučeno), každé uzavřeno ve složených závorkách
 \def\KlicovaSlova{%
-{vývoj software}, {webová aplikace}, {formuláře}
+        {vývoj software}, {webová aplikace}, {formuláře}
 }
 \def\KlicovaSlovaEN{%
-{software development}, {web application}, {forms}
+        {software development}, {web application}, {forms}
 }
 
 %% Balíček hyperref, kterým jdou vyrábět klikací odkazy v PDF,
@@ -132,30 +132,30 @@
 
 %% Titulní strana a různé povinné informační strany
 \begin{document}
-\include{titulka}
+    \include{titulka}
 
 %%% Strana s automaticky generovaným obsahem bakalářské práce
 
-\tableofcontents
+    \tableofcontents
 
 %%% Jednotlivé kapitoly práce jsou pro přehlednost uloženy v samostatných souborech
-\include{uvod}
-\include{kap01-analyza-pozadavku}
-\include{kap02-analyza-existujicich-reseni}
-\include{kap03-navrh}
-\include{kap04-vyvojova-dokumentace}
-\include{kap05-testovani}
-\include{kap06-administratorska-prirucka}
-\include{kap07-uzivatelska-dokumentace}
-\include{kap08-zhodnoceni-vyvoje}
-\include{zaver}
+    \include{kap00-uvod}
+    \include{kap01-analyza-pozadavku}
+    \include{kap02-analyza-existujicich-reseni}
+    \include{kap03-navrh}
+    \include{kap04-vyvojova-dokumentace}
+    \include{kap05-testovani}
+    \include{kap06-administratorska-prirucka}
+    \include{kap07-uzivatelska-dokumentace}
+    \include{kap08-zhodnoceni-vyvoje}
+    \include{kap09-zaver}
 
 %%% Seznam použité literatury
-\include{literatura}
+    \include{literatura}
 
 %%% Obrázky v bakalářské práci
 %%% (pokud jich je malé množství, obvykle není třeba seznam uvádět)
-\listoffigures
+    \listoffigures
 
 %%% Tabulky v bakalářské práci (opět nemusí být nutné uvádět)
 %%% U matematických prací může být lepší přemístit seznam tabulek na začátek práce.
@@ -175,39 +175,40 @@
 %%% interaktivní grafy apod.). Elektronické přílohy se nahrávají do SISu a lze
 %%% je také do práce vložit na CD/DVD. Povolené formáty souborů specifikuje
 %%% opatření rektora č. 72/2017.
-\appendix
+    \appendix
 
 
-\chapter{Přílohy}\label{ch:prilohy}
+    \chapter{Přílohy}\label{ch:prilohy}
 
 
-\section{Vstupy pro analýzu požadavků}\label{sec:analyza-pozadavku-prilohy}
+    \section{Vstupy pro analýzu požadavků}\label{sec:analyza-pozadavku-prilohy}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{../attachments/ukazkovy-dotaznik}
-    \caption{Ukázkový dotazník poskytnutý zadavatelem}\label{fig:ukazkovy-dotaznik}
-\end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../attachments/ukazkovy-dotaznik}
+        \caption{Ukázkový dotazník poskytnutý zadavatelem}\label{fig:ukazkovy-dotaznik}
+    \end{figure}
 
-\section{Wireframy uživatelského rozhraní}\label{sec:wireframy-uzivatelskeho-rozhrani}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{../attachments/design/zamestnanec/dotazniky-prehled}
-    \caption{Přehledová stránka pro definice dotazníků pro zaměstnance}\label{fig:prehled-zamestnanec}
-\end{figure}
+    \section{Wireframy uživatelského rozhraní}\label{sec:wireframy-uzivatelskeho-rozhrani}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{../attachments/design/zamestnanec/dotazniky-vysledky}
-    \caption{Stránka s výsledky dotazníků pro zaměstnance}\label{fig:vysledky-zamestnanec}
-\end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{../attachments/design/zamestnanec/dotazniky-prehled}
+        \caption{Přehledová stránka pro definice dotazníků pro zaměstnance}\label{fig:prehled-zamestnanec}
+    \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{../attachments/design/uzivatel/ukoly-prehled}
-    \caption{Stránka s úkoly pro uživatele}\label{fig:ukoly-prehled}
-\end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{../attachments/design/zamestnanec/dotazniky-vysledky}
+        \caption{Stránka s výsledky dotazníků pro zaměstnance}\label{fig:vysledky-zamestnanec}
+    \end{figure}
 
-\openright
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{../attachments/design/uzivatel/ukoly-prehled}
+        \caption{Stránka s úkoly pro uživatele}\label{fig:ukoly-prehled}
+    \end{figure}
+
+    \openright
 \end{document}

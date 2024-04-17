@@ -48,7 +48,7 @@ Pro naše účely tedy Google Formuláře požadavek na uložení částečně v
 Nevýhodou Google Formulářů je, že neumožňují přizpůsobení vzhledu formulářů.
 Další nevýhodou je, že Google Formuláře sbírají data o uživatelích, kteří formulář vyplňují.
 Google Formuláře nenabízejí variantu s hostováním na vlastní infrastruktuře.
-Cena za tento produkt ke dni 20.~3.~2023 je \$12 na uživatele měsíčně.
+Produkt je zdarma pro osobní použití, ale jinak stojí ke dni 20.~3.~2023 \$12 na uživatele měsíčně.
 
 \section*{Form.io}\label{sec:formio}
 
@@ -63,7 +63,7 @@ Dle \href{https://form.io/pricing}{ceníku} ke dni 20.~3.~2023 varianta s hostov
 
 \section*{OpnForm}\label{sec:opnform}
 
-\href{https://opnform.com/}{OpnForm} je open-source řešení, které je aktivně vyvíjeno.
+\href{https://opnform.com/}{OpnForm} je open-source řešení správy formulářů, které je aktivně vyvíjeno.
 Je to poměrně mladý projekt, který byl založen v září roku 2022.
 Projekt nemá ke dni 13.~3.~2023 žádnou dokumentaci ani ceník.
 Tedy nelze posoudit, zda-li splňuje všechny požadavky zadavatele.
@@ -105,18 +105,19 @@ Další alternativou je knihovna \href{https://formilyjs.org/}{Formily}.
 Formily je open-source projekt, který má ke dni 20.\ 3.\ 2023 přes 9 tisíc hvězdiček \href{https://github.com/alibaba/formily}{v repozitáři na platformě Github}.
 Za projektem navíc stojí velká komerční firma \href{https://www.alibaba.com/}{Alibaba}.
 Projekt je aktivně vyvíjen, ale bohužel v době volby technologie nebyla dostupná dokumentace v anglickém jazyce.
-Z důvodu chybějící dokumentace bylo nutné zvolit jinou knihovnu.
+Z důvodu chybějící dokumentace nebylo možné ověřit, zda-li knihovna splňuje všechny požadavky zadavatele.
+Proto byla tato knihovna vyřazena z výběru.
 
 \section*{Závěr}\label{sec:zaver-analyzy-existujicich-reseni}
 
 Nepodařilo se najít žádnou vhodnou kombinaci knihoven, která by alespoň částečně řešila náš problém.
 Vlastnosti nalezených služeb jsou shrnuty v tabulce~\ref{tab:srovnani-existujicich-reseni}.
 Jak je vidět z tabulky, tak jediným nástrojem, který splňuje všechny požadavky zadavatele je Form.io.
-Jak konkrétně nástroj použijeme v naší aplikaci bude popsáno v sekci~\ref{subsec:software-pro-praci-s-formulari}.
+Použijeme tedy službu Form.io pro správu formulářů.
+Jak konkrétně tento software použijeme v naší aplikaci bude popsáno v sekci~\ref{subsec:software-pro-praci-s-formulari}.
 
 \newcommand{\yes}{\tikzcmark\ Ano}
 \newcommand{\no}{\tikzxmark\ Ne}
-\renewcommand\tabularxcolumn[1]{m{#1}} % vertical centering in X column https://latex.org/forum/viewtopic.php?t=32433
 
 \begin{table}[h!]
     \centering

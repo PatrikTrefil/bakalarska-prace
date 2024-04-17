@@ -1,6 +1,7 @@
 @startuml
 skinparam dpi 300
 skinparam defaultFontSize 30
+skinparam defaultTextAlignment center
 
 |Uživatel|
 |Správa formuláře|
@@ -9,25 +10,24 @@ skinparam defaultFontSize 30
 |Uživatel|
 start
 
-:Částečně vyplní formulář;
+:Částečně vyplní\nformulář;
 |Správa formuláře|
-:Uloží částečně vyplněný formulář;
+:Uloží částečně\nvyplněný formulář;
 |Uživatel|
-:Dokončí vyplnění formuláře;
-:Odešle vyplněný formulář;
+:Dokončí vyplnění\nformuláře;
+:Odešle vyplněný\nformulář;
 |Správa formuláře|
 :Uloží vyplněný formulář;
 fork
-    :Informuje o úspěšném uložení;
+    :Informuje o\núspěšném uložení;
     |Uživatel|
-    :Obdrží informaci o úspěšném uložení;
+    :Obdrží informaci\no úspěšném uložení;
     end
 fork again
     |Správa formuláře|
-    :Informuje o úspěšném uložení;
+    :Informuje o\núspěšném uložení;
     |Správa nedokončených vyplnění|
-    :Smaže částečne vyplněný formulář pro daný formulář\n
-    vlastněný uživatelem;
+    :Smaže částečne vyplněný\nformulář pro daný formulář\nvlastněný uživatelem;
     end
 
 @enduml

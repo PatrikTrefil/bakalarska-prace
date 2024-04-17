@@ -1,7 +1,6 @@
 \chapter{Vývojová dokumentace}\label{ch:vyvojova-dokumentace}
 
 Na začátku kapitoly popíšeme zvolené nástroje pro vývoj aplikace (sekce~\ref{sec:nastroje-pro-vyvoj}).
-Následně se budeme věnovat návrhu uživatelského rozhraní formou wireframů (sekce~\ref{sec:navrh-uzivatelskeho-rozhrani}).
 Také jsou zde popsány i řešení menších problémů, které si vyžadují vysvětlení jako je řešení autentizace, soukromí uživatelů apod.
 
 
@@ -10,7 +9,7 @@ Také jsou zde popsány i řešení menších problémů, které si vyžadují v
 V této sekci popíšeme nástroje a knihovny a vysvětlíme proč jsme se rozhodli je použít.
 Projekt využívá continuous integration (CI), což je postup, kdy vývojáři projektu často (alespoň denně) integrují své změny do kódu projektu.
 Tyto změny jsou provázeny kontrolní kompilací projektu a testováním, které pomáhají předejít chybám~\cite{ci-fowler}.
-Projekt využívá continous integration konkrétně pro automatizování formátování kódu, statickou analýzu kódu, generování dokumentace a testování.
+Projekt využívá CI konkrétně pro automatizování formátování kódu, statickou analýzu kódu, generování dokumentace a testování.
 Jednotlivé části CI pipeline jsou detailně popsány níže.
 
 \begin{description}
@@ -59,13 +58,6 @@ Jednotlivé části CI pipeline jsou detailně popsány níže.
 \end{description}
 
 
-\section{Návrh uživatelského rozhraní}\label{sec:navrh-uzivatelskeho-rozhrani}
-
-Jak již víme z kapitoly~\ref{ch:analyza-pozadavku} o analýze požadavků, budeme potřebovat navrhnout rozhraní pro plnitele úkolů a také pro terapeuty.
-Předpokládáme, že všichni uživatelé aplikace mají nízké technické dovednosti a proto se budeme snažit navrhnout co nejjednodušší rozhraní.
-Abychom předešli vývoji rozhraní, které by zadavatel nepovažoval za vhodné, tak vytvoříme wireframy, které necháme zadavatelem schválit.
-Výsledné wireframy naleznete v přílohách práce~\ref{sec:wireframy-uzivatelskeho-rozhrani}.
-
 \section{Soukromí uživatelů}\label{sec:soukromi-uzivatelu}
 
 Aplikace pracuje s citlivými daty a proto je pro nás bezpečnost na prvním místě.
@@ -97,6 +89,7 @@ Existuje však výjimka ohledně ukládání vědeckých dat.
 % TODO: ověřit u NUDZ
 Dle vyjádření NUDZ jsou veškerá data, která ukládáme slouží mimo jiné pro vědecké účely.
 
+
 \section{Autentizace}\label{sec:auth}
 
 Jak bylo vysvětleno v sekci~\ref{sec:soukromi-uzivatelu}, tak uživatelé se přihlašují pomocí náhodně generovaného ID a hesla.
@@ -113,6 +106,7 @@ Kontrola práv uživatele při přístupu na ochráněnou stránku se kontrola p
     \includegraphics[width=0.9\textwidth]{diagrams/auth}
     \caption{Komunikace při autentizaci uživatele}\label{fig:auth}
 \end{figure}
+
 
 \section{Konfigurace a modifikace Form.io}\label{sec:konfigurace-a-modifikace-form.io}
 
@@ -174,7 +168,7 @@ Tato podsekce popisuje, jak byl software Form.io nakonfigurován pro náš proje
 Form.io pracuje s konceptem zdrojů, které lze zjednodušeně chápat jako kolekce objektů v databázi.
 Detailní popis konceptu lze nalézt v \href{https://help.form.io/userguide/resources}{dokumentaci Form.io}.
 Pro nás je nyní důležité, že každý objekt patří do právě jednoho zdroje.
-Toto omezení platí, protože používám bezplatnou verzi Form.io.
+Toto omezení platí, protože používáme bezplatnou verzi Form.io.
 Uživatelé jsou reprezentováni jako objekty patřící do nějakého zdroje.
 Každý zdroj je svázán se sadou rolí.
 Role uživatele jsou tedy určeny zdrojem, kterému uživatel patří.
@@ -184,6 +178,7 @@ Abychom předešli zmatení uživatelů, v uživatelském rozhraní vždy k ID p
 
 Alternativně bychom mohli každé existující kombinaci rolí přidat prefix do ID uživatele.
 Toto řešení však značně zhoršuje uživatelskou přívětivost a proto nebylo použito.
+
 
 \section{Propojení správy úkolů a správy formulářů}\label{sec:propojeni-spravy-ukolu-a-spravy-formularu}
 

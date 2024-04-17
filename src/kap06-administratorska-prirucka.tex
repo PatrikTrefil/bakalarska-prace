@@ -16,17 +16,16 @@ Tento repozitář používá \href{https://git-scm.com/book/en/v2/Git-Tools-Subm
 Jedná se o repozitář \href{https://github.com/PatrikTrefil/mental-health-monitoring-platform-formio}{mental-health-monitoring-platform-formio}, což je fork repozitáře \href{https://github.com/formio/formio}{formio}, který obsahuje oficiální zdrojový kód platformy Form.io.
 Pro instalaci aplikace je potřeba naklonovat repozitář \href{https://github.com/PatrikTrefil/mental-health-monitoring-platform.git}{mental-health-monitoring-platform} včetně submodulů, což lze provést následujícím příkazem:
 
-% TODO: příkazy obsahující link na repozitář se nevlezou na řádek
 \begin{verbatim}
 git clone --recurse-submodules \
-    https://github.com/PatrikTrefil/mental-health-monitoring-platform.git
+  https://github.com/PatrikTrefil/mental-health-monitoring-platform.git
 \end{verbatim}
 
 Klonování a inicializaci submodulů lze provést i pomocí následující sekvence příkazů:
 
 \begin{verbatim}
 git clone \
-    https://github.com/PatrikTrefil/mental-health-monitoring-platform.git
+  https://github.com/PatrikTrefil/mental-health-monitoring-platform.git
 cd mental-health-monitoring-platform
 git submodule init # initialize configuration file
 git submodule update # fetch submodule data
@@ -79,8 +78,8 @@ Pro spuštění aplikace ve vývojovém módu použijte následující příkaz:
 
 \begin{verbatim}
 docker compose --file ./docker-compose.yml \
-    --file ./docker-compose.dev.yml \
-    up
+  --file ./docker-compose.dev.yml \
+  up
 \end{verbatim}
 
 Po spuštění příkazu bude aplikace dostupná na \texttt{\href{http://localhost:8080}{http://localhost:8080}}.
@@ -109,7 +108,11 @@ Pokud máte k dispozici příkaz \href{https://curl.se/}{\texttt{curl}}, tak už
 Skript se spustí v interaktivním módu, pokud uživatel neposkytne všechny parametry programu.
 Parametry programu lze take předat pomocí argumentů programu.
 Parametry programu se odvíjí od konfigurace definované při instalaci aplikace (viz sekce~\ref{sec:instalace}).
-Dokumentaci nástroje lze získat pomocí příkazu \verb|./create_form_manager.sh --help|.
+Dokumentaci nástroje lze získat pomocí příkazu:
+
+\begin{verbatim}
+./create_form_manager.sh --help
+\end{verbatim}
 
 
 \section{Správa aplikace}\label{sec:sprava-aplikace}

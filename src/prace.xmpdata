@@ -3,6 +3,6 @@
 \Author{Patrik Trefil}
 \Title{Platforma pro monitorování mentálního zdraví}
 \Keywords{vývoj software\sep webová aplikace\sep formuláře}
-% TODO: vložit abstrak práce zde
-\Subject{Abstrakt práce}
+% TODO: vložit aktuální abstrakt práce zde
+\Subject{V Národním ústavu duševního zdraví vznikla potřeba pro digitalizaci výzkumné a terapeutické praxe. Práce se zabývá tvorbou webové platformy, která poskytuje terapeutům nástroje pro spolupráci s pacienty a klienty mimo běžné terapeutické sezení. V rámci této práce byla implementována spolupráce formou dotazníků. Tato funkcionalita lze použít i pro sběr dat pro výzkumné účely. Aplikace byla vhodně navržena pro jednoduchou rozšiřitelnost o další formy spolupráce. Aplikace je dobře připravena pro zkvalitnění poskytované péče a byla úspěšně předána zadavateli.}
 \Publisher{Univerzita Karlova}

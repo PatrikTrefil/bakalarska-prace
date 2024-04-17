@@ -1,8 +1,9 @@
 \chapter{Návrh aplikace}\label{ch:navrh-aplikace}
 
-Tato kapitola popisuje proces návrhu aplikace.
+Tato kapitola popisuje, jak byla aplikace navržena.
 První popíšeme jakým způsobem jsme se rozhodli řešit požadavky zadavatele v sekci~\ref{sec:navrh-reseni}.
 Poté navrhneme architekturu systému v sekci~\ref{sec:architektura}.
+Následně se budeme věnovat návrhu uživatelského rozhraní formou wireframů (sekce~\ref{sec:navrh-uzivatelskeho-rozhrani}).
 Následně popíšeme výběr technologií (sekce~\ref{sec:vyber-technologii}) a způsob ukládání dat v systému (sekce~\ref{sec:ukladani-dat}).
 
 
@@ -27,8 +28,10 @@ Naším cílem bude vybrat software, který nám dá dostatek flexibility a zár
 \section{Architektura}\label{sec:architektura}
 
 Nyní navrhneme architekturu aplikace.
-Pro její popis použijeme \href{https://c4model.com/}{C4 model}.
-Popíšeme 3 úrovně abstrakce - kontext, kontejnery a komponenty.
+Budeme využívat architekturu typu klient-server.
+Klientem bude webová aplikace, která bude spuštěna ve webovém prohlížeči uživatele.
+Serverová část bude mít distribuovanou architekturu, jelikož bude využívat službu Form.io.
+Pro její popis použijeme \href{https://c4model.com/}{C4 model} a zaměříme se na 3 úrovně abstrakce - kontext, kontejnery a komponenty.
 
 \subsection{Kontext}\label{subsec:kontext}
 
@@ -130,16 +133,24 @@ Implementace dovoluje i nasazení těchto komponent na různé instance databáz
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{diagrams/deployment}
+    \includegraphics[width=0.95\textwidth]{diagrams/deployment}
     \caption{Diagram nasazení}\label{fig:deployment}
 \end{figure}
+
+
+\section{Návrh uživatelského rozhraní}\label{sec:navrh-uzivatelskeho-rozhrani}
+
+Jak již víme z kapitoly~\ref{ch:analyza-pozadavku} o analýze požadavků, budeme potřebovat navrhnout rozhraní pro plnitele úkolů a také pro terapeuty.
+Předpokládáme, že všichni uživatelé aplikace mají nízké technické dovednosti a proto se budeme snažit navrhnout co nejjednodušší rozhraní.
+Abychom předešli vývoji rozhraní, které by zadavatel nepovažoval za vhodné, tak vytvoříme wireframy, které necháme zadavatelem schválit.
+Výsledné wireframy naleznete v přílohách práce~\ref{sec:wireframy-uzivatelskeho-rozhrani}.
 
 
 \section{Výběr technologií}\label{sec:vyber-technologii}
 
 V této sekci se budeme zabývat výběrem konkrétních technologií, které budeme používat při vývoji aplikace.
 Chceme volit populární a vyspělé nástroje, jelikož programátoři, kteří budou aplikaci v budoucnu rozšiřovat, je pravděpodobně budou znát.
-Zároveň také chceme co nejméně komplikovat workflow a deployment, abychom zbytečně nezvyšovali nároky na programátory, kteří budou aplikaci v budoucnu rozšiřovat.
+Zároveň také chceme co nejméně komplikovat workflow a nasazení, abychom zbytečně nezvyšovali nároky na programátory, kteří budou aplikaci v budoucnu rozšiřovat.
 Budeme vybírat primárně z open-source řešení.
 
 \subsection{Software pro práci s formuláři}\label{subsec:software-pro-praci-s-formulari}

@@ -1,5 +1,9 @@
 @startuml
 skinparam dpi 300
+skinparam DefaultFontSize 25
+!$STEREOTYPE_FONT_SIZE = 20
+!$TECHN_FONT_SIZE = 20
+!$ARROW_FONT_SIZE = 20
 
 !include ./lib/C4_Deployment.puml
 !include ./lib/C4_Container.puml

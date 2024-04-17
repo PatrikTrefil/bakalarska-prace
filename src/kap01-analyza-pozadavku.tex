@@ -1,26 +1,28 @@
 \chapter{Analýza požadavků}\label{ch:analyza-pozadavku}
 
 Pro analýzu požadavků proběhlo několik online schůzek s pracovníky Národního ústavu duševního zdraví.
-Iniciativa k spolupráci přišla z mé strany a byla přijata s otevřeností.
 Na úvodní schůzce se probíraly možnosti využití výpočetních technologií v oblasti duševního zdraví.
 Na této schůzce jsme se shodli na tvorbě platformy pro digitalizaci práce s dotazníky.
 Na následujících schůzkách byly zadavateli zadavateli kladeny otevřené otázky týkající se představ o fungování aplikace.
 Také byly získávány informace o stakeholderech, omezeních a IT infrastruktuře zadavatele.
 Podařilo se také získat ukázkový dotazník, který by měla aplikace zvládnout zpracovat.
 Ukázkový dotazník lze najít v příloze~\ref{fig:ukazkovy-dotaznik}.
+
 V této kapitole se první podíváme na stakeholdery a jejich zájmy, což je popsáno v sekci~\ref{sec:stakeholderi}.
 Výsledkem úvodních schůzek byla neformální specifikace požadavků, která je v sekci~\ref{sec:specifikace}.
 Doména se ukázala býti poměrně složitá a bylo důležité detailně zdokumentovat její fungování.
 Dalším krokem bylo tedy vytvoření doménového modelu, který dostal formu diagramu a textového souboru definic entit.
 Tato dokumentace nám poskytla společný jazyk pro další komunikaci a je zachycena v sekci~\ref{sec:domenovy-model}.
 V průběhu tvorby modelu došlo k ujasnění některých požadavků a fungování domény.
-Časem byla neformální specifikace převedena do formy user stories, které jsou sepsány v sekci~\ref{sec:user-stories}.
+Časem byly funkční požadavky z neformální specifikace převedeny do formy user stories, které jsou sepsány v sekci~\ref{sec:user-stories}.
 Tato konverze byla provedena zejména pro lepší organizaci vývoje softwaru.
 
 
 \section{Stakeholdeři a jejich zájmy}\label{sec:stakeholderi}
 
 Tato sekce popisuje jednotlivé zájmy stakeholderů, které byly identifikovány během analýzy požadavků.
+Stakeholdeři jsou rozděleni do několika skupin.
+Skupina uživatelů aplikace je rozdělena i na podskupiny pro zachycení většího detailu.
 Uživatelské role jsou podrobněji definovány a popsány dále v sekci~\ref{sec:specifikace}.
 
 \subsection*{Uživatelé aplikace}\label{subsec:uzivatele-aplikace}
@@ -96,33 +98,12 @@ Uživatelské role jsou podrobněji definovány a popsány dále v sekci~\ref{se
 Tato sekce obsahuje neformální specifikaci požadavků na aplikaci.
 Soupis požadavků byl od začátku vývoje organizován do kategorií.
 Organizace požadavků byla ponechána v původní podobě.
+Požadavky jsou rozděleny do čtyř kategorií: funkční požadavky, nefunkční požadavky, nasazení a monitoring.
 Pro účely tohoto dokumenty byly požadavkům přiřazeny identifikátory.
 Funkční požadavky jsou označeny R-FR-ID a nefunkční požadavky R-NR-ID, kde ID je číslo požadavku z dané kategorie.
+Mnoho požadavků pracuje s uživatelskými rolemi, které jsou definovány v požadavku~\ref{itm:r-nr-1}.
 Specifikace vznikla v rané fázi vývoje a některé požadavky byly později změněny.
 Změny jsou popsány v sekci~\ref{subsec:zmeny-specifikace}.
-
-\begin{description}
-    \item[\namedlabel{itm:r-nr-1}{R-NR-1}]
-    V systému vystupují následující skupiny uživatelů:
-
-    \begin{itemize}
-        \item
-        Plnitel = pacient/klient
-
-        \item
-        Zaměstnanci NUDZ
-
-        \begin{itemize}
-            \item
-            Správce dotazníků = terapeut/výzkumník
-            \item
-            Zadavatel dotazníků = terapeut/výzkumník
-        \end{itemize}
-        \item
-        Technická podpora
-    \end{itemize}
-
-\end{description}
 
 \subsection{Funkční požadavky}\label{subsec:funkcni-pozadavky}
 \begin{description}
@@ -221,11 +202,30 @@ Změny jsou popsány v sekci~\ref{subsec:zmeny-specifikace}.
 \subsection{Nefunkční požadavky}\label{subsec:nefunkcni-pozadavky}
 
 \begin{description}
+    \item[\namedlabel{itm:r-nr-1}{R-NR-1}]
+    V systému vystupují uživatelé s následujícími rolemi:
+
+    \begin{itemize}
+        \item
+        Plnitel = pacient/klient
+
+        \item
+        Zaměstnanci NUDZ
+
+        \begin{itemize}
+            \item
+            Správce dotazníků = terapeut/výzkumník
+            \item
+            Zadavatel dotazníků = terapeut/výzkumník
+        \end{itemize}
+        \item
+        Technická podpora
+    \end{itemize}
     \item[R-NR-2]
     Uživatelské rozhraní by mělo být vhodné pro uživatele s nízkými technickými znalostmi.
     \item[R-NR-3]
     K programu by měla být dodána uživatelská a technická dokumentace.
-    \item[[\namedlabel{itm:r-nr-4}{R-NR-4}]
+    \item[\namedlabel{itm:r-nr-4}{R-NR-4}]
     Aplikace bude maximalizovat použití již existujícího software, pro snížení ceny, časové náročnosti a zjednodušení následné údržby.
 \end{description}
 
@@ -406,13 +406,11 @@ context o1, o2: Osoba inv o1.ID = o2.ID implies o1 = o2
 
 Zde je seznam požadavků ve sjednocené formě.
 Požadavky mají formu \uv{Jako \textless{}role\textgreater{} chci \textless{}funkčnost\textgreater{}, abych/protože/aby \textless{}cíl\textgreater{}}.
-Každý požadavek má u sebe i cíl, jelikož to může být důležité pro porozumění požadavku a může ovlivnit způsob implementace.
-Jedná se o přepis neformální specifikace ze sekce~\ref{sec:specifikace}.
-Role uživatelů jsou definovány v požadavku~\ref{itm:r-nr-1}.
+Každý požadavek má u sebe i cíl, jelikož může být důležitý pro porozumění požadavku a může ovlivnit způsob implementace.
+Jedná se o přepis funkčních požadavků z neformální specifikace ze sekce~\ref{sec:specifikace}.
+Role uživatelů jsou definovány v nefunkčním požadavku~\ref{itm:r-nr-1} ve specifikaci.
 Tato sekce pracuje již s změnami specifikace, které byly popsány v sekci~\ref{subsec:zmeny-specifikace}.
 Každá položka má identifikátor ve formátu R-US-ID, kde ID je číslo položky.
-
-\subsection{Funkční požadavky}\label{subsec:user-stories-funkcni-pozadavky}
 
 \begin{description}
     \item[R-US-1]
@@ -457,17 +455,6 @@ Každá položka má identifikátor ve formátu R-US-ID, kde ID je číslo polo�
     Jako správce dotazníků chci být schopen upravovat text již existující otázky, abych mohl opravit překlepy nebo vylepšit formulaci otázky.
     \item[R-US-21]
     Jako plnitel chci měnit heslo svého účtu, abych zajistil bezpečnost svého účtu.
-\end{description}
-
-\subsection{Nefunkční požadavky}\label{subsec:user-stories-nefunkcni-pozadavky}
-
-\begin{description}
-    \item[R-US-22]
-    Jako plnitel chci, aby aplikace byla v Českém jazyce, ale byla připravena na internacionalizaci, abych mohl používat aplikaci v jazyce, kterému rozumím.
-    \item[R-US-23]
-    Jako plnitel chci, aby uživatelské rozhraní bylo vhodné pro uživatele s malými technickými znalostmi, abych mohl snadno používat aplikaci bez ohledu na své technické dovednosti.
-    \item[R-US-24]
-    Jako provozovatel systému chci, aby software maximalizoval použití již existujícího software, aby byla následné údržba jednodušší.
 \end{description}
 
 \subsection{Volitelné}\label{subsec:volitelne}
