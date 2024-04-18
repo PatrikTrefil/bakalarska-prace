@@ -101,6 +101,7 @@ Organizace požadavků byla ponechána v původní podobě.
 Požadavky jsou rozděleny do čtyř kategorií: funkční požadavky, nefunkční požadavky, nasazení a monitoring.
 Pro účely tohoto dokumenty byly požadavkům přiřazeny identifikátory.
 Funkční požadavky jsou označeny R-FR-ID a nefunkční požadavky R-NR-ID, kde ID je číslo požadavku z dané kategorie.
+Požadavky na monitoring jsou označeny R-MR-ID a požadavky na nasazení R-DR-ID, kde ID je opět číslo požadavku z dané kategorie.
 Mnoho požadavků pracuje s uživatelskými rolemi, které jsou definovány v požadavku~\ref{itm:r-nr-1}.
 Specifikace vznikla v rané fázi vývoje a některé požadavky byly později změněny.
 Změny jsou popsány v sekci~\ref{subsec:zmeny-specifikace}.
@@ -232,9 +233,9 @@ Změny jsou popsány v sekci~\ref{subsec:zmeny-specifikace}.
 \subsection{Nasazení}\label{subsec:deployment}
 
 \begin{description}
-    \item[R-NR-5]
+    \item[R-DR-1]
     Aplikace bude spouštěna v kontejneru.
-    \item[R-NR-6]
+    \item[R-DR-2]
     Aplikace poběží na serveru s následujícími parametry: (lze domluvit navýšení v případě potřeby)
 
     \begin{itemize}
@@ -250,7 +251,7 @@ Změny jsou popsány v sekci~\ref{subsec:zmeny-specifikace}.
 \subsection{Monitoring}\label{subsec:monitoring}
 
 \begin{description}
-    \item[R-NR-7]
+    \item[R-MR-1]
     Bude k dispozici rozhraní pro monitorování aplikace.
 \end{description}
 
@@ -260,7 +261,7 @@ V průběhu vývoj se ukázalo, že některé požadavky popsané v sekci~\ref{s
 Tato podsekce popisuje všechny provedené změny.
 
 Původní specifikace pracovala s možností nastavení viditelnosti vyhodnocení dotazníků.
-Toto bylo pokryto požadavky \ref{itm:r-fr-15}, \ref{itm:r-fr-16} a \ref{itm:r-fr-17}.
+Toto bylo pokryto požadavky~\ref{itm:r-fr-15}, \ref{itm:r-fr-16} a \ref{itm:r-fr-17}.
 Možnost s nastavením viditelnosti na základě splnění podmínky byla zavrhnuta z následujícího důvodu.
 Pokud by plnitel neviděl vyhodnocení dotazníku, tak by si mohl odvodit, že výsledek dotazníku je nepříznivý.
 Toto zjištění by mohlo mít negativní vliv na jeho zdravotní stav.
