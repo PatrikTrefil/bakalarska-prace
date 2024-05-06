@@ -45,7 +45,7 @@ Začneme kontextovou vrstvou (Obr.~\ref{fig:architecture-context}), která zobra
 
 \subsection{Kontejnery}\label{subsec:kontejnery}
 
-Nyní popíšeme kontejnery, které tvoří náš systém, a vztahy mezi nimi (Obr.~\ref{fig:architecture-containers}).
+Nyní popíšeme dekompozici našeho systému na kontejnery a vztahy mezi nimi (Obr.~\ref{fig:architecture-containers}).
 Aplikace byla rozdělena na kontejnery primárně na základě logické souvislosti funkcionalit, které poskytují.
 U většiny kontejnerů je zřejmý jejich účel.
 Některé však vyžadují bližší popis, který se nachází níže.
@@ -112,7 +112,7 @@ Finální implementace byla realizována vytvoření tRPC routeru v rámci NextJ
 
 \subsection{Komponenty}\label{subsec:komponenty}
 
-Dělení na komponenty budeme popisovat pouze pro kontejner \textit{Webová aplikace}.
+Dělení na komponenty popíšeme pouze pro kontejner \textit{Webová aplikace}.
 Tento kontejner rozdělíme na zaměstnaneckou a uživatelskou sekci (Obr.~\ref{fig:architecture-component-web-application}).
 
 \begin{figure}[H]
@@ -232,7 +232,7 @@ Níže jsou popsány zvolené technologie, knihovny a odůvodnění jejich použ
     \item[\href{https://react-hook-form.com/}{React hook form}]
     Aplikace bude obsahovat formuláře pro přihlášení, správu uživatelů, tvorbu úkolů a mnoho dalších.
     Formuláře lze tvořit pomocí přímé interakce s prvky HTML dokumentu.
-    S rozhraními těchto prvků se však špatně pracuje například protože používají pro všechny hodnoty typ \texttt{string}.
+    Rozhraní těchto prvků je však špatně navrženo například proto, že používají pro všechny hodnoty typ \texttt{string}.
     Pro lepší práci s formuláři využijeme knihovnu React hook form.
     Díky této knihovně budeme moci snadno validovat formuláře, získávat hodnoty formulářů se správnými typy a zobrazovat chybové hlášky.
     Lze zvážit také knihovnu \href{https://formik.org}{Formik}.

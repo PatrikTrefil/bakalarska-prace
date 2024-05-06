@@ -37,19 +37,19 @@ Syntax konfiguračního souboru je popsána v \href{https://docs.docker.com/comp
 Ukázkovou konfiguraci najdete v \texttt{.env.example}.
 Zde je seznam proměnných prostředí, které je potřeba nastavit, a jejich význam:
 
-\begin{description}
-    \item[MONGO\_INITDB\_ROOT\_USERNAME] obsahuje uživatelské jméno pro přihlášení do MongoDB jako superuživatel (root).
-    \item[MONGO\_INITDB\_ROOT\_PASSWORD] obsahuje heslo pro do MongoDB jako superuživatel (root).
-    \item[FORMIO\_NODE\_CONFIG] obsahuje konfigurace Form.io aplikace.
+\begin{description}[style=nextline]
+    \item[MONGO\_INITDB\_ROOT\_USERNAME] Proměnná obsahuje uživatelské jméno pro přihlášení do MongoDB jako superuživatel (root).
+    \item[MONGO\_INITDB\_ROOT\_PASSWORD] Proměnná obsahuje heslo pro do MongoDB jako superuživatel (root).
+    \item[FORMIO\_NODE\_CONFIG] Proměnná obsahuje konfigurace Form.io aplikace.
     Hodnota by měla být ve formátu JSON\@.
     Výchozí hodnoty konfigurace jsou dostupné \href{https://github.com/formio/formio/blob/3.5.x/config/default.json}{zde}.
     Není potřeba nastavit všechny atributy konfiguračního objektu, ale pouze ty, které chceme přepsat.
-    \item[FORMIO\_ROOT\_EMAIL] obsahuje e\babelhyphen{nobreak}mail pro přihlášení do Form.io aplikace jako superuživatel (root).
-    \item[FORMIO\_ROOT\_PASSWORD] obsahuje heslo pro přihlášení do Form.io aplikace jako superuživatel (root).
-    \item[FORMIO\_MONGO\_USER] obsahuje uživatelské jméno pro přístup Form.io apliakace do MongoDB\@.
-    \item[FORMIO\_MONGO\_PASSWORD] obsahuje heslo pro přihlášení uživatele \texttt{FORMIO\_MONGO\_USER} do MongoDB\@.
-    \item[DOMAIN\_NAME] obsahuje doménové jméno, na kterém bude aplikace dostupná (např.\ domena.cz, localhost).
-    \item[NEXTAUTH\_SECRET] obsahuje klíč pro šifrování autentizačních tokenů.
+    \item[FORMIO\_ROOT\_EMAIL] Proměnná obsahuje e\babelhyphen{nobreak}mail pro přihlášení do Form.io aplikace jako superuživatel (root).
+    \item[FORMIO\_ROOT\_PASSWORD] Proměnná obsahuje heslo pro přihlášení do Form.io aplikace jako superuživatel (root).
+    \item[FORMIO\_MONGO\_USER] Proměnná obsahuje uživatelské jméno pro přístup Form.io apliakace do MongoDB\@.
+    \item[FORMIO\_MONGO\_PASSWORD] Proměnná obsahuje heslo pro přihlášení uživatele \texttt{FORMIO\_MONGO\_USER} do MongoDB\@.
+    \item[DOMAIN\_NAME] Proměnná obsahuje doménové jméno, na kterém bude aplikace dostupná (např.\ domena.cz, localhost).
+    \item[NEXTAUTH\_SECRET] Proměnná obsahuje klíč pro šifrování autentizačních tokenů.
 \end{description}
 
 Také je potřeba nainstalovat závislosti pro Form.io aplikaci:
