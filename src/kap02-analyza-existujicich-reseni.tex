@@ -1,14 +1,14 @@
 \chapter{Analýza existujících řešení}\label{ch:analyza-existujicich-reseni-pro-praci-s-formulari}
 
-V době analýzy existujících řešení (od sprna 2022 do září 2022) jsem nenalezl žádné řešení pro online spolupráci terapeutů a pacientů/klientů.
-Pro vyhledávání jsem použil primárně vyhledávač Google.
-Také jsem používal vyhledávání na platformách \href{https://github.com/}{GitHub} a \href{https://about.gitlab.com/}{GitLab}.
-Pro vyhledání jsem použil klíčová slova jako \textit{therapy}, \textit{collaboration}, \textit{software}, \textit{mental health} apod.
+V době analýzy existujících řešení (od sprna 2022 do září 2022) nebylo nalezeno žádné řešení pro online spolupráci terapeutů a pacientů/klientů.
+Pro vyhledávání byl použit primárně vyhledávač Google.
+Také bylo využito vyhledávání na platformách \href{https://github.com/}{GitHub} a \href{https://about.gitlab.com/}{GitLab}.
+Pro vyhledání byla použita klíčová slova jako \textit{therapy}, \textit{collaboration}, \textit{software}, \textit{mental health} apod.
 
 Velkou část aplikace, kterou chceme vyrobit, tvoří systém pro správu formulářů.
-V této kapitole se tedy zaměříme na analýzu existujících řešení pro tvorbu formulářů a sběr dat.
-V kapitole popíšeme nalezené nástroje a jejich výhody a nevýhody.
-Pokud se ukáže, že je některý z nástrojů vhodný pro naše použití, tak jej začleníme do naší aplikace.
+Protože nebylo nalezeno kompletní řešení, v této kapitole se zaměříme na analýzu existujících řešení pro tvorbu formulářů a sběr dat.
+V kapitole popíšeme nalezené řešení a jejich výhody a nevýhody.
+Pokud se ukáže, že je některý z řešení vhodný pro naše použití, tak jej začleníme do naší aplikace.
 
 
 \section{Problematika správy formulářů}\label{sec:problematika-spravy-formularu}
@@ -48,7 +48,7 @@ Pro naše účely tedy Google Formuláře požadavek na uložení částečně v
 Nevýhodou Google Formulářů je, že neumožňují přizpůsobení vzhledu formulářů.
 Další nevýhodou je, že Google Formuláře sbírají data o uživatelích, kteří formulář vyplňují.
 Google Formuláře nenabízejí variantu s hostováním na vlastní infrastruktuře.
-Produkt je zdarma pro osobní použití, ale jinak stojí ke dni 20.~3.~2023 \$12 na uživatele měsíčně.
+Produkt je zdarma pro osobní použití, ale jinak stojí ke dni 20.~3.~2023 \$12 na uživatele, který formuláře spravuje, měsíčně.
 
 \section*{Form.io}\label{sec:formio}
 
@@ -66,23 +66,26 @@ Dle \href{https://form.io/pricing}{ceníku} ke dni 20.~3.~2023 varianta s hostov
 \href{https://opnform.com/}{OpnForm} je open-source řešení správy formulářů, které je aktivně vyvíjeno.
 Je to poměrně mladý projekt, který byl založen v září roku 2022.
 Projekt nemá ke dni 13.~3.~2023 žádnou dokumentaci ani ceník.
-Tedy nelze posoudit, zda-li splňuje všechny požadavky zadavatele.
+Tedy nelze posoudit, zda-li splňuje požadavky zadavatele.
 
 \section*{Typeform}\label{sec:typeform}
 
 \href{https://www.typeform.com/}{Typeform} je úspěšný nástroj pro tvorbu online formulářů.
 Nástroj je velmi vyspělý a poskytuje mnoho funkcí včetně větvení formulářů na základě předchozích odpovědí.
-Typeform také nenabízí variantu s hostováním na vlastní infrastruktuře.
-Typeform neumožňuje sledování chování uživatele~\cite{user-tracking-typeform}.
+Typeform nenabízí variantu s hostováním na vlastní infrastruktuře.
+Tento software také neumožňuje sledování chování uživatele~\cite{user-tracking-typeform}.
 Typeform sbírá data o uživatelích, kteří formulář vyplňují~\cite{user-data-typeform}.
-Typeform umožňuje uložit částečně vyplněný formulář a dokončit vyplnění později, ale pouze v rámci jednoho zařízení~\cite{save-and-return-typeform}.
+Nástroj umožňuje uložit částečně vyplněný formulář a dokončit vyplnění později, ale pouze v rámci jednoho zařízení~\cite{save-and-return-typeform}.
 V případě potřeby více než 5 uživatelských účtů záleží cena na dohodě.
 
 \section*{Knihovny pro práci s formuláři}\label{sec:knihovny-pro-praci-s-formulari}
 
 Pro práci s formuláři existuje mnoho knihoven.
-První problém je interoperabilita mezi knihovnami.
-Způsob ukládání definic formulářů je totiž různý mezi knihovnami.
+Knihovný buď řeší uživatelské rozhraní pro tvorbu formulářů, vykreslování formulářů nebo obě tyto části.
+
+Může se zdát, že by bylo možné použít jednu knihovnu pro tvorbu formulářů a jinou pro vykreslování formulářů.
+Problémem však je interoperabilita mezi knihovnami.
+Způsob ukládání definic formulářů je totiž různý.
 Najít jednu knihovnu pro tvorbu formulářů a jinou nezávislou knihovnu pro vykreslování formulářů se tedy nepovedlo.
 Proto se podíváme na knihovny, které řeší oba problémy.
 
@@ -110,10 +113,13 @@ Proto byla tato knihovna vyřazena z výběru.
 
 \section*{Závěr}\label{sec:zaver-analyzy-existujicich-reseni}
 
-Nepodařilo se najít žádnou vhodnou kombinaci knihoven, která by alespoň částečně řešila náš problém.
+Nepodařilo se nám najít žádnou vhodnou kombinaci knihoven, která by alespoň částečně řešila náš problém.
 Vlastnosti nalezených služeb jsou shrnuty v tabulce~\ref{tab:srovnani-existujicich-reseni}.
-Jak je vidět z tabulky, tak jediným nástrojem, který splňuje všechny požadavky zadavatele je Form.io.
-Použijeme tedy službu Form.io pro správu formulářů.
+Jak je vidět z tabulky, tak jediným řešením, který splňuje všechny požadavky zadavatele je Form.io.
+Toto řešení je však poměrně drahé a proto byl zvolen kompromis.
+Jádro Form.io je open-source a kromě několika málo funkcí je možné jej využít zdarma.
+Jádro tedy využijeme jako základ našeho řešení a doplníme jej o chybějící funkce.
+Pokud bude náš software úspěšný a bude potřeba mít k dispozici všechny funkce Form.io, tak je možné dokoupit placenou verzi.
 Jak konkrétně tento software použijeme v naší aplikaci bude popsáno v sekci~\ref{subsec:software-pro-praci-s-formulari}.
 
 \newcommand{\yes}{\tikzcmark\ Ano}

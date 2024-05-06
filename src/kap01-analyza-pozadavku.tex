@@ -3,25 +3,25 @@
 Pro analýzu požadavků proběhlo několik online schůzek s pracovníky Národního ústavu duševního zdraví.
 Na úvodní schůzce se probíraly možnosti využití výpočetních technologií v oblasti duševního zdraví.
 Na této schůzce jsme se shodli na tvorbě platformy pro digitalizaci práce s dotazníky.
-Na následujících schůzkách byly zadavateli zadavateli kladeny otevřené otázky týkající se představ o fungování aplikace.
+Na následujících schůzkách byly zadavateli kladeny otevřené otázky týkající se představ o fungování aplikace.
 Také byly získávány informace o stakeholderech, omezeních a IT infrastruktuře zadavatele.
 Podařilo se také získat ukázkový dotazník, který by měla aplikace zvládnout zpracovat.
 Ukázkový dotazník lze najít v příloze~\ref{fig:ukazkovy-dotaznik}.
 
 V této kapitole se první podíváme na stakeholdery a jejich zájmy, což je popsáno v sekci~\ref{sec:stakeholderi}.
-Výsledkem úvodních schůzek byla neformální specifikace požadavků, která je v sekci~\ref{sec:specifikace}.
+Výsledkem úvodních schůzek byla specifikace požadavků, která je v sekci~\ref{sec:specifikace}.
+První dvě sekce mají neformální charakter a jsou zformalizovány v sekci~\ref{sec:user-stories}.
+Tato konverze byla provedena zejména pro lepší organizaci vývoje softwaru.
 Doména se ukázala býti poměrně složitá a bylo důležité detailně zdokumentovat její fungování.
-Dalším krokem bylo tedy vytvoření doménového modelu, který dostal formu diagramu a textového souboru definic entit.
+Dalším krokem bylo tedy vytvoření doménového modelu, který dostal formu diagramu a textového souboru definic jednotlivých entit.
 Tato dokumentace nám poskytla společný jazyk pro další komunikaci a je zachycena v sekci~\ref{sec:domenovy-model}.
 V průběhu tvorby modelu došlo k ujasnění některých požadavků a fungování domény.
-Časem byly funkční požadavky z neformální specifikace převedeny do formy user stories, které jsou sepsány v sekci~\ref{sec:user-stories}.
-Tato konverze byla provedena zejména pro lepší organizaci vývoje softwaru.
 
 
 \section{Stakeholdeři a jejich zájmy}\label{sec:stakeholderi}
 
-Tato sekce popisuje jednotlivé zájmy stakeholderů, které byly identifikovány během analýzy požadavků.
-Stakeholdeři jsou rozděleni do několika skupin.
+Tato sekce popisuje stakeholdery a jejich zájmy, které byly identifikovány během analýzy požadavků.
+Stakeholdeři jsou rozděleni do následujících skupin: uživatelé aplikace, vývojáři, provozovatel software, vedení organizace.
 Skupina uživatelů aplikace je rozdělena i na podskupiny pro zachycení většího detailu.
 Uživatelské role jsou podrobněji definovány a popsány dále v sekci~\ref{sec:specifikace}.
 
@@ -29,7 +29,7 @@ Uživatelské role jsou podrobněji definovány a popsány dále v sekci~\ref{se
 
 \begin{itemize}
     \item
-    Podpora mobilních zařízení
+    Podpora mobilních zařízení.
 \end{itemize}
 
 \subsubsection*{Plnitelé dotazníků}\label{subsubsec:plnitele}
@@ -100,7 +100,7 @@ Soupis požadavků byl od začátku vývoje organizován do kategorií.
 Organizace požadavků byla ponechána v původní podobě.
 Požadavky jsou rozděleny do čtyř kategorií: funkční požadavky, nefunkční požadavky, nasazení a monitoring.
 Pro účely tohoto dokumenty byly požadavkům přiřazeny identifikátory.
-Funkční požadavky jsou označeny R-FR-ID a nefunkční požadavky R-NR-ID, kde ID je číslo požadavku z dané kategorie.
+Funkční požadavky jsou označeny R-FR-ID, nefunkční požadavky R-NR-ID, požadavky na nasazení R-DR-ID a požadavky na monitoring R-MR-ID, kde ID je číslo požadavku z dané kategorie.
 Požadavky na monitoring jsou označeny R-MR-ID a požadavky na nasazení R-DR-ID, kde ID je opět číslo požadavku z dané kategorie.
 Mnoho požadavků pracuje s uživatelskými rolemi, které jsou definovány v požadavku~\ref{itm:r-nr-1}.
 Specifikace vznikla v rané fázi vývoje a některé požadavky byly později změněny.
@@ -116,6 +116,9 @@ Změny jsou popsány v sekci~\ref{subsec:zmeny-specifikace}.
         Start je čas, kdy lze dotazník nejdříve vyplnit.
         \item
         Deadline je čas, kdy lze dotazník nejpozději vyplnit.
+        Deadline může být dvou typů: striktní a uvolněný.
+        V případě nastavení striktního deadline \textit{nelze} po uplynutí deadline dotazník vyplnit.
+        V případě nastavení uvolněného deadline \textit{lze} dotazník vyplnit i po uplnutí deadline.
         \item
         Dotazník se skládá z otázek, které mohou přijímat odpovědi těchto typů:
 
@@ -187,6 +190,8 @@ Změny jsou popsány v sekci~\ref{subsec:zmeny-specifikace}.
 
 \subsubsection{Volitelné}
 
+Požadavky z této podsekce nejsou kritické pro fungování aplikace, ale mohou zjednodušit užívání aplikace.
+
 \begin{description}
     \item[R-FR-18]
     Sledování délky času stráveného nad jednotlivými otázkami, času, kdy plnitel dotazník vyplnil, počtu změn odpovědí.
@@ -194,10 +199,6 @@ Změny jsou popsány v sekci~\ref{subsec:zmeny-specifikace}.
     E-mail upozornění na nové úkoly, na nesplněné úkoly.
     \item[R-FR-20]
     Push notifikace v prohlížeči na nové úkoly, na nesplněné úkoly.
-    \item[R-FR-21]
-    Chat mezi terapeutem a plnitelem.
-    \item[R-FR-22]
-    Rozšíření již vystavěné infrastruktury pro zadávání dotazníků pro zadávání cvičení (např.\ přečíst článek, zhlédnout video nebo vypracovat interaktivní cvičení).
 \end{description}
 
 \subsection{Nefunkční požadavky}\label{subsec:nefunkcni-pozadavky}
@@ -276,7 +277,7 @@ Každý požadavek bude pak posouzen individuálně.
 
 \section{Doménový model}\label{sec:domenovy-model}
 
-Na základě schůzek a specifikace ze sekce~\ref{sec:specifikace} jsem vytvořil doménový model.
+Na základě schůzek a specifikace ze sekce~\ref{sec:specifikace} jsme vytvořili doménový model.
 Model byl následně konzultován s pracovníky NUDZ a byl schválen.
 Model je popsán diagramem na obrázku~\ref{fig:domain-model}.
 Jednotlivé entity jsou definovány níže.
@@ -467,6 +468,8 @@ Požadavky z této podsekce nejsou kritické pro fungování aplikace, ale mohou
     Jako plnitel chci dostávat e-mail upozornění na nové úkoly a na nesplněné úkoly, abych byl vždy informován o svých úkolech a termínech.
     \item[R-US-26]
     Jako plnitel chci dostávat push notifikace v prohlížeči na nové úkoly a na nesplněné úkoly, abych byl vždy aktuálně informován o svých úkolech.
+    \item[R-US-27]
+    Jako výzkumník chci mít možnost sledovat chování uživatele při odpovídání na otázky (např.\ délka času strávená nad jednotlivými otázkami, čas, kdy uživatel dotazník vyplnil, počet změn odpovědí), abych mohl lépe porozumět výsledkům.
 \end{description}
 
 

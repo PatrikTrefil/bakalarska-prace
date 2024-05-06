@@ -1,7 +1,7 @@
 \chapter{Návrh aplikace}\label{ch:navrh-aplikace}
 
 Tato kapitola popisuje, jak byla aplikace navržena.
-První popíšeme jakým způsobem jsme se rozhodli řešit požadavky zadavatele v sekci~\ref{sec:navrh-reseni}.
+Nejprve popíšeme jakým způsobem jsme se rozhodli řešit požadavky zadavatele v sekci~\ref{sec:navrh-reseni}.
 Poté navrhneme architekturu systému v sekci~\ref{sec:architektura}.
 Následně se budeme věnovat návrhu uživatelského rozhraní formou wireframů (sekce~\ref{sec:navrh-uzivatelskeho-rozhrani}).
 Následně popíšeme výběr technologií (sekce~\ref{sec:vyber-technologii}) a způsob ukládání dat v systému (sekce~\ref{sec:ukladani-dat}).
@@ -15,9 +15,9 @@ První možností je vyvinout mobilní aplikaci a desktopovou aplikaci zvlášť
 Druhou možností je vyvinout webovou aplikaci s responzivním rozhraním, která bude dostupná na všech zařízeních.
 Jelikož nepotřebujeme žádné nativní funkce zařízení, tak je výhodnější vyvinout pouze jednu webovou aplikaci.
 Webová aplikace má také výhodu v tom, že ji není potřeba instalovat a aktualizovat.
-Výhodou řešení webovou aplikací je, že zadavatel má zkušenosti s jejich provozem a má existující infrastrukturu.
+Další výhodou řešení webovou aplikací je, že zadavatel má zkušenosti s jejich provozem a má existující infrastrukturu.
 
-Řešení webovou aplikací vyžaduje vývoj uživatelského rozhraní a serveru.
+Řešení webovou aplikací vyžaduje vývoj webové stránky a serveru.
 Nároky na uživatelské rozhraní jsou v dnešní době velmi vysoké.
 Rozhraní musí být rychlé, responzivní a intuitivní.
 V případě serveru je potřeba se zaměřit zejména na návrh rozhraní a bezpečnost.
@@ -31,7 +31,7 @@ Nyní navrhneme architekturu aplikace.
 Budeme využívat architekturu typu klient-server.
 Klientem bude webová aplikace, která bude spuštěna ve webovém prohlížeči uživatele.
 Serverová část bude mít distribuovanou architekturu, jelikož bude využívat službu Form.io.
-Pro její popis použijeme \href{https://c4model.com/}{C4 model} a zaměříme se na 3 úrovně abstrakce - kontext, kontejnery a komponenty.
+Pro popis architektury použijeme \href{https://c4model.com/}{C4 model} a zaměříme se na 3 úrovně abstrakce - kontext, kontejnery a komponenty.
 
 \subsection{Kontext}\label{subsec:kontext}
 
@@ -97,7 +97,7 @@ Obě varianty jsou možné.
 Umístění procesu spojení na server zajistí lepší interoperabilitu našeho systému s ostatními systémy a umožní programově řídit export dat z aplikace.
 
 Pro tyto účely byl vytvořen speciální kontejner jehož úkolem je získat data z ostatních služeb a spojit je.
-Jelikož export dat nebude probíhat příliš často a sesbíraná data budou poměrně malá (očekáváme řádově maximálně stovky záznamů), není nutné dbát na vysokou výkonnost této služby.
+Jelikož export dat nebude probíhat příliš často a sesbíraná data budou poměrně malá (očekáváme maximálně řádově stovky záznamů), není nutné dbát na vysokou výkonnost této služby.
 
 Máme několik možností implementace této služby.
 První možností je použití návrhového vzoru \href{https://microservices.io/patterns/data/api-composition.html}{API composition}.
@@ -112,7 +112,7 @@ Finální implementace byla realizována vytvoření tRPC routeru v rámci NextJ
 
 \subsection{Komponenty}\label{subsec:komponenty}
 
-Na komponenty budeme dělit pouze kontejner \textit{Webová aplikace}.
+Dělení na komponenty budeme popisovat pouze pro kontejner \textit{Webová aplikace}.
 Tento kontejner rozdělíme na zaměstnaneckou a uživatelskou sekci (Obr.~\ref{fig:architecture-component-web-application}).
 
 \begin{figure}[H]
@@ -150,7 +150,7 @@ Výsledné wireframy naleznete v přílohách práce~\ref{sec:wireframy-uzivatel
 
 V této sekci se budeme zabývat výběrem konkrétních technologií, které budeme používat při vývoji aplikace.
 Chceme volit populární a vyspělé nástroje, jelikož programátoři, kteří budou aplikaci v budoucnu rozšiřovat, je pravděpodobně budou znát.
-Zároveň také chceme co nejméně komplikovat workflow a nasazení, abychom zbytečně nezvyšovali nároky na programátory, kteří budou aplikaci v budoucnu rozšiřovat.
+Zároveň také chceme co nejméně komplikovat workflow a nasazení.
 Budeme vybírat primárně z open-source řešení.
 
 \subsection{Software pro práci s formuláři}\label{subsec:software-pro-praci-s-formulari}

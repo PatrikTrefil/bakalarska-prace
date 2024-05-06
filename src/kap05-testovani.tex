@@ -8,9 +8,7 @@ Ačkoliv je vyše popsaný způsob doporučeným přístupem dle \href{https://w
 
 Kontrola volání konkrétních metod vytváří obrovskou závislost na vnitřní implementaci testovaných metod.
 Testy jsou velmi těžko udržovatelné a navíc poměrně dlouhé a složité.
-Kdybych začínal znovu, tak bych testoval i privátní metody, čímž bych se alespoň částečně vyhnul nutnosti mockování databáze.
-Přestože tento způsob je také silně závislý na vnitřní implementaci testovaného modulu, tak je udržitelnější a jednodušší na implementaci oproti použití mocků.
-Pro testování metod obsahující databázové operace bych zvážil použití in-memory databáze\footnote{In-memory databáze je databáze spoléhající primárně na vnitřní paměť pro ukládání dat~\cite{in-memory-db-definition}}.
+Kdybych začínal znovu, tak bych zvolil jinou dekompozici nebo bych zvážil použití in-memory databáze\footnote{In-memory databáze je databáze spoléhající primárně na vnitřní paměť pro ukládání dat~\cite{in-memory-db-definition}}.
 
 V tabulce~\ref{tab:test-coverage} je zobrazeno pokrytí serverové části automatizovanými unit testy.
 

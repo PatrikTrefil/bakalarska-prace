@@ -119,7 +119,7 @@ Dále jsou zde popsány některé části konfigurace Form.io.
 
 \subsubsection{Inicializace projektu}\label{subsubsec:inicializace-projektu}
 
-První úprava se týče inicializace instance při prvním startu.
+První úprava se týká inicializace instance při prvním startu.
 Nepodařilo se najít způsob, jak nastavit inicializaci projektu tak, aby se automaticky vytvořili všechny potřebné zdroje (klient, pacient, zaměstnanec, apod.), role (admin, zaměstnanec, apod.).
 Proto jsem upravil kód inicializace tak, aby se načetla z souboru \texttt{project.json} z kořenu repozitáře obsahující fork.
 Původně se načítala z \texttt{project.json} v build složce, která však není uložena ve verzovacím systému.
@@ -187,8 +187,7 @@ Každý úkol je spojen s formulářem, který má uživatel vyplnit.
 Potřebujeme v našem distribuovaném systému zajistit, aby uživatel mohl vyplnit dotazník pouze tehdy, když má úkol na jeho vyplnění.
 Popíšeme dvě možnosti řešení tohoto problému a následně zvolíme jednu z nich.
 
-Nyní popíšeme první možnost řešení.
-Uživatel vyplní dotazník a \emph{odešle se požadavek na komponentu spravující formuláře}, kde je připraven webhook, který proběhne \emph{před} uložením výsledku, kde proběhne kontrola existence úkolu na vyplnění tohoto dotazníku.
+První možností řešení je, že uživatel vyplní dotazník a \emph{odešle se požadavek na komponentu spravující formuláře}, kde je připraven webhook, který proběhne \emph{před} uložením výsledku, kde proběhne kontrola existence úkolu na vyplnění tohoto dotazníku.
 Pokud úkol existuje, tak se vyplnění dotazníku uloží společně s identifikátorem úkolu a také se splní úkol a uloží se k němu identifikátor vyplnění dotazníku.
 V případě, že úkol neexistuje, tak se vyplnění dotazníku neuloží a uživatel je informován o chybě.
 Dotazník obsahuje skryté pole, které obsahuje identifikátor úkolu v rámci, kterého byl dotazník vyplněn.
@@ -237,7 +236,7 @@ Vystačíme si s tím, že systém spravující formuláře nikdy nebude obsahov
 Po uložení vyplnění dotazníku se zavolá druhý webhook, který zařídí uložení informace o identifikátoru vyplnění do úkolu.
 Vzhledem k tomu, že se jedná o veřejně dostupný endpoint, tak je nutné ověřit poskytnutá data.
 Musíme si tedy z úkolového systému vyžádat vyplnění dotazníku a zkontrolovat všechny náležitosti.
-Pokud by se někdo pokusil spárovat úkol s formulářem, který je ve stavu \texttt{skoro hotový} na jiné vyplnění dotazníku než to, které způsobilo přechod úkolu do stavu \texttt{skoro hotový}, tak se mu to jistě nepovede.
+Pokud by se někdo pokusil spárovat úkol s formulářem, který je ve stavu \texttt{skoro hotový} na jiné vyplnění dotazníku než to, které způsobilo přechod úkolu do stavu \texttt{skoro hotový}, tak operace jistě selže.
 Kdyby se někdo pokusil spárovat úkol s vyplněním dotazníku, který neodpovídá dotazníku zadaný úkolem, tak operace jistě selže.
 V případě, že by se někdo pokusil spárovat jiné vyplnění stejného dotazníku, tak se mu to také nepovede.
 Ono jiné vyplnění dotazníku by muselo mít jiný identifikátor úkolu v skrytém poli, protože systém spravující formuláře zajišťuje unikátnost těchto hodnot.
