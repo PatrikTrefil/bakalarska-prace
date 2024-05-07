@@ -72,7 +72,7 @@ Chybí nám informace jako e\babelhyphen{nobreak}mail, telefonní číslo apod.
 Nechceme po uživateli vyžadovat vlastnictví specializovaného hardware jako \href{https://cs.wikipedia.org/wiki/Bezpe%C4%8Dnostn%C3%AD_token}{bezpečnostní token} či skener otisku prstu.
 
 Webové rozhraní používající knihovnu NextJS ve výchozím nastavení sbírá anonymní data o uživatelích~\cite{nextjs-telemetry}.
-Na dotaz zadavatele byl sběr těchto dat vypnutý pro zvýšení důvěry uživatelů v platformu (viz produkční Dockerfile kontejneru \texttt{web-app}).
+Na dotaz zadavatele byl sběr těchto dat vypnutý pro zvýšení důvěry uživatelů v platformu (viz produkční Dockerfile kontejneru \lstinline{web-app}).
 
 Dle vyjádření správců projektu Form.io software Form.io nesbírá žádná data o uživatelích~\cite{formio-telemetry-issue}.
 
@@ -110,7 +110,7 @@ Kontrola práv uživatele při přístupu na ochráněnou stránku se kontrola p
 
 \section{Konfigurace a modifikace Form.io}\label{sec:konfigurace-a-modifikace-form.io}
 
-\href{https://git-scm.com/book/en/v2/Git-Tools-Submodules}{Submodul} \texttt{/src/formio/} obsahuje fork projektu Form.io, kde bylo provedeno několik úprav.
+\href{https://git-scm.com/book/en/v2/Git-Tools-Submodules}{Submodul} \lstinline{/src/formio/} obsahuje fork projektu Form.io, kde bylo provedeno několik úprav.
 Úpravy jsou poměrně malé a jejich cílem je přizpůsobit software našim potřebám.
 Všechny změny jsou popsány v této sekci.
 Dále jsou zde popsány některé části konfigurace Form.io.
@@ -121,8 +121,8 @@ Dále jsou zde popsány některé části konfigurace Form.io.
 
 První úprava se týká inicializace instance při prvním startu.
 Nepodařilo se najít způsob, jak nastavit inicializaci projektu tak, aby se automaticky vytvořili všechny potřebné zdroje (klient, pacient, zaměstnanec, apod.), role (admin, zaměstnanec, apod.).
-Proto jsem upravil kód inicializace tak, aby se načetla z souboru \texttt{project.json} z kořenu repozitáře obsahující fork.
-Původně se načítala z \texttt{project.json} v build složce, která však není uložena ve verzovacím systému.
+Proto jsem upravil kód inicializace tak, aby se načetla z souboru \lstinline{project.json} z kořenu repozitáře obsahující fork.
+Původně se načítala z \lstinline{project.json} v build složce, která však není uložena ve verzovacím systému.
 Tato úprava byla nutná, jelikož nelze vytvářet nové role po inicializaci projektu a konfigurační soubor je nutné zahrnout do verzovacího systému.
 
 \subsubsection{Webhook action}\label{subsubsec:webhook-action}
@@ -143,14 +143,14 @@ Systém správy formulářů je použit i pro správu uživatelů systému.
 V systému jsou vytvořeny registrační formuláře, které umožňují tvorbu uživatelských účtů.
 Data o uživatelských účtech jsou pak uložena v uložišti odpovědí na tyto registrační formuláře.
 V systému existují samosatné registrační formuláře pro různé role uživatelů.
-My potřebujeme zajistit imutabilitu identifikátoru každého uživatele, který je uložen v položce \texttt{data.id}.
+My potřebujeme zajistit imutabilitu identifikátoru každého uživatele, který je uložen v položce \lstinline{data.id}.
 Motivaci k této změně naleznete v sekci~\ref{sec:auth}.
 Databáze \href{https://www.mongodb.com/}{MongoDB}, která je použita pro ukládání dat o uživatelích neumí zajistit imutabilitu ukládaných dat.
 Form.io však vždy přistupuje k databázi uživatelů skrze knihovnu \href{https://mongoosejs.com/}{Mongoose}.
 Tato knihovna umí zajistit imutability zvolených položek.
-Mongoose nastavíme tak, aby zajistil imutabilitu položky \texttt{data.id} (ID uživatele).
+Mongoose nastavíme tak, aby zajistil imutabilitu položky \lstinline{data.id} (ID uživatele).
 Pokud se uživatel pokusí změnit své ID v rámci úpravy svého profilu, tak se změna neprovede.
-Nevýhodou tohoto řešení je, že vytváří omezení na položky \texttt{data.id} ve všech objektech reprezentující odevzdání, tedy i v těch, které nejsou uživatelské účty.
+Nevýhodou tohoto řešení je, že vytváří omezení na položky \lstinline{data.id} ve všech objektech reprezentující odevzdání, tedy i v těch, které nejsou uživatelské účty.
 
 Alternativní řešení by bylo vytvořit autorizační proxy mezi klientem a Form.io serverem či mezi Form.io serverem a databází uživatelů.
 Toto řešení by pravděpodobně vyžadovalo další kontejner a má netriviální implementaci.
@@ -216,13 +216,13 @@ Nyní popíšeme celý proces vyplnění dotazníku formou diagramu (Obr.~\ref{f
 \end{figure}
 
 Požadavek na uložení vyplnění dotazníku spustí webhook.
-V rámci reakce na tento webhook uvedeme úkol do stavu \texttt{skoro hotový}.
+V rámci reakce na tento webhook uvedeme úkol do stavu \lstinline{skoro hotový}.
 Tento stav slouží k tomu, aby nebylo možné vytvořit další vyplnění dotazníku v rámci stejného úkolu.
 Tento mechanismus se nazývá \emph{semantic lock counter-measure}~\cite{semantic-lock-countermeasure-def}.
 Stavy úkolu a přechody mezi nimi jsou popsány stavovým diagramem v jazyce UML na obr.~\ref{fig:task-state}.
 
 Nyní popíšeme, jak je tento mechanismus využíván v našem systému.
-Pokud požadavek na uložení vyplnění dotazníku spustí webhook, který proběhne před uložením do systému spravující formuláře, a následně selže operace uložení vyplnění dotazníku v systému spravující formuláře, tak úkol navždy zůstane ve stavu \texttt{skoro hotový}.
+Pokud požadavek na uložení vyplnění dotazníku spustí webhook, který proběhne před uložením do systému spravující formuláře, a následně selže operace uložení vyplnění dotazníku v systému spravující formuláře, tak úkol navždy zůstane ve stavu \lstinline{skoro hotový}.
 Pokud bychom se z tohoto stavu chtěli dostat, potřebovali bychom implementaci \href{https://microservices.io/patterns/data/saga.html}{ság}, která by zajistila provedení kompenzačních transakcí.
 Popsaná situace je však natolik výjimečná, že se v tuto chvíli problematice věnovat nebudeme.
 Vystačíme si s tím, že systém spravující formuláře nikdy nebude obsahovat vyplnění dotazníku, které vzniklo bez zadání úkolu.
@@ -236,7 +236,7 @@ Vystačíme si s tím, že systém spravující formuláře nikdy nebude obsahov
 Po uložení vyplnění dotazníku se zavolá druhý webhook, který zařídí uložení informace o identifikátoru vyplnění do úkolu.
 Vzhledem k tomu, že se jedná o veřejně dostupný endpoint, tak je nutné ověřit poskytnutá data.
 Musíme si tedy z úkolového systému vyžádat vyplnění dotazníku a zkontrolovat všechny náležitosti.
-Pokud by se někdo pokusil spárovat úkol s formulářem, který je ve stavu \texttt{skoro hotový} na jiné vyplnění dotazníku než to, které způsobilo přechod úkolu do stavu \texttt{skoro hotový}, tak operace jistě selže.
+Pokud by se někdo pokusil spárovat úkol s formulářem, který je ve stavu \lstinline{skoro hotový} na jiné vyplnění dotazníku než to, které způsobilo přechod úkolu do stavu \lstinline{skoro hotový}, tak operace jistě selže.
 Kdyby se někdo pokusil spárovat úkol s vyplněním dotazníku, který neodpovídá dotazníku zadaný úkolem, tak operace jistě selže.
 V případě, že by se někdo pokusil spárovat jiné vyplnění stejného dotazníku, tak se mu to také nepovede.
 Ono jiné vyplnění dotazníku by muselo mít jiný identifikátor úkolu v skrytém poli, protože systém spravující formuláře zajišťuje unikátnost těchto hodnot.

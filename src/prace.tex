@@ -62,6 +62,16 @@
 \usepackage{enumitem,amssymb}
 \usepackage{tikz}
 \usepackage{tabularx}
+\usepackage{listings}
+\lstset{
+    basicstyle=\small\ttfamily,
+    columns=fullflexible,
+    inputencoding = utf8,  % Input encoding
+    extendedchars = true,  % Extended ASCII
+    literate      =        % Support additional characters
+        {á}{{\'a}}1
+        {ý}{{\'y}}1
+}
 % load hyperref last
 \usepackage{hyperref}       % odkazy
 

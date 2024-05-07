@@ -65,12 +65,12 @@ Pokud chceme formulář automaticky vyhodnotit na základě odpovědí plnitele,
 Po přidání prvku se zobrazí jeho nastavení (Obr.~\ref{fig:odvozena-hodnota-nastaveni}).
 Vzorec pro výpočet hodnoty můžeme zadat do sekce \uv{Vypočtená hodnota} v kartě \uv{Data} (Obr.~\ref{fig:odvozena-hodnota-vzorec-a-server}).
 Vzorec se zapisuje v programovacím jazyce \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript}{JavaScript}.
-Všechny hodnoty odpovědí jsou dostupné na objektu \texttt{data}.
+Všechny hodnoty odpovědí jsou dostupné na objektu \lstinline{data}.
 Vzorec používá názvy vlastností jako klíče na tomto objektu.
-Pro použití konkrétní můžeme použít tečkovou notaci \texttt{data.nazevVlastnosti} nebo notaci s hranatými závorkami \texttt{data["nazevVlastnosti"]}.
+Pro použití konkrétní můžeme použít tečkovou notaci \lstinline{data.nazevVlastnosti} nebo notaci s hranatými závorkami \lstinline{data["nazevVlastnosti"]}.
 Název vlastnosti lze pro každý prvek nastavit v menu nastavení v poli \uv{Název vlastnosti} v kartě \uv{API} (Obr.~\ref{fig:odvozena-hodnota-nastaveni-nazev}).
-Výsledek vzorce uložíme do proměnné \texttt{value}.
-Např.\ pro součet hodnoty odpovědí s názvy \uv{a} a \uv{b} bychom použili vzorec \texttt{value = data.a + data.b}.
+Výsledek vzorce uložíme do proměnné \lstinline{value}.
+Např.\ pro součet hodnoty odpovědí s názvy \uv{a} a \uv{b} bychom použili vzorec \lstinline{value = data.a + data.b}.
 Pokud je nevhodné, aby uživatel viděl způsob výpočtu odvozené hodnoty nebo mohl získat vypočtenou hodnotu, tak je nutné v nastavení prvku zvolit možnost \uv{Vypočítat hodnotu na serveru} (Obr.~\ref{fig:odvozena-hodnota-vzorec-a-server}).
 Nastavení prvku uložíme stisknutím tlačítka \uv{Uložit}.
 Kdybychom chtěli nastavení prvku znovu upravit, tak se na obrazovku nastavení dostaneme stisknutím tlačítka s ozubeným kolečkem v pravém horním rohu prvku (Obr.~\ref{fig:odvozena-hodnota-ozubene-kolo}).
