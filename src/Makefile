@@ -21,10 +21,10 @@ prace.pdf: prace.tex $(wildcard *.tex) literatura.bib prace.xmpdata diagrams
 	pdflatex --shell-escape -halt-on-error $<
 	pdflatex --shell-escape -halt-on-error $<
 
-abstrakt.pdf: abstrakt.tex abstrakt.xmpdata
+abstrakt.pdf: abstrakt.tex abstrakt.xmpdata abstrakt-def.tex
 	pdflatex $<
 
-abstrakt-en.pdf: abstrakt-en.tex abstrakt-en.xmpdata
+abstrakt-en.pdf: abstrakt-en.tex abstrakt-en.xmpdata abstrakt-def.tex
 	pdflatex $<
 
 clean_tex:
