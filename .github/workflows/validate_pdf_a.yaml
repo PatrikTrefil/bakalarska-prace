@@ -47,7 +47,7 @@ jobs:
 
       - name: Prepare folder with static assets
         run: >-
-          mkdir ../website/public &&
+          mkdir -p ../website/public &&
           cp prace.pdf abstrakt.pdf abstrakt-en.pdf ../website/public
 
       - name: Pull Vercel Environment Information
