@@ -1,4 +1,4 @@
-name: Validate PDF/A
+name: Main
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    name: Build thesis PDFs and upload to artifacts and Netlify
+    name: Build thesis PDFs and upload
     runs-on: ubuntu-latest
     container: { image: "aergus/latex" }
     defaults:
@@ -45,22 +45,22 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel
 
-      - name: Prepare folder to upload
+      - name: Prepare folder with static assets
         run: >-
-          mkdir upload &&
-          cp prace.pdf abstrakt.pdf abstrakt-en.pdf ../website/index.html upload
+          mkdir ../website/public &&
+          cp prace.pdf abstrakt.pdf abstrakt-en.pdf ../website/public
 
       - name: Pull Vercel Environment Information
-        working-directory: src/upload
+        working-directory: ../website/
         run: vercel pull --yes --environment=production --token=${{
           secrets.VERCEL_TOKEN }}
 
       - name: Build Project Artifacts
-        working-directory: src/upload
+        working-directory: ../website/
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy Project Artifacts to Vercel
-        working-directory: src/upload
+        working-directory: ../website/
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
 
   verify:
