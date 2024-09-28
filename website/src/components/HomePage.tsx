@@ -12,7 +12,7 @@ export function HomePage() {
             <Card className="w-full max-w-4xl dark:bg-zinc-800 dark:text-white">
                 <CardHeader className="text-center">
                     <CardTitle className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
-                        Bachelor's Thesis
+                        Bachelor&apos;s Thesis
                     </CardTitle>
                     <CardDescription className="text-xl mt-2">Mental Health Monitoring Platform</CardDescription>
                 </CardHeader>
@@ -63,12 +63,12 @@ export function HomePage() {
                         <Button className="w-full" variant="default" asChild>
                             <Link href="https://www.patriktrefil.com/" >
                             <i className="bi bi-person-fill mr-1"></i>
-                            Author's website
+                                Author&apos;s website
                             </Link>
                         </Button>
                         <Button className="w-full md:col-span-2" variant="default">
                             <i className="bi bi-building-fill mr-1"></i>
-                            University's website
+                            University&apos;s website
                         </Button>
                         <Button className="w-full md:col-span-2" variant="default" asChild>
                             <Link href="https://dspace.cuni.cz/handle/20.500.11956/192079">
