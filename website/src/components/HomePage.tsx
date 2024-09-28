@@ -9,23 +9,25 @@ export function HomePage() {
     return (
         <div
             className="min-h-screen bg-gradient-to-b from-gray-200 to-gray-300 dark:from-zinc-900 dark:to-zinc-900 flex items-center justify-center p-4">
-            <Card className="w-full max-w-4xl dark:bg-zinc-800 dark:text-white">
+            <Card className="w-full max-w-4xl dark:bg-zinc-700 dark:text-white">
                 <CardHeader className="text-center">
                     <CardTitle className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
                         Bachelor&apos;s Thesis
                     </CardTitle>
-                    <CardDescription className="text-xl mt-2">Mental Health Monitoring Platform</CardDescription>
+                    <CardDescription className="text-xl mt-2 dark:text-white">Mental Health Monitoring
+                        Platform</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
                     <div className="text-center space-y-2">
                         <p className="text-lg font-medium">Author: Patrik Trefil</p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm">
                             Advisor: Petr Škoda | Referee: Irena Holubová
                         </p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm">
                             Department of Software Engineering
                         </p>
-                        <Badge variant="secondary" className="text-sm font-semibold bg-lime-400 dark:bg-lime-900">
+                        <Badge variant="secondary"
+                               className="text-sm font-semibold bg-lime-400 dark:bg-lime-700 dark:text-white">
                             Grade: Excellent
                         </Badge>
                     </div>
@@ -66,9 +68,11 @@ export function HomePage() {
                                 Author&apos;s website
                             </Link>
                         </Button>
-                        <Button className="w-full md:col-span-2" variant="default">
+                        <Button className="w-full md:col-span-2" variant="default" asChild>
+                            <Link href="https://cuni.cz/">
                             <i className="bi bi-building-fill mr-1"></i>
                             University&apos;s website
+                            </Link>
                         </Button>
                         <Button className="w-full md:col-span-2" variant="default" asChild>
                             <Link href="https://dspace.cuni.cz/handle/20.500.11956/192079">
